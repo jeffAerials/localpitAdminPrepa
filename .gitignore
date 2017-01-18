@@ -1,0 +1,26 @@
+/app/config/parameters.yml
+/build/
+/phpunit.xml
+/var/*
+!/var/cache
+/var/cache/*
+!var/cache/.gitkeep
+!/var/logs
+/var/logs/*
+!var/logs/.gitkeep
+!/var/sessions
+/var/sessions/*
+!var/sessions/.gitkeep
+!var/SymfonyRequirements.php
+/vendor/
+/web/bundles/
+
+
+# dossier de configuration IDE pour le projet courant
+.idea
+
+# les fichiers du repertoire web sont censés être publiés
+# nous allons ignorer les dossiers js, css et font
+/web/js
+/web/css
+/web/fonts
