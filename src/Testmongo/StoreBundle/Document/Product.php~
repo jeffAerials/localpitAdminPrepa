@@ -1,0 +1,33 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Jean-François
+ * Date: 29/01/2017
+ * Time: 15:48
+ */
+
+namespace Testmongo\StoreBundle\Document;
+
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+
+/**
+ * @MongoDB\Document
+ */
+class Product
+{
+    /**
+     * @MongoDB\Id
+     */
+    protected $id;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $name;
+
+    /**
+     * @MongoDB\Field(type="float")
+     */
+    protected $price;
+
+}

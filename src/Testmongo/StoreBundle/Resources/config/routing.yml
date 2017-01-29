@@ -1,0 +1,6 @@
+testmongo_store_homepage:
+    path:     /
+    defaults: { _controller: TestmongoStoreBundle:Default:index }
+testmongo_store_create:
+    path:     /create
+    defaults: { _controller: TestmongoStoreBundle:Default:create }

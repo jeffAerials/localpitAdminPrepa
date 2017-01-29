@@ -1,3 +1,7 @@
+testmongo_store:
+    resource: "@TestmongoStoreBundle/Resources/config/routing.yml"
+    prefix:   /mongotest
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
