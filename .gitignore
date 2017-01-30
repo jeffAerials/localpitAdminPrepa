@@ -21,6 +21,12 @@
 
 # les fichiers du repertoire web sont censés être publiés
 # nous allons ignorer les dossiers js, css et font
+/web/ajax
+/web/data
+/web/img
+/web/php
+/web/sound
+/web/xml
 /web/js
 /web/css
 /web/fonts
