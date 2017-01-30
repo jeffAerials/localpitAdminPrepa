@@ -24,7 +24,7 @@ class UserAdmin extends BaseUser
      * @var integer
      *
      * @ORM\Id
-     * @ORM\Column(type="Integer")
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
