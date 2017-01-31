@@ -30,18 +30,12 @@ class UserAdmin extends BaseUser
     protected $id;
 
     /**
-     * @var string $last_name
+     * @var string $application
      *
-     * @ORM\Column(name="last_name", type="string", length=255)
+     * @ORM\Column(name="application", type="string", length=255, nullable=true)
      */
-    private $last_name;
+    private $application;
 
-    /**
-     * @var string $first_name
-     *
-     * @ORM\Column(name="first_name", type="string", length=255)
-     */
-    private $first_name;
     
     public function __construct()
     {
@@ -49,50 +43,28 @@ class UserAdmin extends BaseUser
     }
 
     /**
-     * Set lastName
+     * Set $application
      *
-     * @param string $lastName
+     * @param string $application
      *
      * @return UserAdmin
      */
-    public function setLastName($lastName)
+    public function setApplication($application)
     {
-        $this->last_name = $lastName;
+        $this->application = $application;
 
         return $this;
     }
 
     /**
-     * Get lastName
+     * Get $application
      *
      * @return string
      */
-    public function getLastName()
+    public function getApplication()
     {
-        return $this->last_name;
+        return $this->application;
     }
 
-    /**
-     * Set firstName
-     *
-     * @param string $firstName
-     *
-     * @return UserAdmin
-     */
-    public function setFirstName($firstName)
-    {
-        $this->first_name = $firstName;
-
-        return $this;
-    }
-
-    /**
-     * Get firstName
-     *
-     * @return string
-     */
-    public function getFirstName()
-    {
-        return $this->first_name;
-    }
+    
 }
