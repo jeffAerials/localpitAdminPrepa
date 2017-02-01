@@ -8,7 +8,7 @@ testmongo_store:
 
 app:
     resource: "@AppBundle/Controller/"
-    prefix: /app
+    prefix: /appb
     type:     annotation
 
 fos_user:
