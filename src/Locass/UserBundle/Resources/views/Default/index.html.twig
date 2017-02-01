@@ -24,7 +24,6 @@
                     Read the documentation to learn
                     <a href="http://symfony.com/doc/{{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION')[:3] }}/page_creation.html">
                         How to create your first page in Symfony
-                        Bonjour
                     </a>
                 </p>
             </div>
@@ -49,12 +48,10 @@
         #welcome h1 span { display: block; font-size: 75%; }
         #icon-status, #icon-book { float: left; height: 64px; margin-right: 1em; margin-top: -4px; width: 64px; }
         #icon-book { display: none; }
-
         @media (min-width: 768px) {
             #wrapper { width: 80%; margin: 2em auto; }
             #icon-book { display: inline-block; }
             #status a, #next a { display: block; }
-
             @-webkit-keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
             @keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
             .sf-toolbar { opacity: 0; -webkit-animation: fade-in 1s .2s forwards; animation: fade-in 1s .2s forwards;}

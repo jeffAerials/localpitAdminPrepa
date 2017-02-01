@@ -66,5 +66,5 @@ class UserAdmin extends BaseUser
         return $this->application;
     }
 
-    
+
 }
