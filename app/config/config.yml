@@ -90,6 +90,6 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Locass\UserBundle\Entity\UserAdmin
-    #registration:
-        #form:
-            #type: locass_user_registration
+    registration:
+        form:
+            type: Locass\UserBundle\Form\RegistrationType
