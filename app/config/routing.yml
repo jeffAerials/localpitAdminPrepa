@@ -1,3 +1,7 @@
+locass_admin:
+    resource: "@LocassAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
 locass_user:
     resource: "@LocassUserBundle/Resources/config/routing.yml"
     prefix:   /

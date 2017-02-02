@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Testmongo\StoreBundle\TestmongoStoreBundle(),
             new Locass\UserBundle\LocassUserBundle(),
+            new Locass\AdminBundle\LocassAdminBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
