@@ -30,18 +30,75 @@ class UserAdmin extends BaseUser
     protected $id;
 
     /**
-     * @var string $lastname
+     * @var string $application
      *
-     * @ORM\Column(name="lastname", type="string", length=255)
+     * @ORM\Column(name="application", type="string", length=255, nullable=true)
      */
-    private $lastname;
+    private $application;
 
     /**
-     * @var string $firstname
+     * @var string $nom
      *
-     * @ORM\Column(name="firstname", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
      */
-    private $firstname;
+    private $nom;
+
+    /**
+     * @var string $prenom
+     *
+     * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
+     */
+    private $prenom;
+
+    /**
+     * @var string $adresse
+     *
+     * @ORM\Column(name="adresse", type="string", length=255, nullable=true)
+     */
+    private $adresse;
+
+    /**
+     * @var string $adresse2
+     *
+     * @ORM\Column(name="adresse2", type="string", length=255, nullable=true)
+     */
+    private $adresse2;
+
+    /**
+     * @var string $cp
+     *
+     * @ORM\Column(name="cp", type="string", length=10, nullable=true)
+     */
+    private $cp;
+
+    /**
+     * @var string $ville
+     *
+     * @ORM\Column(name="ville", type="string", length=255, nullable=true)
+     */
+    private $ville;
+
+    /**
+     * @var string $pays
+     *
+     * @ORM\Column(name="pays", type="string", length=35, nullable=true)
+     */
+    private $pays;
+
+    /**
+     * @var string $fonction
+     *
+     * @ORM\Column(name="fonction", type="string", length=255, nullable=true)
+     */
+    private $fonction;
+
+    /**
+     * @var string $phone
+     *
+     * @ORM\Column(name="phone", type="string", length=20, nullable=true)
+     */
+    private $phone;
+
     
     public function __construct()
     {
@@ -49,50 +106,28 @@ class UserAdmin extends BaseUser
     }
 
     /**
-     * Set lastName
+     * Set $application
      *
-     * @param string $lastName
+     * @param string $application
      *
      * @return UserAdmin
      */
-    public function setLastName($lastName)
+    public function setApplication($application)
     {
-        $this->last_name = $lastName;
+        $this->application = $application;
 
         return $this;
     }
 
     /**
-     * Get lastName
+     * Get $application
      *
      * @return string
      */
-    public function getLastName()
+    public function getApplication()
     {
-        return $this->last_name;
+        return $this->application;
     }
 
-    /**
-     * Set firstName
-     *
-     * @param string $firstName
-     *
-     * @return UserAdmin
-     */
-    public function setFirstName($firstName)
-    {
-        $this->first_name = $firstName;
 
-        return $this;
-    }
-
-    /**
-     * Get firstName
-     *
-     * @return string
-     */
-    public function getFirstName()
-    {
-        return $this->first_name;
-    }
 }
