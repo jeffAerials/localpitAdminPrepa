@@ -1,6 +1,15 @@
+testmongo_store_test:
+    resource: "@TestmongoStoreBundle/Resources/config/routing/test.yml"
+    prefix:   /test
+
 testmongo_store_homepage:
     path:     /
     defaults: { _controller: TestmongoStoreBundle:Default:index }
+
 testmongo_store_create:
     path:     /create
     defaults: { _controller: TestmongoStoreBundle:Default:create }
+
+testmongo_store_essai:
+        resource: "@TestmongoStoreBundle/Resources/config/routing/essai.yml"
+        prefix:   /essai
