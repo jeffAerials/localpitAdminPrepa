@@ -93,3 +93,5 @@ fos_user:
     registration:
         form:
             type: Locass\UserBundle\Form\RegistrationType
+        confirmation:
+            enabled: true
