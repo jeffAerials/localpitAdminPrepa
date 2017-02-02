@@ -22,7 +22,7 @@ class EssaiController extends Controller
 
         $essais = $em->getRepository('TestmongoStoreBundle:Essai')->findAll();
 
-        return $this->render('essai/index.html.twig', array(
+        return $this->render('TestmongoStoreBundle:Essai:index.html.twig', array(
             'essais' => $essais,
         ));
     }
@@ -45,7 +45,7 @@ class EssaiController extends Controller
             return $this->redirectToRoute('essai_show', array('id' => $essai->getId()));
         }
 
-        return $this->render('essai/new.html.twig', array(
+        return $this->render('TestmongoStoreBundle:Essai:new.html.twig', array(
             'essai' => $essai,
             'form' => $form->createView(),
         ));
@@ -59,7 +59,7 @@ class EssaiController extends Controller
     {
         $deleteForm = $this->createDeleteForm($essai);
 
-        return $this->render('essai/show.html.twig', array(
+        return $this->render('TestmongoStoreBundle:Essai:show.html.twig', array(
             'essai' => $essai,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -81,7 +81,7 @@ class EssaiController extends Controller
             return $this->redirectToRoute('essai_edit', array('id' => $essai->getId()));
         }
 
-        return $this->render('essai/edit.html.twig', array(
+        return $this->render('TestmongoStoreBundle:Essai:edit.html.twig', array(
             'essai' => $essai,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

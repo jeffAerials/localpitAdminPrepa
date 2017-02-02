@@ -22,7 +22,7 @@ class TestController extends Controller
 
         $tests = $em->getRepository('TestmongoStoreBundle:Test')->findAll();
 
-        return $this->render('test/index.html.twig', array(
+        return $this->render('TestmongoStoreBundle:Test:index.html.twig', array(
             'tests' => $tests,
         ));
     }
@@ -45,7 +45,7 @@ class TestController extends Controller
             return $this->redirectToRoute('test_show', array('id' => $test->getId()));
         }
 
-        return $this->render('test/new.html.twig', array(
+        return $this->render('TestmongoStoreBundle:Test:new.html.twig', array(
             'test' => $test,
             'form' => $form->createView(),
         ));
@@ -59,7 +59,7 @@ class TestController extends Controller
     {
         $deleteForm = $this->createDeleteForm($test);
 
-        return $this->render('test/show.html.twig', array(
+        return $this->render('TestmongoStoreBundle:Test:show.html.twig', array(
             'test' => $test,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -81,7 +81,7 @@ class TestController extends Controller
             return $this->redirectToRoute('test_edit', array('id' => $test->getId()));
         }
 
-        return $this->render('test/edit.html.twig', array(
+        return $this->render('TestmongoStoreBundle:Test:edit.html.twig', array(
             'test' => $test,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
