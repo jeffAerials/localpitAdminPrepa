@@ -1,6 +1,6 @@
 locass_bands:
     resource: "@LocassBandsBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /bands
 
 locass_orga:
     resource: "@LocassOrgaBundle/Resources/config/routing.yml"
