@@ -73,7 +73,7 @@ class Bands
     /**
      * @var string
      *
-     * @ORM\Column(name="band", type="string", length=255)
+     * @ORM\Column(name="band", type="string", length=255, nullable=true)
      */
     private $band;
 
@@ -87,28 +87,28 @@ class Bands
     /**
      * @var string
      *
-     * @ORM\Column(name="style", type="string", length=255)
+     * @ORM\Column(name="style", type="string", length=255, nullable=true)
      */
     private $style;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="nbmembers", type="integer")
+     * @ORM\Column(name="nbmembers", type="integer", nullable=true)
      */
     private $nbmembers;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="origine", type="boolean")
+     * @ORM\Column(name="origine", type="boolean", nullable=true)
      */
     private $origine;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateinscr", type="datetime")
+     * @ORM\Column(name="dateinscr", type="datetime", nullable=true)
      */
     private $dateinscr;
 
