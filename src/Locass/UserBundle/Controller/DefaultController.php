@@ -28,9 +28,8 @@ class DefaultController extends Controller
             return $this->render('LocassUserBundle:Default:index.html.twig');
         }
         elseif ($application == 'Salles'){ // Gestionnaire de Salles
-            $salles = new Salles();
-            $form = $this->createForm('Locass\SallesBundle\Form\SallesType', $salles);
-            $form->handleRequest($request);
+
+
 
             /**$nom = $request->request->get('nom');
             $prenom = $request->request->get('prenom');
@@ -52,45 +51,17 @@ class DefaultController extends Controller
             return $this->render('LocassUserBundle:Default:index.html.twig');
         }
         elseif ($application == 'Bands'){ // Groupe, Musicien...
-            $bands = new Bands();
-            $form = $this->createForm('Locass\BandsBundle\Form\bandsType', $bands);
-            $form->handleRequest($request);
 
-            $prenom = $request->request->get('prenom');
-            $adresse = $request->request->get('adresse');
-            $email = $request->request->get('email');
-            $phone = $request->request->get('phone');
-            $pays = $request->request->get('pays');
-            $band = $request->request->get('band');
-            $notes = $request->request->get('notes');
-            $style = $request->request->get('style');
-            $nbmembers = $request->request->get('nbmembers');
-            $origine = $request->request->get('origine');
+            $bands = new bands();
+            $form   = $this->createForm('Locass\BandsBundle\Form\bandsType', $bands);
 
-
-
-            if ($form->isSubmitted() && $form->isValid()) {
-                $em = $this->getDoctrine()->getManager();
-
-                $bands->setIdfosuser($idUser);
-                $bands->setPrenom($prenom);
-                $bands->setAdresse($adresse);
-                $bands->setEmail($email);
-                $bands->setPhone($phone);
-
-
-                $em->persist($bands);
-                $em->flush($bands);
-
-                return $this->redirectToRoute('homepage', array('id' => $bands->getId()));
-            }
             return $this->render('LocassUserBundle:Default:newband.html.twig', array(
                 'bands' => $bands,
-                'form' => $form->createView(),
+                'form'   => $form->createView(),
             ));
         }
         elseif($application == 'Orga'){ // Organisateur de concerts Assos, Orga, Tourneur, Manager...
-            $orga = new Orga();
+
 
             return $this->render('LocassUserBundle:Default:index.html.twig');
         }
@@ -99,5 +70,48 @@ class DefaultController extends Controller
         }
 
 
+    }
+    public function createbandAction(Request $request)
+    {
+        $user = $this->getUser();
+
+        $idUser = $user->getId();
+
+        $bands = new Bands();
+        $form = $this->createForm('Locass\BandsBundle\Form\bandsType', $bands);
+        $form->handleRequest($request);
+
+        $prenom = $request->request->get('prenom');
+        $adresse = $request->request->get('adresse');
+        $email = $request->request->get('email');
+        $phone = $request->request->get('phone');
+        $pays = $request->request->get('pays');
+        $band = $request->request->get('band');
+        $notes = $request->request->get('notes');
+        $style = $request->request->get('style');
+        $nbmembers = $request->request->get('nbmembers');
+        $origine = $request->request->get('origine');
+
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $bands->setIdfosuser($idUser);
+            $bands->setPrenom($prenom);
+            $bands->setAdresse($adresse);
+            $bands->setEmail($email);
+            $bands->setPhone($phone);
+
+
+            $em->persist($bands);
+            $em->flush($bands);
+
+            return $this->redirectToRoute('homepage', array('id' => $bands->getId()));
+        }
+        return $this->render('LocassUserBundle:Default:newband.html.twig', array(
+            'bands' => $bands,
+            'form' => $form->createView(),
+        ));
     }
 }

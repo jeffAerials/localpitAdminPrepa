@@ -1,3 +1,7 @@
 locass_user_homepage:
     path:     /
     defaults: { _controller: LocassUserBundle:Default:index }
+
+locass_user_bandcreate:
+    path:     /createband
+    defaults: { _controller: LocassUserBundle:Default:createband }
