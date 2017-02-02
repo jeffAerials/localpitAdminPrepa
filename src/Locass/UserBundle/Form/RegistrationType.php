@@ -30,15 +30,6 @@ class RegistrationType extends AbstractType
                 'placeholder' => 'Choose your type',
                 'empty_data'  => null
             ))
-            ->add('nom')
-            ->add('prenom')
-            ->add('adresse')
-            ->add('adresse2')
-            ->add('cp')
-            ->add('ville')
-            ->add('pays')
-            ->add('fonction')
-            ->add('phone')
         ;
     }
 
