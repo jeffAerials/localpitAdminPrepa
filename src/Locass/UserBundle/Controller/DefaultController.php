@@ -83,6 +83,8 @@ class DefaultController extends Controller
 
         $prenom = $request->request->get('prenom');
         $adresse = $request->request->get('adresse');
+        $codepost = $request->request->get('codepost');
+        $ville = $request->request->get('ville');
         $email = $request->request->get('email');
         $phone = $request->request->get('phone');
         $pays = $request->request->get('pays');
@@ -90,7 +92,8 @@ class DefaultController extends Controller
         $notes = $request->request->get('notes');
         $style = $request->request->get('style');
         $nbmembers = $request->request->get('nbmembers');
-        $origine = $request->request->get('origine');
+        $origine = true;
+        $dateinscr = new \DateTime('now');
 
 
 
@@ -100,8 +103,17 @@ class DefaultController extends Controller
             $bands->setIdfosuser($idUser);
             $bands->setPrenom($prenom);
             $bands->setAdresse($adresse);
+            $bands->setCodepost($codepost);
+            $bands->setVille($ville);
             $bands->setEmail($email);
             $bands->setPhone($phone);
+            $bands->setPays($pays);
+            $bands->setBand($band);
+            $bands->setNotes($notes);
+            $bands->setStyle($style);
+            $bands->setNbmembers($nbmembers);
+            $bands->setOrigine($origine);
+            $bands->setDateinscr($dateinscr);
 
 
             $em->persist($bands);

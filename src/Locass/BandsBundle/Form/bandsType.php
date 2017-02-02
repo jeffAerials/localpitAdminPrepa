@@ -22,6 +22,7 @@ class bandsType extends AbstractType
     {
         $builder->add('nom')
         ;
+
     }
 
     /**

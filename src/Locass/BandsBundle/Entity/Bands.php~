@@ -52,14 +52,14 @@ class Bands
     /**
      * @var string
      *
-     * @ORM\Column(name="codepost", type="string", length=10, nullable=true)
+     * @ORM\Column(name="codepost", type="string", length=10)
      */
     private $codepost;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ville", type="string", length=255, nullable=true)
+     * @ORM\Column(name="ville", type="string", length=255)
      */
     private $ville;
 
@@ -448,52 +448,5 @@ class Bands
     {
         return $this->dateinscr;
     }
-
-    /**
-     * Set codepost
-     *
-     * @param string $codepost
-     *
-     * @return Bands
-     */
-    public function setCodepost($codepost)
-    {
-        $this->codepost = $codepost;
-
-        return $this;
-    }
-
-    /**
-     * Get codepost
-     *
-     * @return string
-     */
-    public function getCodepost()
-    {
-        return $this->codepost;
-    }
-
-    /**
-     * Set ville
-     *
-     * @param string $ville
-     *
-     * @return Bands
-     */
-    public function setVille($ville)
-    {
-        $this->ville = $ville;
-
-        return $this;
-    }
-
-    /**
-     * Get ville
-     *
-     * @return string
-     */
-    public function getVille()
-    {
-        return $this->ville;
-    }
 }
+
