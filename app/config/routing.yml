@@ -1,3 +1,15 @@
+locass_bands:
+    resource: "@LocassBandsBundle/Resources/config/routing.yml"
+    prefix:   /
+
+locass_orga:
+    resource: "@LocassOrgaBundle/Resources/config/routing.yml"
+    prefix:   /orga
+
+locass_salles:
+    resource: "@LocassSallesBundle/Resources/config/routing.yml"
+    prefix:   /salles
+
 locass_admin:
     resource: "@LocassAdminBundle/Resources/config/routing.yml"
     prefix:   /admin

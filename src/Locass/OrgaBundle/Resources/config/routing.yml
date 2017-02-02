@@ -1,0 +1,3 @@
+locass_orga_homepage:
+    path:     /
+    defaults: { _controller: LocassOrgaBundle:Default:index }

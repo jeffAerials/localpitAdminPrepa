@@ -1,0 +1,3 @@
+locass_bands_homepage:
+    path:     /
+    defaults: { _controller: LocassBandsBundle:Default:index }

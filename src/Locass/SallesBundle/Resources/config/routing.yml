@@ -1,0 +1,3 @@
+locass_salles_homepage:
+    path:     /
+    defaults: { _controller: LocassSallesBundle:Default:index }
