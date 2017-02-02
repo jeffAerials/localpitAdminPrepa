@@ -27,8 +27,8 @@ class RegistrationListener implements EventSubscriberInterface
 
 
         $user = $event->getForm()->getData();
-        $application = $user->getApplication();
-        $roles = array('ROLE_'.$application);
+
+        $roles = array('ROLE_USER');
 
         $user->setRoles($roles);
     }

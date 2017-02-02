@@ -58,9 +58,9 @@
             <div id="logo-group">
                 <span id="logo"> <img src="{{ asset ('img/logo.png') }}" alt="SmartAdmin"> </span>
             </div>
-
-            <span id="extr-page-header-space"> <span class="hidden-mobile hiddex-xs">Need an account?</span> <a href="{{ path ('fos_user_registration_register') }}" class="btn btn-danger">Create account</a> </span>
-
+            {% if not app.user %}
+                <span id="extr-page-header-space"> <span class="hidden-mobile hiddex-xs">Need an account?</span> <a href="{{ path ('fos_user_registration_register') }}" class="btn btn-danger">Create account</a> </span>
+            {% endif %}
         </header>
         <div id="main" role="main">
             <!-- MAIN CONTENT -->
