@@ -36,6 +36,69 @@ class UserAdmin extends BaseUser
      */
     private $application;
 
+    /**
+     * @var string $nom
+     *
+     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
+     */
+    private $nom;
+
+    /**
+     * @var string $prenom
+     *
+     * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
+     */
+    private $prenom;
+
+    /**
+     * @var string $adresse
+     *
+     * @ORM\Column(name="adresse", type="string", length=255, nullable=true)
+     */
+    private $adresse;
+
+    /**
+     * @var string $adresse2
+     *
+     * @ORM\Column(name="adresse2", type="string", length=255, nullable=true)
+     */
+    private $adresse2;
+
+    /**
+     * @var string $cp
+     *
+     * @ORM\Column(name="cp", type="string", length=10, nullable=true)
+     */
+    private $cp;
+
+    /**
+     * @var string $ville
+     *
+     * @ORM\Column(name="ville", type="string", length=255, nullable=true)
+     */
+    private $ville;
+
+    /**
+     * @var string $pays
+     *
+     * @ORM\Column(name="pays", type="string", length=35, nullable=true)
+     */
+    private $pays;
+
+    /**
+     * @var string $fonction
+     *
+     * @ORM\Column(name="fonction", type="string", length=255, nullable=true)
+     */
+    private $fonction;
+
+    /**
+     * @var string $phone
+     *
+     * @ORM\Column(name="phone", type="string", length=20, nullable=true)
+     */
+    private $phone;
+
     
     public function __construct()
     {
