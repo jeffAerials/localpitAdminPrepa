@@ -31,63 +31,63 @@ class Orga
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=255)
+     * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
      */
     private $prenom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse", type="string", length=255)
+     * @ORM\Column(name="adresse", type="string", length=255, nullable=true)
      */
     private $adresse;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="codepost", type="string", length=10)
+     * @ORM\Column(name="codepost", type="string", length=10, nullable=true)
      */
     private $codepost;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ville", type="string", length=255)
+     * @ORM\Column(name="ville", type="string", length=255, nullable=true)
      */
     private $ville;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phone", type="string", length=20)
+     * @ORM\Column(name="phone", type="string", length=20, nullable=true)
      */
     private $phone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="pays", type="string", length=35)
+     * @ORM\Column(name="pays", type="string", length=35, nullable=true)
      */
     private $pays;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="orga", type="string", length=255)
+     * @ORM\Column(name="orga", type="string", length=255, nullable=true)
      */
     private $orga;
 
@@ -101,21 +101,21 @@ class Orga
     /**
      * @var int
      *
-     * @ORM\Column(name="nbmembers", type="integer")
+     * @ORM\Column(name="nbmembers", type="integer", nullable=true)
      */
     private $nbmembers;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="origine", type="boolean")
+     * @ORM\Column(name="origine", type="boolean", nullable=true)
      */
     private $origine;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateinscr", type="datetime")
+     * @ORM\Column(name="dateinscr", type="datetime", nullable=true)
      */
     private $dateinscr;
 

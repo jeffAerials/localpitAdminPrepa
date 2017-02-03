@@ -5,3 +5,11 @@ locass_user_homepage:
 locass_user_bandcreate:
     path:     /createband
     defaults: { _controller: LocassUserBundle:Default:createband }
+
+locass_user_orgacreate:
+    path:     /createorga
+    defaults: { _controller: LocassUserBundle:Default:createorga }
+
+locass_user_sallecreate:
+    path:     /createsalle
+    defaults: { _controller: LocassUserBundle:Default:createsalle }

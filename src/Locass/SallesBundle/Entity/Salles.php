@@ -31,105 +31,105 @@ class Salles
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=255)
+     * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
      */
     private $prenom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse", type="string", length=255)
+     * @ORM\Column(name="adresse", type="string", length=255, nullable=true)
      */
     private $adresse;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="codepost", type="string", length=10)
+     * @ORM\Column(name="codepost", type="string", length=10, nullable=true)
      */
     private $codepost;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ville", type="string", length=255)
+     * @ORM\Column(name="ville", type="string", length=255, nullable=true)
      */
     private $ville;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phone", type="string", length=20)
+     * @ORM\Column(name="phone", type="string", length=20, nullable=true)
      */
     private $phone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="pays", type="string", length=35)
+     * @ORM\Column(name="pays", type="string", length=35, nullable=true)
      */
     private $pays;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="salle", type="string", length=255)
+     * @ORM\Column(name="salle", type="string", length=255, nullable=true)
      */
     private $salle;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="notes", type="text")
+     * @ORM\Column(name="notes", type="text", nullable=true)
      */
     private $notes;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="nbmembers", type="integer")
+     * @ORM\Column(name="nbmembers", type="integer", nullable=true)
      */
     private $nbmembers;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="lattitude", type="float",  precision=18, scale=16)
+     * @ORM\Column(name="lattitude", type="float",  precision=18, scale=16, nullable=true)
      */
     private $lattitude;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="longitude", type="float",  precision=18, scale=16)
+     * @ORM\Column(name="longitude", type="float",  precision=18, scale=16, nullable=true)
      */
     private $longitude;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="origine", type="integer")
+     * @ORM\Column(name="origine", type="integer", nullable=true)
      */
     private $origine;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateinscr", type="datetime")
+     * @ORM\Column(name="dateinscr", type="datetime", nullable=true)
      */
     private $dateinscr;
 
