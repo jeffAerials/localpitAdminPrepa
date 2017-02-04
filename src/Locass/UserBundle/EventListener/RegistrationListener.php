@@ -28,8 +28,8 @@ class RegistrationListener implements EventSubscriberInterface
 
         $user = $event->getForm()->getData();
 
-        $roles = array('ROLE_USER');
+        /*$roles = array('ROLE_BIDON');
 
-        $user->setRoles($roles);
+        $user->setRoles($roles);*/
     }
 }

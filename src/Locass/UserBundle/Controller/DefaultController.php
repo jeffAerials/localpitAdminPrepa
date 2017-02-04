@@ -49,14 +49,19 @@ class DefaultController extends Controller
             ));
         }
         elseif($application == 'Orga'){ // Organisateur de concerts Assos, Orga, Tourneur, Manager...
+            if ($user->hasRole('ROLE_ORGA')) {
+                return $this->redirectToRoute('homepage');
+            };
 
             $orga = new Orga();
-            $form   = $this->createForm('Locass\OrgaBundle\Form\OrgaType', $orga);
+            $form = $this->createForm('Locass\OrgaBundle\Form\OrgaType', $orga);
 
             return $this->render('LocassUserBundle:Default:neworga.html.twig', array(
                 'orga' => $orga,
-                'form'   => $form->createView(),
+                'form' => $form->createView(),
             ));
+
+
         }
         else {
             return $this->redirectToRoute('fos_user_security_login');
@@ -90,7 +95,7 @@ class DefaultController extends Controller
 
 
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if (!empty($prenom)) {
             $em = $this->getDoctrine()->getManager();
 
             $salles->setIdfosuser($idUser);
@@ -151,7 +156,7 @@ class DefaultController extends Controller
 
 
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if (!empty($prenom)) {
             $em = $this->getDoctrine()->getManager();
 
             $bands->setIdfosuser($idUser);
@@ -211,7 +216,7 @@ class DefaultController extends Controller
 
 
 
-       /* if ($form->isSubmitted() && $form->isValid()) {*/
+        if (!empty($prenom)) {
             $em = $this->getDoctrine()->getManager();
 
             $orga->setIdfosuer($idUser);
@@ -232,15 +237,21 @@ class DefaultController extends Controller
             $em->persist($orga);
             $em->flush($orga);
 
-            $roles = array('ROLE_ORGA');
+            $userManager = $this->get('fos_user.user_manager');
+            $userol = $userManager->findUserBy(['id' => $idUser]);
+            $userol->addRole("ROLE_ORGA");
+            $userManager->updateUser($userol);
 
-            $user->setRoles($roles);
 
-            return $this->redirectToRoute('homepage', array('id' => $orga->getId()));
-       /* }*/
+
+            //$user->addRole("ROLE_ORGA");
+
+            return $this->redirectToRoute('fos_user_security_logout');
+        }
         /*return $this->render('LocassUserBundle:Default:neworga.html.twig', array(
             'orga' => $orga,
             'form' => $form->createView(),
         ));*/
+        return $this->redirectToRoute('fos_user_security_logout');
     }
 }

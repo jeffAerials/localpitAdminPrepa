@@ -6,7 +6,7 @@ security:
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     role_hierarchy:
-        ROLE_ORGA: ROLE_USER, ROLE_SALLE, ROLE_BANDS
+        ROLE_ORGA: ROLE_SALLE, ROLE_BANDS
         ROLE_ADMIN: ROLE_ORGA
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
