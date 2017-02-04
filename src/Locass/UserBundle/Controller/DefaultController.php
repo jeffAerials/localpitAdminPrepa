@@ -28,7 +28,9 @@ class DefaultController extends Controller
             return $this->render('LocassUserBundle:Default:index.html.twig');
         }
         elseif ($application == 'Salles'){ // Gestionnaire de Salles
-
+            if ($user->hasRole('ROLE_SALLE')) {
+                return $this->redirectToRoute('locass_salles_homepage');
+            };
             $salles = new Salles();
             $form   = $this->createForm('Locass\SallesBundle\Form\SallesType', $salles);
 
@@ -39,7 +41,9 @@ class DefaultController extends Controller
 
         }
         elseif ($application == 'Bands'){ // Groupe, Musicien...
-
+            if ($user->hasRole('ROLE_BANDS')) {
+                return $this->redirectToRoute('locass_bands_homepage');
+            };
             $bands = new Bands();
             $form   = $this->createForm('Locass\BandsBundle\Form\bandsType', $bands);
 
@@ -50,7 +54,7 @@ class DefaultController extends Controller
         }
         elseif($application == 'Orga'){ // Organisateur de concerts Assos, Orga, Tourneur, Manager...
             if ($user->hasRole('ROLE_ORGA')) {
-                return $this->redirectToRoute('homepage');
+                return $this->redirectToRoute('locass_orga_homepage');
             };
 
             $orga = new Orga();
@@ -78,9 +82,10 @@ class DefaultController extends Controller
         $emailUser = $user->getEmail();
 
         $salles = new Salles();
-        $form = $this->createForm('Locass\SallesBundle\Form\SallesType', $bands);
+        $form = $this->createForm('Locass\SallesBundle\Form\SallesType', $salles);
         $form->handleRequest($request);
 
+        $nom = $request->request->get('nom');
         $prenom = $request->request->get('prenom');
         $adresse = $request->request->get('adresse');
         $codepost = $request->request->get('codepost');
@@ -99,6 +104,7 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             $salles->setIdfosuser($idUser);
+            $salles->setNom($nom);
             $salles->setPrenom($prenom);
             $salles->setAdresse($adresse);
             $salles->setCodepost($codepost);
@@ -118,16 +124,14 @@ class DefaultController extends Controller
             $em->persist($salles);
             $em->flush($salles);
 
-            $roles = array('ROLE_SALLE');
+            $userManager = $this->get('fos_user.user_manager');
+            $userol = $userManager->findUserBy(['id' => $idUser]);
+            $userol->addRole("ROLE_SALLE");
+            $userManager->updateUser($userol);
 
-            $user->setRoles($roles);
-
-            return $this->redirectToRoute('homepage', array('id' => $salles->getId()));
+            return $this->redirectToRoute('fos_user_security_logout');
         }
-        return $this->render('LocassUserBundle:Default:newsalle.html.twig', array(
-            'salles' => $salles,
-            'form' => $form->createView(),
-        ));
+        return $this->render('fos_user_security_logout');
     }
     public function createbandAction(Request $request)
     {
@@ -141,6 +145,7 @@ class DefaultController extends Controller
         $form = $this->createForm('Locass\BandsBundle\Form\bandsType', $bands);
         $form->handleRequest($request);
 
+        $nom = $request->request->get('nom');
         $prenom = $request->request->get('prenom');
         $adresse = $request->request->get('adresse');
         $codepost = $request->request->get('codepost');
@@ -160,6 +165,7 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             $bands->setIdfosuser($idUser);
+            $bands->setNom($nom);
             $bands->setPrenom($prenom);
             $bands->setAdresse($adresse);
             $bands->setCodepost($codepost);
@@ -178,16 +184,14 @@ class DefaultController extends Controller
             $em->persist($bands);
             $em->flush($bands);
 
-            $roles = array('ROLE_BANDS');
+            $userManager = $this->get('fos_user.user_manager');
+            $userol = $userManager->findUserBy(['id' => $idUser]);
+            $userol->addRole("ROLE_BANDS");
+            $userManager->updateUser($userol);
 
-            $user->setRoles($roles);
-
-            return $this->redirectToRoute('homepage', array('id' => $bands->getId()));
+            return $this->redirectToRoute('fos_user_security_logout');
         }
-        return $this->render('LocassUserBundle:Default:newband.html.twig', array(
-            'bands' => $bands,
-            'form' => $form->createView(),
-        ));
+        return $this->render('fos_user_security_logout');
     }
 
     public function createorgaAction(Request $request)
@@ -202,6 +206,7 @@ class DefaultController extends Controller
         $form = $this->createForm('Locass\OrgaBundle\Form\OrgaType', $orga);
         $form->handleRequest($request);
 
+        $nom = $request->request->get('nom');
         $prenom = $request->request->get('prenom'); // ok
         $adresse = $request->request->get('adresse'); //ok
         $codepost = $request->request->get('codepost');
@@ -220,6 +225,7 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             $orga->setIdfosuer($idUser);
+            $orga->setNom($nom);
             $orga->setPrenom($prenom);
             $orga->setAdresse($adresse);
             $orga->setCodepost($codepost);
@@ -248,10 +254,7 @@ class DefaultController extends Controller
 
             return $this->redirectToRoute('fos_user_security_logout');
         }
-        /*return $this->render('LocassUserBundle:Default:neworga.html.twig', array(
-            'orga' => $orga,
-            'form' => $form->createView(),
-        ));*/
+
         return $this->redirectToRoute('fos_user_security_logout');
     }
 }

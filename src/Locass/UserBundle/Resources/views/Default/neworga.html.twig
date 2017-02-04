@@ -2,7 +2,7 @@
 <html lang="en-us">
 <head>
     <meta charset="utf-8">
-    <title> SmartAdmin </title>
+    <title> LocalPit </title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -101,7 +101,7 @@
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="login.html" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
+                        <a href="{{ path('fos_user_security_logout') }}" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><u>L</u>ogout</strong></a>
                     </li>
                 </ul>
             </li>
@@ -109,7 +109,7 @@
 
         <!-- logout button -->
         <div id="logout" class="btn-header transparent pull-right">
-            <span> <a href="login.html" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
+            <span> <a href="{{ path('fos_user_security_logout') }}" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
         </div>
         <!-- end logout button -->
 
@@ -132,7 +132,7 @@
 					<div>
 						<img src="{{ asset ('img/avatars/sunny.png') }}" alt="me" class="online" />
 						<span>
-							john.doe
+							{{ app.user.username }}
 						</span>
 
                     </div>
