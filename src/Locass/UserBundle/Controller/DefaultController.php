@@ -70,6 +70,8 @@ class DefaultController extends Controller
 
         $idUser = $user->getId();
 
+        $emailUser = $user->getEmail();
+
         $salles = new Salles();
         $form = $this->createForm('Locass\SallesBundle\Form\SallesType', $bands);
         $form->handleRequest($request);
@@ -78,7 +80,6 @@ class DefaultController extends Controller
         $adresse = $request->request->get('adresse');
         $codepost = $request->request->get('codepost');
         $ville = $request->request->get('ville');
-        $email = $request->request->get('email');
         $phone = $request->request->get('phone');
         $pays = $request->request->get('pays');
         $sallename = $request->request->get('sallename');
@@ -97,7 +98,7 @@ class DefaultController extends Controller
             $salles->setAdresse($adresse);
             $salles->setCodepost($codepost);
             $salles->setVille($ville);
-            $salles->setEmail($email);
+            $salles->setEmail($emailUser);
             $salles->setPhone($phone);
             $salles->setPays($pays);
             $salles->setSalle($sallename);
@@ -129,6 +130,8 @@ class DefaultController extends Controller
 
         $idUser = $user->getId();
 
+        $emailUser = $user->getEmail();
+
         $bands = new Bands();
         $form = $this->createForm('Locass\BandsBundle\Form\bandsType', $bands);
         $form->handleRequest($request);
@@ -137,7 +140,6 @@ class DefaultController extends Controller
         $adresse = $request->request->get('adresse');
         $codepost = $request->request->get('codepost');
         $ville = $request->request->get('ville');
-        $email = $request->request->get('email');
         $phone = $request->request->get('phone');
         $pays = $request->request->get('pays');
         $bandname = $request->request->get('bandname');
@@ -157,7 +159,7 @@ class DefaultController extends Controller
             $bands->setAdresse($adresse);
             $bands->setCodepost($codepost);
             $bands->setVille($ville);
-            $bands->setEmail($email);
+            $bands->setEmail($emailUser);
             $bands->setPhone($phone);
             $bands->setPays($pays);
             $bands->setBand($bandname);
@@ -189,15 +191,16 @@ class DefaultController extends Controller
 
         $idUser = $user->getId();
 
+        $emailUser = $user->getEmail();
+
         $orga = new Orga();
         $form = $this->createForm('Locass\OrgaBundle\Form\OrgaType', $orga);
         $form->handleRequest($request);
 
-        $prenom = $request->request->get('prenom');
-        $adresse = $request->request->get('adresse');
+        $prenom = $request->request->get('prenom'); // ok
+        $adresse = $request->request->get('adresse'); //ok
         $codepost = $request->request->get('codepost');
         $ville = $request->request->get('ville');
-        $email = $request->request->get('email');
         $phone = $request->request->get('phone');
         $pays = $request->request->get('pays');
         $organame = $request->request->get('organame');
@@ -208,7 +211,7 @@ class DefaultController extends Controller
 
 
 
-        if ($form->isSubmitted() && $form->isValid()) {
+       /* if ($form->isSubmitted() && $form->isValid()) {*/
             $em = $this->getDoctrine()->getManager();
 
             $orga->setIdfosuer($idUser);
@@ -216,7 +219,7 @@ class DefaultController extends Controller
             $orga->setAdresse($adresse);
             $orga->setCodepost($codepost);
             $orga->setVille($ville);
-            $orga->setEmail($email);
+            $orga->setEmail($emailUser);
             $orga->setPhone($phone);
             $orga->setPays($pays);
             $orga->setOrga($organame);
@@ -234,10 +237,10 @@ class DefaultController extends Controller
             $user->setRoles($roles);
 
             return $this->redirectToRoute('homepage', array('id' => $orga->getId()));
-        }
-        return $this->render('LocassUserBundle:Default:neworga.html.twig', array(
+       /* }*/
+        /*return $this->render('LocassUserBundle:Default:neworga.html.twig', array(
             'orga' => $orga,
             'form' => $form->createView(),
-        ));
+        ));*/
     }
 }
