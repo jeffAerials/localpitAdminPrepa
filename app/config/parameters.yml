@@ -11,4 +11,4 @@ parameters:
     mailer_user: null
     mailer_password: null
     mongodb_server: "mongodb://localhost:27017"
-    googleapi_key: "AIzaSyCtYN93lLkHUIi"
+    googleapi_key: "AIzaSyCtYN9"
