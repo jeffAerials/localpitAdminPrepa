@@ -115,8 +115,8 @@ class DefaultController extends Controller
             $salles->setSalle($sallename);
             $salles->setNotes($notes);
             $salles->setNbmembers($nbmembers);
-            $salles->setLattitude($latitude);
-            $salles->setLongitude($longitude);
+            /*$salles->setLattitude($latitude);
+            $salles->setLongitude($longitude);*/
             $salles->setOrigine($origine);
             $salles->setDateinscr($dateinscr);
 
