@@ -95,6 +95,8 @@ class DefaultController extends Controller
         $sallename = $request->request->get('sallename');
         $notes = $request->request->get('notes');
         $nbmembers = $request->request->get('nbmembers');
+        $lat = $request->request->get('lat');
+        $lng = $request->request->get('lng');
         $origine = true;
         $dateinscr = new \DateTime('now');
 
@@ -115,8 +117,8 @@ class DefaultController extends Controller
             $salles->setSalle($sallename);
             $salles->setNotes($notes);
             $salles->setNbmembers($nbmembers);
-            /*$salles->setLattitude($latitude);
-            $salles->setLongitude($longitude);*/
+            $salles->setLattitude($lat);
+            $salles->setLongitude($lng);
             $salles->setOrigine($origine);
             $salles->setDateinscr($dateinscr);
 

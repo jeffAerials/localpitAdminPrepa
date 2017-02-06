@@ -310,6 +310,21 @@
                                                 </label>
                                             </section>
                                         </div>
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="input">
+                                                    <input type="text" name="lat" id="lat" placeholder="latitude">
+                                                </label>
+                                            </section>
+
+
+                                            <section class="col col-6">
+                                                <label class="input">
+                                                    <input type="text" name="lng" id="lng" placeholder="longitide">
+                                                </label>
+                                            </section>
+
+                                        </div>
                                         <section>
                                             <label class="select">
                                                 <select name="style">
@@ -579,7 +594,7 @@
 
                                         <section>
                                             <label class="input">
-                                                <input type="text" name="organame" placeholder="Nom Association / Société / Orga">
+                                                <input type="text" name="sallename" placeholder="Nom Association / Société / Orga">
                                             </label>
                                         </section>
 
@@ -921,6 +936,15 @@
         function fillInAddress() {
             // Get the place details from the autocomplete object.
             var place = autocomplete.getPlace();
+
+
+            var lat = place.geometry.location.lat(),
+                lng = place.geometry.location.lng();
+
+            document.getElementById("lat").value = lat;
+            document.getElementById("lng").value = lng;
+
+
 
             for (var component in componentForm) {
                 document.getElementById(component).value = '';
