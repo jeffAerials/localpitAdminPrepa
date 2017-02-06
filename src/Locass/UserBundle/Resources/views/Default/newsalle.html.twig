@@ -600,12 +600,11 @@
 
                                         <div class="row">
                                             <section class="col col-4">
-                                                <label class="input">
-                                                    <input type="text" name="nbmembers" placeholder="Nbr de Membres" data-mask="999">
-                                                </label>
-                                            </section>
-                                            <section class="col col-8">
-
+                                                <div class="form-group">
+                                                    <label>Nombre de membres
+                                                        <input class="form-control spinner-left"  id="spinner" name="nbmembers" value="1" type="text">
+                                                    </label>
+                                                </div>
                                             </section>
                                         </div>
 
@@ -777,7 +776,9 @@
              */
 
             pageSetUp();
-
+            $("#spinner").spinner({
+                min: 1
+            });
             var errorClass = 'invalid';
             var errorElement = 'em';
 
@@ -830,10 +831,6 @@
                     },
                     organame : {
                         required : true
-                    },
-                    nbmembers : {
-                        required : true,
-                        digits : true
                     }
                 },
 
@@ -874,10 +871,6 @@
                     },
                     organame : {
                         required : 'Please enter name on your card'
-                    },
-                    nbmembers : {
-                        required : 'Enter CVV2',
-                        digits : 'Digits only'
                     }
                 },
 
