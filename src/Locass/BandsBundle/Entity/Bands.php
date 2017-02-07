@@ -66,13 +66,6 @@ class Bands
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255, nullable=true)
-     */
-    private $email;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="phone", type="string", length=20, nullable=true)
      */
     private $phone;
@@ -111,6 +104,20 @@ class Bands
      * @ORM\Column(name="nbmembers", type="integer", nullable=true)
      */
     private $nbmembers;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="lattitude", type="float",  precision=18, scale=16, nullable=true)
+     */
+    private $lattitude;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="longitude", type="float",  precision=18, scale=16, nullable=true)
+     */
+    private $longitude;
 
     /**
      * @var bool
@@ -231,30 +238,6 @@ class Bands
     public function getAdresse()
     {
         return $this->adresse;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return Bands
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
     }
 
     /**
@@ -495,5 +478,53 @@ class Bands
     public function getVille()
     {
         return $this->ville;
+    }
+
+    /**
+     * Set lattitude
+     *
+     * @param float $lattitude
+     *
+     * @return Bands
+     */
+    public function setLattitude($lattitude)
+    {
+        $this->lattitude = $lattitude;
+
+        return $this;
+    }
+
+    /**
+     * Get lattitude
+     *
+     * @return float
+     */
+    public function getLattitude()
+    {
+        return $this->lattitude;
+    }
+
+    /**
+     * Set longitude
+     *
+     * @param float $longitude
+     *
+     * @return Bands
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    /**
+     * Get longitude
+     *
+     * @return float
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
     }
 }

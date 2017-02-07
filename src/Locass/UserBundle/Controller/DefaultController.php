@@ -156,8 +156,9 @@ class DefaultController extends Controller
         $pays = $request->request->get('pays');
         $bandname = $request->request->get('bandname');
         $notes = $request->request->get('notes');
-        $style = $request->request->get('style');
         $nbmembers = $request->request->get('nbmembers');
+        $lat = $request->request->get('lat');
+        $lng = $request->request->get('lng');
         $origine = true;
         $dateinscr = new \DateTime('now');
 
@@ -172,13 +173,13 @@ class DefaultController extends Controller
             $bands->setAdresse($adresse);
             $bands->setCodepost($codepost);
             $bands->setVille($ville);
-            $bands->setEmail($emailUser);
             $bands->setPhone($phone);
             $bands->setPays($pays);
             $bands->setBand($bandname);
             $bands->setNotes($notes);
-            $bands->setStyle($style);
             $bands->setNbmembers($nbmembers);
+            $bands->setLattitude($lat);
+            $bands->setLongitude($lng);
             $bands->setOrigine($origine);
             $bands->setDateinscr($dateinscr);
 
@@ -218,6 +219,8 @@ class DefaultController extends Controller
         $organame = $request->request->get('organame');
         $notes = $request->request->get('notes');
         $nbmembers = $request->request->get('nbmembers');
+        $lat = $request->request->get('lat');
+        $lng = $request->request->get('lng');
         $origine = true;
         $dateinscr = new \DateTime('now');
 
@@ -238,6 +241,8 @@ class DefaultController extends Controller
             $orga->setOrga($organame);
             $orga->setNotes($notes);
             $orga->setNbmembers($nbmembers);
+            $orga->setLattitude($lat);
+            $orga->setLongitude($lng);
             $orga->setOrigine($origine);
             $orga->setDateinscr($dateinscr);
 
