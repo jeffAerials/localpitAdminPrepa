@@ -158,6 +158,12 @@ class DefaultController extends Controller
             $dm->persist($contact);
             $dm->flush();
 
+            $mongoId = $contact->getId();
+
+            $user->setIdmongo($mongoId);
+            $em->persist($user);
+            $em->flush($user);
+
             $userManager = $this->get('fos_user.user_manager');
             $userol = $userManager->findUserBy(['id' => $idUser]);
             $userol->addRole("ROLE_SALLE");
@@ -248,6 +254,15 @@ class DefaultController extends Controller
             $dm->persist($contact);
             $dm->flush();
 
+            $mongoId = $contact->getId();
+
+            $user->setIdmongo($mongoId);
+            $em->persist($user);
+            $em->flush($user);
+
+
+
+
 
             $userManager = $this->get('fos_user.user_manager');
             $userol = $userManager->findUserBy(['id' => $idUser]);
@@ -337,6 +352,12 @@ class DefaultController extends Controller
             $dm = $this->get('doctrine_mongodb')->getManager();
             $dm->persist($contact);
             $dm->flush();
+
+            $mongoId = $contact->getId();
+
+            $user->setIdmongo($mongoId);
+            $em->persist($user);
+            $em->flush($user);
 
             $userManager = $this->get('fos_user.user_manager');
             $userol = $userManager->findUserBy(['id' => $idUser]);

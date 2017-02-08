@@ -31,6 +31,13 @@ class Bands
     /**
      * @var string
      *
+     * @ORM\Column(name="idmongo", type="string", length=255, nullable=true)
+     */
+    private $idmongo;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="nom", type="string", length=255, nullable=true)
      */
     private $nom;
@@ -557,5 +564,29 @@ class Bands
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Set idmongo
+     *
+     * @param string $idmongo
+     *
+     * @return Bands
+     */
+    public function setIdmongo($idmongo)
+    {
+        $this->idmongo = $idmongo;
+
+        return $this;
+    }
+
+    /**
+     * Get idmongo
+     *
+     * @return string
+     */
+    public function getIdmongo()
+    {
+        return $this->idmongo;
     }
 }
