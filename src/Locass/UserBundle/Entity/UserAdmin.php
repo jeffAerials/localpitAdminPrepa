@@ -73,7 +73,7 @@ class UserAdmin extends BaseUser
     {
         return $this->application;
     }
-    
+
     /**
      * Set idmongo
      *

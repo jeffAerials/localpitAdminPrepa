@@ -28,12 +28,6 @@ class Bands
      */
     private $idfosuser;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="idmongo", type="string", length=255, nullable=true)
-     */
-    private $idmongo;
 
     /**
      * @var string
@@ -566,27 +560,4 @@ class Bands
         return $this->email;
     }
 
-    /**
-     * Set idmongo
-     *
-     * @param string $idmongo
-     *
-     * @return Bands
-     */
-    public function setIdmongo($idmongo)
-    {
-        $this->idmongo = $idmongo;
-
-        return $this;
-    }
-
-    /**
-     * Get idmongo
-     *
-     * @return string
-     */
-    public function getIdmongo()
-    {
-        return $this->idmongo;
-    }
 }
