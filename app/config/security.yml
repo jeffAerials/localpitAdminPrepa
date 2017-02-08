@@ -33,6 +33,8 @@ security:
         - {path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - {path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - {path: ^/admin/, role: ROLE_ADMIN }
-        - {path: ^/, role: ROLE_USER }
+        - {path: ^/bands/, role: ROLE_BANDS }
+        - {path: ^/orga/, role: ROLE_ORGA }
+        - {path: ^/salles/, role: ROLE_SALLE }
 
     access_denied_url: /login

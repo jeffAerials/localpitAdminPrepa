@@ -21,7 +21,13 @@ class DefaultController extends Controller
         //          (penser a enregistrer l'id mongoDB dans entity pour les modifs
         // 5 - Rediriger vers la route correspondante à la variable application
         $user = $this->getUser();
-        $application = $user->getApplication();
+        if ($user == null){
+            return $this->redirectToRoute('fos_user_security_login');
+        }
+        else {
+            $application = $user->getApplication();
+        }
+
 
 
         if ($application == 'AdminAssault'){ // SuperAdministrateur ou administrateur connexion autorisée
