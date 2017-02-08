@@ -73,7 +73,7 @@ doctrine_mongodb:
         default:
           server: "%mongodb_server%"
           options: {}
-    default_database: lopitadminprep
+    default_database: "%mongodb_database%"
     document_managers:
         default:
             auto_mapping: true

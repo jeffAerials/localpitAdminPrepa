@@ -4,15 +4,15 @@ namespace Locass\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Locass\BandsBundle\Entity\Bands;
-use Locass\BandsBundle\Form\bandsType;
 use Locass\OrgaBundle\Entity\Orga;
+use Locass\UserBundle\Document\Contacts;
 use Locass\SallesBundle\Entity\Salles;
 use Symfony\Component\HttpFoundation\Request;
 
 
 class DefaultController extends Controller
 {
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         // 1 - Redéfinir le role en ROLE_USER ds RegistrationListener.php ok
         // 2 - Présenter la suite du formulaire d'inscription en fonction de getApplication UserBundle
@@ -82,6 +82,8 @@ class DefaultController extends Controller
         $emailUser = $user->getEmail();
 
         $salles = new Salles();
+        $contact = new Contacts();
+
         $form = $this->createForm('Locass\SallesBundle\Form\SallesType', $salles);
         $form->handleRequest($request);
 
@@ -126,6 +128,30 @@ class DefaultController extends Controller
             $em->persist($salles);
             $em->flush($salles);
 
+            $contactId = $salles->getId();
+
+            $contact->setIds($idUser);
+            $contact->setIdf($contactId);
+            $contact->setType("salle");
+            $contact->setNom($nom);
+            $contact->setPrenom($prenom);
+            $contact->setAdresse($adresse);
+            $contact->setCodpost($codepost);
+            $contact->setVille($ville);
+            $contact->setPhone($phone);
+            $contact->setEmail($emailUser);
+            $contact->setPays($pays);
+            $contact->setSociety($sallename);
+            $contact->setNotes($notes);
+            $contact->setNbmembers($nbmembers);
+            $contact->setLatitude($lat);
+            $contact->setLongitude($lng);
+            $contact->setOrigine($origine);
+
+            $dm = $this->get('doctrine_mongodb')->getManager();
+            $dm->persist($contact);
+            $dm->flush();
+
             $userManager = $this->get('fos_user.user_manager');
             $userol = $userManager->findUserBy(['id' => $idUser]);
             $userol->addRole("ROLE_SALLE");
@@ -144,6 +170,7 @@ class DefaultController extends Controller
         $emailUser = $user->getEmail();
 
         $bands = new Bands();
+        $contact = new Contacts();
         $form = $this->createForm('Locass\BandsBundle\Form\bandsType', $bands);
         $form->handleRequest($request);
 
@@ -157,6 +184,7 @@ class DefaultController extends Controller
         $bandname = $request->request->get('bandname');
         $notes = $request->request->get('notes');
         $nbmembers = $request->request->get('nbmembers');
+        $style = $request->request->get('style');
         $lat = $request->request->get('lat');
         $lng = $request->request->get('lng');
         $origine = true;
@@ -174,8 +202,10 @@ class DefaultController extends Controller
             $bands->setCodepost($codepost);
             $bands->setVille($ville);
             $bands->setPhone($phone);
+            $bands->setEmail($emailUser);
             $bands->setPays($pays);
             $bands->setBand($bandname);
+            $bands->setStyle($style);
             $bands->setNotes($notes);
             $bands->setNbmembers($nbmembers);
             $bands->setLattitude($lat);
@@ -186,6 +216,32 @@ class DefaultController extends Controller
 
             $em->persist($bands);
             $em->flush($bands);
+
+            $contactId = $bands->getId();
+
+            $contact->setIds($idUser);
+            $contact->setIdf($contactId);
+            $contact->setType("band");
+            $contact->setNom($nom);
+            $contact->setPrenom($prenom);
+            $contact->setAdresse($adresse);
+            $contact->setCodpost($codepost);
+            $contact->setVille($ville);
+            $contact->setPhone($phone);
+            $contact->setEmail($emailUser);
+            $contact->setPays($pays);
+            $contact->setSociety($bandname);
+            $contact->setStyle($style);
+            $contact->setNotes($notes);
+            $contact->setNbmembers($nbmembers);
+            $contact->setLatitude($lat);
+            $contact->setLongitude($lng);
+            $contact->setOrigine($origine);
+
+            $dm = $this->get('doctrine_mongodb')->getManager();
+            $dm->persist($contact);
+            $dm->flush();
+
 
             $userManager = $this->get('fos_user.user_manager');
             $userol = $userManager->findUserBy(['id' => $idUser]);
@@ -206,6 +262,8 @@ class DefaultController extends Controller
         $emailUser = $user->getEmail();
 
         $orga = new Orga();
+        $contact = new Contacts();
+
         $form = $this->createForm('Locass\OrgaBundle\Form\OrgaType', $orga);
         $form->handleRequest($request);
 
@@ -250,14 +308,36 @@ class DefaultController extends Controller
             $em->persist($orga);
             $em->flush($orga);
 
+            $contactId = $orga->getId();
+
+            $contact->setIds($idUser);
+            $contact->setIdf($contactId);
+            $contact->setType("orga");
+            $contact->setNom($nom);
+            $contact->setPrenom($prenom);
+            $contact->setAdresse($adresse);
+            $contact->setCodpost($codepost);
+            $contact->setVille($ville);
+            $contact->setPhone($phone);
+            $contact->setEmail($emailUser);
+            $contact->setPays($pays);
+            $contact->setSociety($organame);
+            $contact->setNotes($notes);
+            $contact->setNbmembers($nbmembers);
+            $contact->setLatitude($lat);
+            $contact->setLongitude($lng);
+            $contact->setOrigine($origine);
+
+            $dm = $this->get('doctrine_mongodb')->getManager();
+            $dm->persist($contact);
+            $dm->flush();
+
             $userManager = $this->get('fos_user.user_manager');
             $userol = $userManager->findUserBy(['id' => $idUser]);
             $userol->addRole("ROLE_ORGA");
             $userManager->updateUser($userol);
 
 
-
-            //$user->addRole("ROLE_ORGA");
 
             return $this->redirectToRoute('fos_user_security_logout');
         }

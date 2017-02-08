@@ -354,29 +354,64 @@
                                     </fieldset>
                                     <fieldset>
                                         <section>
+                                            <input type="hidden" name="style" id="styleselected">
+                                        </section>
+                                        <section>
 
                                             <label>Style Musical</label>
-                                            <select name="style" multiple="multiple" id="multiselect1" class="form-control custom-scroll" title="Click to Select a City">
-                                                <option>Amsterdam</option>
-                                                <option>Atlanta</option>
-                                                <option>Baltimore</option>
-                                                <option>Boston</option>
-                                                <option>Buenos Aires</option>
-                                                <option>Calgary</option>
-                                                <option>Chicago</option>
-                                                <option>Denver</option>
-                                                <option>Dubai</option>
-                                                <option>Frankfurt</option>
-                                                <option>Hong Kong</option>
-                                                <option>Honolulu</option>
-                                                <option>Houston</option>
-                                                <option>Kuala Lumpur</option>
-                                                <option>London</option>
-                                                <option>Los Angeles</option>
-                                                <option>Melbourne</option>
-                                                <option>Mexico City</option>
-                                                <option>Miami</option>
-                                                <option>Minneapolis</option>
+                                            <select name="style2" multiple="multiple" id="multiselect1" class="form-control custom-scroll" title="Click to Select a City">
+                                                <option>Black metal</option>
+                                                <option>Cello metal</option>
+                                                <option>Crossover thrash</option>
+                                                <option>Crust punk</option>
+                                                <option>Dark metal</option>
+                                                <option>Death 'n roll</option>
+                                                <option>Death metal mélodique</option>
+                                                <option>Death metal technique</option>
+                                                <option>Death metal</option>
+                                                <option>Death-doom</option>
+                                                <option>Deathcore</option>
+                                                <option>Deathgrind</option>
+                                                <option>Djent</option>
+                                                <option>Doom metal</option>
+                                                <option>Drone metal</option>
+                                                <option>Electronicore</option>
+                                                <option>Folk metal</option>
+                                                <option>Funk metal</option>
+                                                <option>Glam metal</option>
+                                                <option>Goregrind</option>
+                                                <option>Grindcore</option>
+                                                <option>Groove metal</option>
+                                                <option>Heavy metal traditionnel</option>
+                                                <option>Kawaii metal</option>
+                                                <option>Latin metal</option>
+                                                <option>Mathcore</option>
+                                                <option>Metal alternatif</option>
+                                                <option>Metal avant-gardiste</option>
+                                                <option>Metal celtique</option>
+                                                <option>Metal Chrétien</option>
+                                                <option>Metal extrème</option>
+                                                <option>Metal gothique</option>
+                                                <option>Metal industriel</option>
+                                                <option>Metal médiéval</option>
+                                                <option>Metal néoclassique</option>
+                                                <option>Metal progressif</option>
+                                                <option>Metal symphonique</option>
+                                                <option>Metalcore mélodique</option>
+                                                <option>Metalcore</option>
+                                                <option>Nintendocore</option>
+                                                <option>Nu metal</option>
+                                                <option>Pirate metal</option>
+                                                <option>Pornogrind</option>
+                                                <option>Power metal</option>
+                                                <option>Rap metal</option>
+                                                <option>Sludge metal</option>
+                                                <option>Speed metal</option>
+                                                <option>Stoner metal</option>
+                                                <option>Thrash metal</option>
+                                                <option>Unblack metal</option>
+                                                <option>Viking metal</option>
+                                                <option>War metal</option>
                                             </select>
 
 
@@ -561,6 +596,17 @@
             var reset = function() {
                 input.removeClass("error");
             };
+
+            $('#multiselect1').on('blur', function(){
+                var selected=[];
+
+                $(this).find('option:selected').each(function(i,e){
+                    selected.push(e.value);
+                });
+                var resultmselect = selected.join(', ');
+                console.log(resultmselect);
+                document.getElementById("styleselected").value = resultmselect;
+            });
 
 
             input.intlTelInput({

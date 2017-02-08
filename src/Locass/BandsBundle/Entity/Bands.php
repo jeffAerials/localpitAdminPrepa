@@ -66,6 +66,13 @@ class Bands
     /**
      * @var string
      *
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="phone", type="string", length=20, nullable=true)
      */
     private $phone;
@@ -526,5 +533,29 @@ class Bands
     public function getLongitude()
     {
         return $this->longitude;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return Bands
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 }
