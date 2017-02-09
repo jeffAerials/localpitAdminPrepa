@@ -1,0 +1,118 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Jean-François
+ * Date: 09/02/2017
+ * Time: 11:10
+ */
+
+namespace Locass\BandsBundle\Document;
+
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+
+
+/**
+ * @MongoDB\Document
+ */
+class BandDocument
+{
+    /**
+     * @MongoDB\Id
+     */
+    protected $id;
+
+    /**
+     * @MongoDB\Field(type="int")
+     */
+    protected $ids;
+
+    /**
+     * @MongoDB\Field(type="int")
+     */
+    protected $idf;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $type;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $nom;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $prenom;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $adresse;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $codpost;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $ville;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $phone;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $email;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $pays;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $society;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $notes;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
+    protected $style;
+
+    /**
+     * @MongoDB\Field(type="int")
+     */
+    protected $nbmembers;
+
+    /**
+     * @MongoDB\Field(type="float")
+     */
+    protected $latitude;
+
+    /**
+     * @MongoDB\Field(type="float")
+     */
+    protected $longitude;
+
+    /**
+     * @MongoDB\Field(type="boolean")
+     */
+    protected $origine;
+
+    /**
+     * @MongoDB\Field(type="timestamp")
+     */
+    protected $dateinscr;
+}
