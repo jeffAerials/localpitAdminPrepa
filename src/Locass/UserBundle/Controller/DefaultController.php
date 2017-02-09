@@ -136,6 +136,10 @@ class DefaultController extends Controller
 
             $contactId = $salles->getId();
 
+            $user->setSalle($salles);
+            $em->persist($user);
+            $em->flush($user);
+
             $contact->setIds($idUser);
             $contact->setIdf($contactId);
             $contact->setType("salle");
@@ -230,6 +234,10 @@ class DefaultController extends Controller
             $em->flush($bands);
 
             $contactId = $bands->getId();
+
+            $user->setBand($bands);
+            $em->persist($user);
+            $em->flush($user);
 
             $contact->setIds($idUser);
             $contact->setIdf($contactId);
@@ -330,6 +338,12 @@ class DefaultController extends Controller
             $em->flush($orga);
 
             $contactId = $orga->getId();
+
+            $user->setOrga($orga);
+            $em->persist($user);
+            $em->flush($user);
+
+
 
             $contact->setIds($idUser);
             $contact->setIdf($contactId);

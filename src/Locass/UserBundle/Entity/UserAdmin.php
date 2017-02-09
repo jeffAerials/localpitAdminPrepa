@@ -30,6 +30,24 @@ class UserAdmin extends BaseUser
     protected $id;
 
     /**
+     * @ORM\OneToOne(targetEntity="Locass\OrgaBundle\Entity\Orga")
+     * @ORM\JoinTable(name="userOrga")
+     */
+    private $orga;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Locass\SallesBundle\Entity\Salles")
+     * @ORM\JoinTable(name="userSalle")
+     */
+    private $salle;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Locass\BandsBundle\Entity\Bands")
+     * @ORM\JoinTable(name="userBand")
+     */
+    private $band;
+
+    /**
      * @var string $application
      *
      * @ORM\Column(name="application", type="string", length=255, nullable=true)
@@ -96,5 +114,79 @@ class UserAdmin extends BaseUser
     public function getIdmongo()
     {
         return $this->idmongo;
+    }
+
+   
+
+    /**
+     * Set orga
+     *
+     * @param \Locass\OrgaBundle\Entity\Orga $orga
+     *
+     * @return UserAdmin
+     */
+    public function setOrga(\Locass\OrgaBundle\Entity\Orga $orga = null)
+    {
+        $this->orga = $orga;
+
+        return $this;
+    }
+
+    /**
+     * Get orga
+     *
+     * @return \Locass\OrgaBundle\Entity\Orga
+     */
+    public function getOrga()
+    {
+        return $this->orga;
+    }
+
+    /**
+     * Set salle
+     *
+     * @param \Locass\SallesBundle\Entity\Salles $salle
+     *
+     * @return UserAdmin
+     */
+    public function setSalle(\Locass\SallesBundle\Entity\Salles $salle = null)
+    {
+        $this->salle = $salle;
+
+        return $this;
+    }
+
+    /**
+     * Get salle
+     *
+     * @return \Locass\SallesBundle\Entity\Salles
+     */
+    public function getSalle()
+    {
+        return $this->salle;
+    }
+
+    /**
+     * Set band
+     *
+     * @param \Locass\BandsBundle\Entity\Bands $band
+     *
+     * @return UserAdmin
+     */
+    public function setBand(\Locass\BandsBundle\Entity\Bands $band = null)
+    {
+        $this->band = $band;
+
+        return $this;
+    }
+
+    /**
+     * Get band
+     *
+     * @return \Locass\BandsBundle\Entity\Bands
+     */
+    public function getBand()
+    {
+        return $this->band;
     }
 }
