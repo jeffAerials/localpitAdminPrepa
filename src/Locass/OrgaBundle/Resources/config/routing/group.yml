@@ -1,0 +1,4 @@
+locass_orga_group_new:
+    path:     /new
+    defaults: { _controller: "LocassOrgaBundle:Default:newband" }
+    methods:  [GET, POST]

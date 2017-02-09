@@ -1,3 +1,7 @@
 locass_orga_homepage:
     path:     /
     defaults: { _controller: LocassOrgaBundle:Default:index }
+
+locass_orga_group:
+    resource: "@LocassOrgaBundle/Resources/config/routing/group.yml"
+    prefix:   /group

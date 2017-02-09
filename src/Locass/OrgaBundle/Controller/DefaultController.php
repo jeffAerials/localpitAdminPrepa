@@ -10,4 +10,8 @@ class DefaultController extends Controller
     {
         return $this->render('LocassOrgaBundle:Default:index.html.twig');
     }
+    public function newbandAction()
+    {
+        return $this->render('LocassOrgaBundle:Group:new.html.twig');
+    }
 }
