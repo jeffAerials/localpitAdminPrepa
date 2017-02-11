@@ -75,6 +75,11 @@ class SalleDocument
     /**
      * @MongoDB\Field(type="string")
      */
+    protected $payscode;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
     protected $society;
 
     /**
@@ -516,5 +521,27 @@ class SalleDocument
     public function getDateinscr()
     {
         return $this->dateinscr;
+    }
+
+    /**
+     * Set payscode
+     *
+     * @param string $payscode
+     * @return self
+     */
+    public function setPayscode($payscode)
+    {
+        $this->payscode = $payscode;
+        return $this;
+    }
+
+    /**
+     * Get payscode
+     *
+     * @return string $payscode
+     */
+    public function getPayscode()
+    {
+        return $this->payscode;
     }
 }

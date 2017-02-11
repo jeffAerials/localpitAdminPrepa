@@ -78,6 +78,11 @@ class Contacts
     /**
      * @MongoDB\Field(type="string")
      */
+    protected $payscode;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
     protected $society;
 
     /**

@@ -78,6 +78,11 @@ class Contacts
     /**
      * @MongoDB\Field(type="string")
      */
+    protected $payscode;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
     protected $society;
 
     /**
@@ -542,5 +547,27 @@ class Contacts
     public function getSociety()
     {
         return $this->society;
+    }
+
+    /**
+     * Set payscode
+     *
+     * @param string $payscode
+     * @return self
+     */
+    public function setPayscode($payscode)
+    {
+        $this->payscode = $payscode;
+        return $this;
+    }
+
+    /**
+     * Get payscode
+     *
+     * @return string $payscode
+     */
+    public function getPayscode()
+    {
+        return $this->payscode;
     }
 }

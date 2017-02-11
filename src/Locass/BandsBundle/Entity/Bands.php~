@@ -28,12 +28,6 @@ class Bands
      */
     private $idfosuser;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="idmongo", type="string", length=255, nullable=true)
-     */
-    private $idmongo;
 
     /**
      * @var string
@@ -90,6 +84,13 @@ class Bands
      * @ORM\Column(name="pays", type="string", length=35, nullable=true)
      */
     private $pays;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="payscode", type="string", length=35, nullable=true)
+     */
+    private $payscode;
 
     /**
      * @var string
@@ -565,4 +566,5 @@ class Bands
     {
         return $this->email;
     }
+
 }

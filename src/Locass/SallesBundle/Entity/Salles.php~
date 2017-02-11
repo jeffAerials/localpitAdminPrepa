@@ -1,16 +1,16 @@
 <?php
 
-namespace Locass\OrgaBundle\Entity;
+namespace Locass\SallesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Orga
+ * Salles
  *
- * @ORM\Table(name="orga")
- * @ORM\Entity(repositoryClass="Locass\OrgaBundle\Repository\OrgaRepository")
+ * @ORM\Table(name="salles")
+ * @ORM\Entity(repositoryClass="Locass\SallesBundle\Repository\SallesRepository")
  */
-class Orga
+class Salles
 {
     /**
      * @var int
@@ -21,13 +21,12 @@ class Orga
      */
     private $id;
 
-
     /**
      * @var int
      *
-     * @ORM\Column(name="idfosuer", type="integer")
+     * @ORM\Column(name="idfosuser", type="integer")
      */
-    private $idfosuer;
+    private $idfosuser;
 
     /**
      * @var string
@@ -95,9 +94,9 @@ class Orga
     /**
      * @var string
      *
-     * @ORM\Column(name="orga", type="string", length=255, nullable=true)
+     * @ORM\Column(name="salle", type="string", length=255, nullable=true)
      */
-    private $orga;
+    private $salle;
 
     /**
      * @var string
@@ -128,9 +127,9 @@ class Orga
     private $longitude;
 
     /**
-     * @var bool
+     * @var int
      *
-     * @ORM\Column(name="origine", type="boolean", nullable=true)
+     * @ORM\Column(name="origine", type="integer", nullable=true)
      */
     private $origine;
 
@@ -153,27 +152,27 @@ class Orga
     }
 
     /**
-     * Set idfosuer
+     * Set idfosuser
      *
-     * @param integer $idfosuer
+     * @param integer $idfosuser
      *
-     * @return Orga
+     * @return Salles
      */
-    public function setIdfosuer($idfosuer)
+    public function setIdfosuser($idfosuser)
     {
-        $this->idfosuer = $idfosuer;
+        $this->idfosuser = $idfosuser;
 
         return $this;
     }
 
     /**
-     * Get idfosuer
+     * Get idfosuser
      *
      * @return int
      */
-    public function getIdfosuer()
+    public function getIdfosuser()
     {
-        return $this->idfosuer;
+        return $this->idfosuser;
     }
 
     /**
@@ -181,7 +180,7 @@ class Orga
      *
      * @param string $nom
      *
-     * @return Orga
+     * @return Salles
      */
     public function setNom($nom)
     {
@@ -205,7 +204,7 @@ class Orga
      *
      * @param string $prenom
      *
-     * @return Orga
+     * @return Salles
      */
     public function setPrenom($prenom)
     {
@@ -229,7 +228,7 @@ class Orga
      *
      * @param string $adresse
      *
-     * @return Orga
+     * @return Salles
      */
     public function setAdresse($adresse)
     {
@@ -253,7 +252,7 @@ class Orga
      *
      * @param string $codepost
      *
-     * @return Orga
+     * @return Salles
      */
     public function setCodepost($codepost)
     {
@@ -277,7 +276,7 @@ class Orga
      *
      * @param string $ville
      *
-     * @return Orga
+     * @return Salles
      */
     public function setVille($ville)
     {
@@ -301,7 +300,7 @@ class Orga
      *
      * @param string $email
      *
-     * @return Orga
+     * @return Salles
      */
     public function setEmail($email)
     {
@@ -325,7 +324,7 @@ class Orga
      *
      * @param string $phone
      *
-     * @return Orga
+     * @return Salles
      */
     public function setPhone($phone)
     {
@@ -349,7 +348,7 @@ class Orga
      *
      * @param string $pays
      *
-     * @return Orga
+     * @return Salles
      */
     public function setPays($pays)
     {
@@ -369,27 +368,27 @@ class Orga
     }
 
     /**
-     * Set orga
+     * Set salle
      *
-     * @param string $orga
+     * @param string $salle
      *
-     * @return Orga
+     * @return Salles
      */
-    public function setOrga($orga)
+    public function setSalle($salle)
     {
-        $this->orga = $orga;
+        $this->salle = $salle;
 
         return $this;
     }
 
     /**
-     * Get orga
+     * Get salle
      *
      * @return string
      */
-    public function getOrga()
+    public function getSalle()
     {
-        return $this->orga;
+        return $this->salle;
     }
 
     /**
@@ -397,7 +396,7 @@ class Orga
      *
      * @param string $notes
      *
-     * @return Orga
+     * @return Salles
      */
     public function setNotes($notes)
     {
@@ -421,7 +420,7 @@ class Orga
      *
      * @param integer $nbmembers
      *
-     * @return Orga
+     * @return Salles
      */
     public function setNbmembers($nbmembers)
     {
@@ -441,59 +440,11 @@ class Orga
     }
 
     /**
-     * Set origine
-     *
-     * @param boolean $origine
-     *
-     * @return Orga
-     */
-    public function setOrigine($origine)
-    {
-        $this->origine = $origine;
-
-        return $this;
-    }
-
-    /**
-     * Get origine
-     *
-     * @return bool
-     */
-    public function getOrigine()
-    {
-        return $this->origine;
-    }
-
-    /**
-     * Set dateinscr
-     *
-     * @param \DateTime $dateinscr
-     *
-     * @return Orga
-     */
-    public function setDateinscr($dateinscr)
-    {
-        $this->dateinscr = $dateinscr;
-
-        return $this;
-    }
-
-    /**
-     * Get dateinscr
-     *
-     * @return \DateTime
-     */
-    public function getDateinscr()
-    {
-        return $this->dateinscr;
-    }
-
-    /**
      * Set lattitude
      *
      * @param float $lattitude
      *
-     * @return Orga
+     * @return Salles
      */
     public function setLattitude($lattitude)
     {
@@ -517,7 +468,7 @@ class Orga
      *
      * @param float $longitude
      *
-     * @return Orga
+     * @return Salles
      */
     public function setLongitude($longitude)
     {
@@ -537,26 +488,51 @@ class Orga
     }
 
     /**
-     * Set payscode
+     * Set origine
      *
-     * @param string $payscode
+     * @param integer $origine
      *
-     * @return Orga
+     * @return Salles
      */
-    public function setPayscode($payscode)
+    public function setOrigine($origine)
     {
-        $this->payscode = $payscode;
+        $this->origine = $origine;
 
         return $this;
     }
 
     /**
-     * Get payscode
+     * Get origine
      *
-     * @return string
+     * @return int
      */
-    public function getPayscode()
+    public function getOrigine()
     {
-        return $this->payscode;
+        return $this->origine;
+    }
+
+    /**
+     * Set dateinscr
+     *
+     * @param \DateTime $dateinscr
+     *
+     * @return Salles
+     */
+    public function setDateinscr($dateinscr)
+    {
+        $this->dateinscr = $dateinscr;
+
+        return $this;
+    }
+
+    /**
+     * Get dateinscr
+     *
+     * @return \DateTime
+     */
+    public function getDateinscr()
+    {
+        return $this->dateinscr;
     }
 }
+

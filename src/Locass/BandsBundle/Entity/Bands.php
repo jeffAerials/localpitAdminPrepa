@@ -88,6 +88,13 @@ class Bands
     /**
      * @var string
      *
+     * @ORM\Column(name="payscode", type="string", length=10, nullable=true)
+     */
+    private $payscode;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="band", type="string", length=255, nullable=true)
      */
     private $band;
@@ -560,4 +567,28 @@ class Bands
         return $this->email;
     }
 
+
+    /**
+     * Set payscode
+     *
+     * @param string $payscode
+     *
+     * @return Bands
+     */
+    public function setPayscode($payscode)
+    {
+        $this->payscode = $payscode;
+
+        return $this;
+    }
+
+    /**
+     * Get payscode
+     *
+     * @return string
+     */
+    public function getPayscode()
+    {
+        return $this->payscode;
+    }
 }

@@ -320,7 +320,7 @@
 
                                         </div>
                                         <div class="row">
-                                            <section class="col col-6">
+                                            <section class="col col-4">
                                                 <label class="input">
                                                     <input type="hidden" name="test" placeholder="Région - AUTO" id="administrative_area_level_1">
                                                 </label>
@@ -329,6 +329,11 @@
                                             <section class="col col-6">
                                                 <label class="input">
                                                     <input type="hidden" name="pays" placeholder="Pays - AUTO" id="country">
+                                                </label>
+                                            </section>
+                                            <section class="col col-2">
+                                                <label class="input">
+                                                    <input type="hidden" name="payscode" placeholder="PaysCode - AUTO" id="country_code">
                                                 </label>
                                             </section>
 
@@ -760,6 +765,9 @@
                 if (componentForm[addressType]) {
                     var val = place.address_components[i][componentForm[addressType]];
                     document.getElementById(addressType).value = val;
+                }
+                if (addressType == "country") {
+                    document.getElementById("country_code").value = place.address_components[i].short_name;
                 }
             }
         }
