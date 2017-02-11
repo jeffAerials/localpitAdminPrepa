@@ -687,6 +687,9 @@
     <script src="{{ asset ('js/smart-chat-ui/smart.chat.manager.min.js') }}"></script>
 
     <!-- PAGE RELATED PLUGIN(S) -->
+    {% block orga_content_relatedplug %}
+    {% endblock orga_content_relatedplug %}
+
 
     <!-- Flot Chart Plugin: Flot Engine, Flot Resizer, Flot Tooltip -->
     <script src="{{ asset ('js/plugin/flot/jquery.flot.cust.min.js') }}"></script>
@@ -711,6 +714,8 @@
             /*
              * PAGE RELATED SCRIPTS
              */
+            {% block orga_content_relatedscript %}
+            {% endblock orga_content_relatedscript %}
 
             $(".js-status-update a").click(function() {
                 var selText = $(this).text();
@@ -1257,6 +1262,9 @@
         });
 
     </script>
+
+    {% block orga_content_relatedscript2 %}
+    {% endblock orga_content_relatedscript2 %}
 
     <!-- Your GOOGLE ANALYTICS CODE Below -->
     <script type="text/javascript">
