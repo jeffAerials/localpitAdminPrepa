@@ -1,0 +1,22 @@
+{
+  "name": "localpitadminprepa",
+  "version": "1.0.0",
+  "description": "Symfony Standard Edition ========================",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeffAerials/localpitAdminPrepa.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeffAerials/localpitAdminPrepa/issues"
+  },
+  "homepage": "https://github.com/jeffAerials/localpitAdminPrepa#readme"
+}
