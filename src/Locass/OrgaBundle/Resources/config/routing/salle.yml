@@ -1,0 +1,4 @@
+locass_orga_salle_new:
+    path:     /new
+    defaults: { _controller: "LocassOrgaBundle:Default:newsalle" }
+    methods:  [GET, POST]

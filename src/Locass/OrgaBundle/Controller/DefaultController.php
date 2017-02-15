@@ -14,4 +14,8 @@ class DefaultController extends Controller
     {
         return $this->render('LocassOrgaBundle:Group:new.html.twig');
     }
+    public function newsalleAction()
+    {
+        return $this->render('LocassOrgaBundle:Salle:new.html.twig');
+    }
 }
