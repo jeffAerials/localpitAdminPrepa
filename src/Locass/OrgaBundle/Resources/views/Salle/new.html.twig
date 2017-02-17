@@ -1,5 +1,15 @@
 {% extends 'LocassOrgaBundle::layout.html.twig' %}
-
+{% block orga_stylesheet_relatedplug %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset ('intl-tel-input/build/css/intlTelInput.css') }}">
+    <style type="text/css">
+        .iti-flag {
+            background-image: url("{{ asset ('intl-tel-input/build/img/flags.png') }}");
+        }
+        .country-list {
+            background-color: darkred !important;
+        }
+    </style>
+{% endblock orga_stylesheet_relatedplug %}
 {% block orga_content %}
     <!-- RIBBON -->
     <div id="ribbon">
@@ -12,7 +22,7 @@
 
         <!-- breadcrumb -->
         <ol class="breadcrumb">
-            <li>Home</li><li>Dashboard</li>
+            <li>Salles</li><li>Ajout d'une Salle dans mes projets </li>
         </ol>
         <!-- end breadcrumb -->
 
@@ -35,7 +45,7 @@
 
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-home"></i> Dashboard <span>> My Dashboard</span></h1>
+                <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-home"></i> Salles <span>> Ajout d'une salle dans mes projets</span></h1>
             </div>
             <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
                 <ul id="sparks" class="">
@@ -60,29 +70,279 @@
                 </ul>
             </div>
         </div>
+
         <!-- widget grid -->
         <section id="widget-grid" class="">
 
             <!-- row -->
             <div class="row">
+                <!-- NEW COL START -->
+                <article class="col-sm-12 col-md-12 col-lg-6">
+                    <!-- Widget ID (each widget will need unique ID)-->
+                    <div class="jarviswidget" id="wid-id-1" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-collapsed="false" data-widget-fullscreenbutton="false" data-widget-deletebutton="false">
+                        <!-- widget options:
+                            usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 
-                <!-- NEW WIDGET START -->
-                <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            data-widget-colorbutton="false"
+                            data-widget-editbutton="false"
+                            data-widget-togglebutton="false"
+                            data-widget-deletebutton="false"
+                            data-widget-fullscreenbutton="false"
+                            data-widget-custombutton="false"
+                            data-widget-collapsed="true"
+                            data-widget-sortable="false"
 
-                    <table id="jqgrid"></table>
-                    <div id="pjqgrid"></div>
+                        -->
+                        <header>
+                            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                            <h2>Ajout d'une Salle</h2>
 
-                    <br>
-                    <a href="javascript:void(0)" id="m1">Get Selected id's</a>
-                    <br>
-                    <a href="javascript:void(0)" id="m1s">Select(Unselect) row 13</a>
+                        </header>
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+                                <form action="{{ path("locass_orga_homepage") }}" id="checkout-form" method="post" class="smart-form" novalidate="novalidate">
+
+                                    <fieldset>
+                                        <section>
+                                            <label class="input">
+                                                <input type="text" name="sallename" placeholder="Nom de la Salle">
+                                            </label>
+                                        </section>
+                                        <div class="row">
+                                            <section class="col col-4">
+                                                <p id="output">Téléphone: </p><br>
+                                                <div class="form-group">
+                                                    <label class="input">
+                                                        <input type="tel" name="phoneenter" id="phone">
+                                                    </label>
+                                                </div>
+                                            </section>
+                                            <section class="col col-6">
+                                                <p id="output">Email: </p><br>
+                                                <div class="form-group">
+                                                    <label class="input"> <i class="icon-append fa fa-envelope-o"></i>
+                                                        <input type="email" name="emailenter" id="email">
+                                                    </label>
+                                                </div>
+                                            </section>
+                                            <section class="col col-6">
+                                                <input id="output2" type="hidden" name="phone">
+                                            </section>
+
+                                        </div>
+
+
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <div>
+
+                                            <section>
+                                                <label for="autocomplete" class="input">
+                                                    <input type="text" name="adresse" id="autocomplete" onFocus="geolocate()" placeholder="Adresse Complète.......">
+                                                </label>
+                                            </section>
+
+
+                                        </div>
+                                        <div class="row">
+                                            <section class="col col-2">
+                                                <label class="input">
+                                                    <input type="hidden" name="numrue" placeholder="N° - AUTO" id="street_number">
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-10">
+                                                <label class="input">
+                                                    <input type="hidden" name="rue" placeholder="Rue - AUTO" id="route">
+                                                </label>
+
+                                            </section>
+
+                                        </div>
+                                        <div class="row">
+                                            <section class="col col-2">
+                                                <label class="input">
+                                                    <input type="hidden" name="codepost" placeholder="CP - AUTO" id="postal_code">
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-10">
+                                                <label class="input">
+                                                    <input type="hidden" name="ville" placeholder="Ville - AUTO" id="locality">
+                                                </label>
+                                            </section>
+
+                                        </div>
+                                        <div class="row">
+                                            <section class="col col-4">
+                                                <label class="input">
+                                                    <input type="hidden" name="test" placeholder="Région - AUTO" id="administrative_area_level_1">
+                                                </label>
+                                            </section>
+
+                                            <section class="col col-6">
+                                                <label class="input">
+                                                    <input type="hidden" name="pays" placeholder="Pays - AUTO" id="country">
+                                                </label>
+                                            </section>
+                                            <section class="col col-2">
+                                                <label class="input">
+                                                    <input type="hidden" name="payscode" placeholder="PaysCode - AUTO" id="country_code">
+                                                </label>
+                                            </section>
+
+                                        </div>
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label class="input"> <p class="hide" id="lati">Latitude: </p>
+                                                    <input type="text" name="lat" id="lat" placeholder="latitude - AUTO">
+                                                </label>
+                                            </section>
+
+
+                                            <section class="col col-6">
+                                                <label class="input"> <p class="hide" id="long">Longitude: </p>
+                                                    <input type="text" name="lng" id="lng" placeholder="longitude - AUTO">
+                                                </label>
+                                            </section>
+
+                                        </div>
+                                        <div class="row">
+
+                                        </div>
+                                    </fieldset>
+                                    <fieldset>
+                                        <section>
+                                            <label class="textarea">
+                                                <textarea rows="3" name="notes" placeholder="Info Description...."></textarea>
+                                            </label>
+                                        </section>
+                                    </fieldset>
+                                    <fieldset>
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <p id="output">Contact: </p>
+                                            </section>
+
+                                        </div>
+                                        <div class="row">
+                                            <section class="col col-6">
+
+                                                <label class="input"> <i class="icon-prepend fa fa-user"></i>
+                                                    <input type="text" name="nom" placeholder="First name">
+                                                </label>
+                                            </section>
+                                            <section class="col col-6">
+                                                <label class="input"> <i class="icon-prepend fa fa-user"></i>
+                                                    <input type="text" name="prenom" placeholder="Last name">
+                                                </label>
+                                            </section>
+                                        </div>
+                                    </fieldset>
+
+
+                                    <footer>
+                                        <button type="submit" class="btn btn-primary">
+                                            Validate Form
+                                        </button>
+                                    </footer>
+                                </form>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
 
                 </article>
-                <!-- WIDGET END -->
+                <article class="col-sm-12 col-md-12 col-lg-6">
+                    <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false" data-widget-custombutton="false" data-widget-collapsed="false" data-widget-fullscreenbutton="false" data-widget-deletebutton="false">
+                        <!-- widget options:
+                        usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                        data-widget-colorbutton="false"
+                        data-widget-editbutton="false"
+                        data-widget-togglebutton="false"
+                        data-widget-deletebutton="false"
+                        data-widget-fullscreenbutton="false"
+                        data-widget-custombutton="false"
+                        data-widget-collapsed="true"
+                        data-widget-sortable="false"
+
+                        -->
+                        <header>
+                            <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                            <h2>Mes Salles enregistrées </h2>
+
+                        </header>
+
+                        <!-- widget div-->
+                        <div>
+
+                            <!-- widget edit box -->
+                            <div class="jarviswidget-editbox">
+                                <!-- This area used as dropdown edit box -->
+
+                            </div>
+                            <!-- end widget edit box -->
+
+                            <!-- widget content -->
+                            <div class="widget-body no-padding">
+
+                                <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>Company</th>
+                                        <th data-hide="phone,tablet">City</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Et Rutrum Non Associates</td>
+                                        <td>Fogo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nam Ac Inc.</td>
+                                        <td>Machelen</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Enim Commodo Limited</td>
+                                        <td>Norman</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Odio Etiam Institute</td>
+                                        <td>Sautin</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                </article>
 
             </div>
-
-            <!-- end row -->
+            <!-- END MAIN CONTENT -->
 
         </section>
         <!-- end widget grid -->
@@ -92,830 +352,228 @@
 {% endblock orga_content %}
 
 {% block orga_content_relatedplug %}
-    <script src="{{ asset ('js/plugin/jqgrid/jquery.jqGrid.min.js') }}"></script>
-    <script src="{{ asset ('js/plugin/jqgrid/grid.locale-en.min.js') }}"></script>
+    <script src="{{ asset ('intl-tel-input/build/js/intlTelInput.js') }}"></script>
 {% endblock orga_content_relatedplug %}
 
 {% block orga_content_relatedscript %}
     <script>
         $(document).ready(function() {
 
-            // DO NOT REMOVE : GLOBAL FUNCTIONS!
+            /* DO NOT REMOVE : GLOBAL FUNCTIONS!
+             *
+             * pageSetUp(); WILL CALL THE FOLLOWING FUNCTIONS
+             *
+             * // activate tooltips
+             * $("[rel=tooltip]").tooltip();
+             *
+             * // activate popovers
+             * $("[rel=popover]").popover();
+             *
+             * // activate popovers with hover states
+             * $("[rel=popover-hover]").popover({ trigger: "hover" });
+             *
+             * // activate inline charts
+             * runAllCharts();
+             *
+             * // setup widgets
+             * setup_widgets_desktop();
+             *
+             * // run form elements
+             * runAllForms();
+             *
+             ********************************
+             *
+             * pageSetUp() is needed whenever you load a page.
+             * It initializes and checks for all basic elements of the page
+             * and makes rendering easier.
+             *
+             */
+
             pageSetUp();
 
             /*
-             * PAGE RELATED SCRIPTS
+             * ALL PAGE RELATED SCRIPTS CAN GO BELOW HERE
+             * eg alert("my home function");
+             *
+             * var pagefunction = function() {
+             *   ...
+             * }
+             * loadScript("js/plugin/_PLUGIN_NAME_.js", pagefunction);
+             *
+             * TO LOAD A SCRIPT:
+             * var pagefunction = function (){
+             *  loadScript(".../plugin.js", run_after_loaded);
+             * }
+             *
+             * OR
+             *
+             * loadScript(".../plugin.js", run_after_loaded);
              */
-            var jqgrid_data = [{
-                id : "1",
-                date : "2007-10-01",
-                name : "test",
-                note : "note",
-                amount : "200.00",
-                tax : "10.00",
-                total : "210.00"
-            }, {
-                id : "2",
-                date : "2007-10-02",
-                name : "test2",
-                note : "note2",
-                amount : "300.00",
-                tax : "20.00",
-                total : "320.00"
-            }, {
-                id : "3",
-                date : "2007-09-01",
-                name : "test3",
-                note : "note3",
-                amount : "400.00",
-                tax : "30.00",
-                total : "430.00"
-            }, {
-                id : "4",
-                date : "2007-10-04",
-                name : "test",
-                note : "note",
-                amount : "200.00",
-                tax : "10.00",
-                total : "210.00"
-            }, {
-                id : "5",
-                date : "2007-10-05",
-                name : "test2",
-                note : "note2",
-                amount : "300.00",
-                tax : "20.00",
-                total : "320.00"
-            }, {
-                id : "6",
-                date : "2007-09-06",
-                name : "test3",
-                note : "note3",
-                amount : "400.00",
-                tax : "30.00",
-                total : "430.00"
-            }, {
-                id : "7",
-                date : "2007-10-04",
-                name : "test",
-                note : "note",
-                amount : "200.00",
-                tax : "10.00",
-                total : "210.00"
-            }, {
-                id : "8",
-                date : "2007-10-03",
-                name : "test2",
-                note : "note2",
-                amount : "300.00",
-                tax : "20.00",
-                total : "320.00"
-            }, {
-                id : "9",
-                date : "2007-09-01",
-                name : "test3",
-                note : "note3",
-                amount : "400.00",
-                tax : "30.00",
-                total : "430.00"
-            }, {
-                id : "10",
-                date : "2007-10-01",
-                name : "test",
-                note : "note",
-                amount : "200.00",
-                tax : "10.00",
-                total : "210.00"
-            }, {
-                id : "11",
-                date : "2007-10-02",
-                name : "test2",
-                note : "note2",
-                amount : "300.00",
-                tax : "20.00",
-                total : "320.00"
-            }, {
-                id : "12",
-                date : "2007-09-01",
-                name : "test3",
-                note : "note3",
-                amount : "400.00",
-                tax : "30.00",
-                total : "430.00"
-            }, {
-                id : "13",
-                date : "2007-10-04",
-                name : "test",
-                note : "note",
-                amount : "200.00",
-                tax : "10.00",
-                total : "210.00"
-            }, {
-                id : "14",
-                date : "2007-10-05",
-                name : "test2",
-                note : "note2",
-                amount : "300.00",
-                tax : "20.00",
-                total : "320.00"
-            }, {
-                id : "15",
-                date : "2007-09-06",
-                name : "test3",
-                note : "note3",
-                amount : "400.00",
-                tax : "30.00",
-                total : "430.00"
-            }, {
-                id : "16",
-                date : "2007-10-04",
-                name : "test",
-                note : "note",
-                amount : "200.00",
-                tax : "10.00",
-                total : "210.00"
-            }, {
-                id : "17",
-                date : "2007-10-03",
-                name : "test2",
-                note : "note2",
-                amount : "300.00",
-                tax : "20.00",
-                total : "320.00"
-            }, {
-                id : "18",
-                date : "2007-09-01",
-                name : "test3",
-                note : "note3",
-                amount : "400.00",
-                tax : "30.00",
-                total : "430.00"
-            }];
+            var input = $("#phone"),
+                output = $("#output");
 
-            jQuery("#jqgrid").jqGrid({
-                data : jqgrid_data,
-                datatype : "local",
-                height : 'auto',
-                colNames : ['Actions', 'Inv No', 'Date', 'Client', 'Amount', 'Tax', 'Total', 'Notes'],
-                colModel : [{
-                    name : 'act',
-                    index : 'act',
-                    sortable : false,
-                    search : false
-                }, {
-                    name : 'id',
-                    index : 'id'
-                }, {
-                    name : 'date',
-                    index : 'date',
-                    editable : true
-                }, {
-                    name : 'name',
-                    index : 'name',
-                    editable : true
-                }, {
-                    name : 'amount',
-                    index : 'amount',
-                    align : "right",
-                    editable : true
-                }, {
-                    name : 'tax',
-                    index : 'tax',
-                    align : "right",
-                    editable : true
-                }, {
-                    name : 'total',
-                    index : 'total',
-                    align : "right",
-                    editable : true
-                }, {
-                    name : 'note',
-                    index : 'note',
-                    sortable : false,
-                    editable : true
-                }],
-                rowNum : 10,
-                rowList : [10, 20, 30],
-                pager : '#pjqgrid',
-                sortname : 'id',
-                toolbarfilter : true,
-                viewrecords : true,
-                sortorder : "asc",
-                gridComplete : function() {
-                    var ids = jQuery("#jqgrid").jqGrid('getDataIDs');
-                    for (var i = 0; i < ids.length; i++) {
-                        var cl = ids[i];
-                        be = "<button class='btn btn-xs btn-default' data-original-title='Edit Row' onclick=\"jQuery('#jqgrid').editRow('" + cl + "');\"><i class='fa fa-pencil'></i></button>";
-                        se = "<button class='btn btn-xs btn-default' data-original-title='Save Row' onclick=\"jQuery('#jqgrid').saveRow('" + cl + "');\"><i class='fa fa-save'></i></button>";
-                        ca = "<button class='btn btn-xs btn-default' data-original-title='Cancel' onclick=\"jQuery('#jqgrid').restoreRow('" + cl + "');\"><i class='fa fa-times'></i></button>";
-                        //ce = "<button class='btn btn-xs btn-default' onclick=\"jQuery('#jqgrid').restoreRow('"+cl+"');\"><i class='fa fa-times'></i></button>";
-                        //jQuery("#jqgrid").jqGrid('setRowData',ids[i],{act:be+se+ce});
-                        jQuery("#jqgrid").jqGrid('setRowData', ids[i], {
-                            act : be + se + ca
-                        });
-                    }
-                },
-                editurl : "dummy.html",
-                caption : "SmartAdmin jQgrid Skin",
-                multiselect : true,
-                autowidth : true,
-
-            });
-            jQuery("#jqgrid").jqGrid('navGrid', "#pjqgrid", {
-                edit : false,
-                add : false,
-                del : true
-            });
-            jQuery("#jqgrid").jqGrid('inlineNav', "#pjqgrid");
-            /* Add tooltips */
-            $('.navtable .ui-pg-button').tooltip({
-                container : 'body'
-            });
-
-            jQuery("#m1").click(function() {
-                var s;
-                s = jQuery("#jqgrid").jqGrid('getGridParam', 'selarrrow');
-                alert(s);
-            });
-            jQuery("#m1s").click(function() {
-                jQuery("#jqgrid").jqGrid('setSelection', "13");
-            });
-            jQuery("#jqgrid").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false});
-
-            // remove classes
-            $(".ui-jqgrid").removeClass("ui-widget ui-widget-content");
-            $(".ui-jqgrid-view").children().removeClass("ui-widget-header ui-state-default");
-            $(".ui-jqgrid-labels, .ui-search-toolbar").children().removeClass("ui-state-default ui-th-column ui-th-ltr");
-            $(".ui-jqgrid-pager").removeClass("ui-state-default");
-            $(".ui-jqgrid").removeClass("ui-widget-content");
-
-            // add classes
-            $(".ui-jqgrid-htable").addClass("table table-bordered table-hover");
-            $(".ui-jqgrid-btable").addClass("table table-bordered table-striped");
-
-            $(".ui-pg-div").removeClass().addClass("btn btn-sm btn-primary");
-            $(".ui-icon.ui-icon-plus").removeClass().addClass("fa fa-plus");
-            $(".ui-icon.ui-icon-pencil").removeClass().addClass("fa fa-pencil");
-            $(".ui-icon.ui-icon-trash").removeClass().addClass("fa fa-trash-o");
-            $(".ui-icon.ui-icon-search").removeClass().addClass("fa fa-search");
-            $(".ui-icon.ui-icon-refresh").removeClass().addClass("fa fa-refresh");
-            $(".ui-icon.ui-icon-disk").removeClass().addClass("fa fa-save").parent(".btn-primary").removeClass("btn-primary").addClass("btn-success");
-            $(".ui-icon.ui-icon-cancel").removeClass().addClass("fa fa-times").parent(".btn-primary").removeClass("btn-primary").addClass("btn-danger");
-
-            $(".ui-icon.ui-icon-seek-prev").wrap("<div class='btn btn-sm btn-default'></div>");
-            $(".ui-icon.ui-icon-seek-prev").removeClass().addClass("fa fa-backward");
-
-            $(".ui-icon.ui-icon-seek-first").wrap("<div class='btn btn-sm btn-default'></div>");
-            $(".ui-icon.ui-icon-seek-first").removeClass().addClass("fa fa-fast-backward");
-
-            $(".ui-icon.ui-icon-seek-next").wrap("<div class='btn btn-sm btn-default'></div>");
-            $(".ui-icon.ui-icon-seek-next").removeClass().addClass("fa fa-forward");
-
-            $(".ui-icon.ui-icon-seek-end").wrap("<div class='btn btn-sm btn-default'></div>");
-            $(".ui-icon.ui-icon-seek-end").removeClass().addClass("fa fa-fast-forward");
+            var reset = function() {
+                input.removeClass("error");
+            };
 
 
-            $(".js-status-update a").click(function() {
-                var selText = $(this).text();
-                var $this = $(this);
-                $this.parents('.btn-group').find('.dropdown-toggle').html(selText + ' <span class="caret"></span>');
-                $this.parents('.dropdown-menu').find('li').removeClass('active');
-                $this.parent().addClass('active');
-            });
-
-            /*
-             * TODO: add a way to add more todo's to list
-             */
-
-            // initialize sortable
-            $(function() {
-                $("#sortable1, #sortable2").sortable({
-                    handle : '.handle',
-                    connectWith : ".todo",
-                    update : countTasks
-                }).disableSelection();
-            });
-
-            // check and uncheck
-            $('.todo .checkbox > input[type="checkbox"]').click(function() {
-                var $this = $(this).parent().parent().parent();
-
-                if ($(this).prop('checked')) {
-                    $this.addClass("complete");
-
-                    // remove this if you want to undo a check list once checked
-                    //$(this).attr("disabled", true);
-                    $(this).parent().hide();
-
-                    // once clicked - add class, copy to memory then remove and add to sortable3
-                    $this.slideUp(500, function() {
-                        $this.clone().prependTo("#sortable3").effect("highlight", {}, 800);
-                        $this.remove();
-                        countTasks();
+            input.intlTelInput({
+                initialCountry: "auto",
+                geoIpLookup: function(callback) {
+                    $.get('http://ipinfo.io', function() {}, "jsonp").always(function(resp) {
+                        var countryCode = (resp && resp.country) ? resp.country : "";
+                        callback(countryCode);
                     });
+                },
+                utilsScript: "{{ asset ('intl-tel-input/build/js/utils.js') }}" // just for formatting/placeholders etc
+            });
+            input.on("keyup change", function() {
+                var intlNumber = input.intlTelInput("getNumber");
+                if (intlNumber) {
+                    output.text("International: " + intlNumber);
+                    document.getElementById("output2").value = intlNumber;
                 } else {
-                    // insert undo code here...
-                }
-
-            })
-            // count tasks
-            function countTasks() {
-
-                $('.todo-group-title').each(function() {
-                    var $this = $(this);
-                    $this.find(".num-of-tasks").text($this.next().find("li").size());
-                });
-
-            }
-
-            /*
-             * RUN PAGE GRAPHS
-             */
-
-            /* TAB 1: UPDATING CHART */
-            // For the demo we use generated data, but normally it would be coming from the server
-
-            var data = [], totalPoints = 200, $UpdatingChartColors = $("#updating-chart").css('color');
-
-            function getRandomData() {
-                if (data.length > 0)
-                    data = data.slice(1);
-
-                // do a random walk
-                while (data.length < totalPoints) {
-                    var prev = data.length > 0 ? data[data.length - 1] : 50;
-                    var y = prev + Math.random() * 10 - 5;
-                    if (y < 0)
-                        y = 0;
-                    if (y > 100)
-                        y = 100;
-                    data.push(y);
-                }
-
-                // zip the generated y values with the x values
-                var res = [];
-                for (var i = 0; i < data.length; ++i)
-                    res.push([i, data[i]])
-                return res;
-            }
-
-            // setup control widget
-            var updateInterval = 1500;
-            $("#updating-chart").val(updateInterval).change(function() {
-
-                var v = $(this).val();
-                if (v && !isNaN(+v)) {
-                    updateInterval = +v;
-                    $(this).val("" + updateInterval);
-                }
-
-            });
-
-            // setup plot
-            var options = {
-                yaxis : {
-                    min : 0,
-                    max : 100
-                },
-                xaxis : {
-                    min : 0,
-                    max : 100
-                },
-                colors : [$UpdatingChartColors],
-                series : {
-                    lines : {
-                        lineWidth : 1,
-                        fill : true,
-                        fillColor : {
-                            colors : [{
-                                opacity : 0.4
-                            }, {
-                                opacity : 0
-                            }]
-                        },
-                        steps : false
-
-                    }
-                }
-            };
-
-            var plot = $.plot($("#updating-chart"), [getRandomData()], options);
-
-            /* live switch */
-            $('input[type="checkbox"]#start_interval').click(function() {
-                if ($(this).prop('checked')) {
-                    $on = true;
-                    updateInterval = 1500;
-                    update();
-                } else {
-                    clearInterval(updateInterval);
-                    $on = false;
+                    output.text("Téléphone:");
                 }
             });
 
-            function update() {
-                if ($on == true) {
-                    plot.setData([getRandomData()]);
-                    plot.draw();
-                    setTimeout(update, updateInterval);
+            // on blur: validate
+            input.blur(function() {
+                reset();
+                if ($.trim(input.val())) {
+                    if (input.intlTelInput("isValidNumber")) {
 
-                } else {
-                    clearInterval(updateInterval)
-                }
-
-            }
-
-            var $on = false;
-
-            /*end updating chart*/
-
-            /* TAB 2: Social Network  */
-
-            $(function() {
-                // jQuery Flot Chart
-                var twitter = [[1, 27], [2, 34], [3, 51], [4, 48], [5, 55], [6, 65], [7, 61], [8, 70], [9, 65], [10, 75], [11, 57], [12, 59], [13, 62]], facebook = [[1, 25], [2, 31], [3, 45], [4, 37], [5, 38], [6, 40], [7, 47], [8, 55], [9, 43], [10, 50], [11, 47], [12, 39], [13, 47]], data = [{
-                    label : "Twitter",
-                    data : twitter,
-                    lines : {
-                        show : true,
-                        lineWidth : 1,
-                        fill : true,
-                        fillColor : {
-                            colors : [{
-                                opacity : 0.1
-                            }, {
-                                opacity : 0.13
-                            }]
-                        }
-                    },
-                    points : {
-                        show : true
-                    }
-                }, {
-                    label : "Facebook",
-                    data : facebook,
-                    lines : {
-                        show : true,
-                        lineWidth : 1,
-                        fill : true,
-                        fillColor : {
-                            colors : [{
-                                opacity : 0.1
-                            }, {
-                                opacity : 0.13
-                            }]
-                        }
-                    },
-                    points : {
-                        show : true
-                    }
-                }];
-
-                var options = {
-                    grid : {
-                        hoverable : true
-                    },
-                    colors : ["#568A89", "#3276B1"],
-                    tooltip : true,
-                    tooltipOpts : {
-                        //content : "Value <b>$x</b> Value <span>$y</span>",
-                        defaultTheme : false
-                    },
-                    xaxis : {
-                        ticks : [[1, "JAN"], [2, "FEB"], [3, "MAR"], [4, "APR"], [5, "MAY"], [6, "JUN"], [7, "JUL"], [8, "AUG"], [9, "SEP"], [10, "OCT"], [11, "NOV"], [12, "DEC"], [13, "JAN+1"]]
-                    },
-                    yaxes : {
-
-                    }
-                };
-
-                var plot3 = $.plot($("#statsChart"), data, options);
-            });
-
-            // END TAB 2
-
-            // TAB THREE GRAPH //
-            /* TAB 3: Revenew  */
-
-            $(function() {
-
-                var trgt = [[1354586000000, 153], [1364587000000, 658], [1374588000000, 198], [1384589000000, 663], [1394590000000, 801], [1404591000000, 1080], [1414592000000, 353], [1424593000000, 749], [1434594000000, 523], [1444595000000, 258], [1454596000000, 688], [1464597000000, 364]], prft = [[1354586000000, 53], [1364587000000, 65], [1374588000000, 98], [1384589000000, 83], [1394590000000, 980], [1404591000000, 808], [1414592000000, 720], [1424593000000, 674], [1434594000000, 23], [1444595000000, 79], [1454596000000, 88], [1464597000000, 36]], sgnups = [[1354586000000, 647], [1364587000000, 435], [1374588000000, 784], [1384589000000, 346], [1394590000000, 487], [1404591000000, 463], [1414592000000, 479], [1424593000000, 236], [1434594000000, 843], [1444595000000, 657], [1454596000000, 241], [1464597000000, 341]], toggles = $("#rev-toggles"), target = $("#flotcontainer");
-
-                var data = [{
-                    label : "Target Profit",
-                    data : trgt,
-                    bars : {
-                        show : true,
-                        align : "center",
-                        barWidth : 30 * 30 * 60 * 1000 * 80
-                    }
-                }, {
-                    label : "Actual Profit",
-                    data : prft,
-                    color : '#3276B1',
-                    lines : {
-                        show : true,
-                        lineWidth : 3
-                    },
-                    points : {
-                        show : true
-                    }
-                }, {
-                    label : "Actual Signups",
-                    data : sgnups,
-                    color : '#71843F',
-                    lines : {
-                        show : true,
-                        lineWidth : 1
-                    },
-                    points : {
-                        show : true
-                    }
-                }]
-
-                var options = {
-                    grid : {
-                        hoverable : true
-                    },
-                    tooltip : true,
-                    tooltipOpts : {
-                        //content: '%x - %y',
-                        //dateFormat: '%b %y',
-                        defaultTheme : false
-                    },
-                    xaxis : {
-                        mode : "time"
-                    },
-                    yaxes : {
-                        tickFormatter : function(val, axis) {
-                            return "$" + val;
-                        },
-                        max : 1200
-                    }
-
-                };
-
-                plot2 = null;
-
-                function plotNow() {
-                    var d = [];
-                    toggles.find(':checkbox').each(function() {
-                        if ($(this).is(':checked')) {
-                            d.push(data[$(this).attr("name").substr(4, 1)]);
-                        }
-                    });
-                    if (d.length > 0) {
-                        if (plot2) {
-                            plot2.setData(d);
-                            plot2.draw();
-                        } else {
-                            plot2 = $.plot(target, d, options);
-                        }
-                    }
-
-                };
-
-                toggles.find(':checkbox').on('change', function() {
-                    plotNow();
-                });
-                plotNow()
-
-            });
-
-            /*
-             * VECTOR MAP
-             */
-
-            data_array = {
-                "US" : 4977,
-                "AU" : 4873,
-                "IN" : 3671,
-                "BR" : 2476,
-                "TR" : 1476,
-                "CN" : 146,
-                "CA" : 134,
-                "BD" : 100
-            };
-
-            $('#vector-map').vectorMap({
-                map : 'world_mill_en',
-                backgroundColor : '#fff',
-                regionStyle : {
-                    initial : {
-                        fill : '#c4c4c4'
-                    },
-                    hover : {
-                        "fill-opacity" : 1
-                    }
-                },
-                series : {
-                    regions : [{
-                        values : data_array,
-                        scale : ['#85a8b6', '#4d7686'],
-                        normalizeFunction : 'polynomial'
-                    }]
-                },
-                onRegionLabelShow : function(e, el, code) {
-                    if ( typeof data_array[code] == 'undefined') {
-                        e.preventDefault();
                     } else {
-                        var countrylbl = data_array[code];
-                        el.html(el.html() + ': ' + countrylbl + ' visits');
+                        input.addClass("error");
+                        output.text("Invalid number");
+                        document.getElementById("phone").value = null;
                     }
                 }
             });
+            // on keyup / change flag: reset
+            input.on("keyup change", reset);
 
-            /*
-             * FULL CALENDAR JS
-             */
+            $("#spinner").spinner({
+                min: 1
+            });
+            var errorClass = 'invalid';
+            var errorElement = 'em';
 
-            if ($("#calendar").length) {
-                var date = new Date();
-                var d = date.getDate();
-                var m = date.getMonth();
-                var y = date.getFullYear();
+            var $checkoutForm = $('#checkout-form').validate({
+                errorClass		: errorClass,
+                errorElement	: errorElement,
+                highlight: function(element) {
+                    $(element).parent().removeClass('state-success').addClass("state-error");
+                    $(element).removeClass('valid');
+                },
+                unhighlight: function(element) {
+                    $(element).parent().removeClass("state-error").addClass('state-success');
+                    $(element).addClass('valid');
+                },
 
-                var calendar = $('#calendar').fullCalendar({
-
-                    editable : true,
-                    draggable : true,
-                    selectable : false,
-                    selectHelper : true,
-                    unselectAuto : false,
-                    disableResizing : false,
-                    height: "auto",
-
-                    header : {
-                        left : 'title', //,today
-                        center : 'prev, next, today',
-                        right : 'month, agendaWeek, agenDay' //month, agendaDay,
+                // Rules for form validation
+                rules : {
+                    sallename : {
+                        required : true
                     },
-
-                    select : function(start, end, allDay) {
-                        var title = prompt('Event Title:');
-                        if (title) {
-                            calendar.fullCalendar('renderEvent', {
-                                    title : title,
-                                    start : start,
-                                    end : end,
-                                    allDay : allDay
-                                }, true // make the event "stick"
-                            );
-                        }
-                        calendar.fullCalendar('unselect');
+                    nom : {
+                        required : true
                     },
-
-                    events : [{
-                        title : 'All Day Event',
-                        start : new Date(y, m, 1),
-                        description : 'long description',
-                        className : ["event", "bg-color-greenLight"],
-                        icon : 'fa-check'
-                    }, {
-                        title : 'Long Event',
-                        start : new Date(y, m, d - 5),
-                        end : new Date(y, m, d - 2),
-                        className : ["event", "bg-color-red"],
-                        icon : 'fa-lock'
-                    }, {
-                        id : 999,
-                        title : 'Repeating Event',
-                        start : new Date(y, m, d - 3, 16, 0),
-                        allDay : false,
-                        className : ["event", "bg-color-blue"],
-                        icon : 'fa-clock-o'
-                    }, {
-                        id : 999,
-                        title : 'Repeating Event',
-                        start : new Date(y, m, d + 4, 16, 0),
-                        allDay : false,
-                        className : ["event", "bg-color-blue"],
-                        icon : 'fa-clock-o'
-                    }, {
-                        title : 'Meeting',
-                        start : new Date(y, m, d, 10, 30),
-                        allDay : false,
-                        className : ["event", "bg-color-darken"]
-                    }, {
-                        title : 'Lunch',
-                        start : new Date(y, m, d, 12, 0),
-                        end : new Date(y, m, d, 14, 0),
-                        allDay : false,
-                        className : ["event", "bg-color-darken"]
-                    }, {
-                        title : 'Birthday Party',
-                        start : new Date(y, m, d + 1, 19, 0),
-                        end : new Date(y, m, d + 1, 22, 30),
-                        allDay : false,
-                        className : ["event", "bg-color-darken"]
-                    }, {
-                        title : 'Smartadmin Open Day',
-                        start : new Date(y, m, 28),
-                        end : new Date(y, m, 29),
-                        className : ["event", "bg-color-darken"]
-                    }],
-
-
-                    eventRender : function(event, element, icon) {
-                        if (!event.description == "") {
-                            element.find('.fc-title').append("<br/><span class='ultra-light'>" + event.description + "</span>");
-                        }
-                        if (!event.icon == "") {
-                            element.find('.fc-title').append("<i class='air air-top-right fa " + event.icon + " '></i>");
-                        }
+                    prenom : {
+                        required : true
+                    },
+                    notes : {
+                        required : true
+                    },
+                    phoneenter : {
+                        required : true
+                    },
+                    adresse : {
+                        required : true
+                    },
+                    rue : {
+                        required : true
+                    },
+                    pays : {
+                        required : true
+                    },
+                    ville : {
+                        required : true
+                    },
+                    codepost : {
+                        required : true
+                    },
+                    numrue : {
+                        required : true
+                    },
+                    test : {
+                        required : true
+                    },
+                    organame : {
+                        required : true
+                    },
+                    lat : {
+                        required : true
+                    },
+                    lng : {
+                        required : true
                     }
-                });
+                },
 
-            };
-
-            /* hide default buttons */
-            $('.fc-toolbar .fc-right, .fc-toolbar .fc-center').hide();
-
-            // calendar prev
-            $('#calendar-buttons #btn-prev').click(function() {
-                $('.fc-prev-button').click();
-                return false;
-            });
-
-            // calendar next
-            $('#calendar-buttons #btn-next').click(function() {
-                $('.fc-next-button').click();
-                return false;
-            });
-
-            // calendar today
-            $('#calendar-buttons #btn-today').click(function() {
-                $('.fc-button-today').click();
-                return false;
-            });
-
-            // calendar month
-            $('#mt').click(function() {
-                $('#calendar').fullCalendar('changeView', 'month');
-            });
-
-            // calendar agenda week
-            $('#ag').click(function() {
-                $('#calendar').fullCalendar('changeView', 'agendaWeek');
-            });
-
-            // calendar agenda day
-            $('#td').click(function() {
-                $('#calendar').fullCalendar('changeView', 'agendaDay');
-            });
-
-            /*
-             * CHAT
-             */
-
-            $.filter_input = $('#filter-chat-list');
-            $.chat_users_container = $('#chat-container > .chat-list-body')
-            $.chat_users = $('#chat-users')
-            $.chat_list_btn = $('#chat-container > .chat-list-open-close');
-            $.chat_body = $('#chat-body');
-
-            /*
-             * LIST FILTER (CHAT)
-             */
-
-            // custom css expression for a case-insensitive contains()
-            jQuery.expr[':'].Contains = function(a, i, m) {
-                return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
-            };
-
-            function listFilter(list) {// header is any element, list is an unordered list
-                // create and add the filter form to the header
-
-                $.filter_input.change(function() {
-                    var filter = $(this).val();
-                    if (filter) {
-                        // this finds all links in a list that contain the input,
-                        // and hide the ones not containing the input while showing the ones that do
-                        $.chat_users.find("a:not(:Contains(" + filter + "))").parent().slideUp();
-                        $.chat_users.find("a:Contains(" + filter + ")").parent().slideDown();
-                    } else {
-                        $.chat_users.find("li").slideDown();
+                // Messages for form validation
+                messages : {
+                    sallename : {
+                        required : 'Please enter company name'
+                    },
+                    nom : {
+                        required : 'Please enter your first name'
+                    },
+                    prenom : {
+                        required : 'Please enter your last name'
+                    },
+                    notes : {
+                        required : 'Please enter your description'
+                    },
+                    phoneenter : {
+                        required : 'Please enter your phone number'
+                    },
+                    adresse : {
+                        required : 'Please enter your full address'
+                    },
+                    rue : {
+                        required : 'Invalid Adress'
+                    },
+                    pays : {
+                        required : 'Invalid Adress'
+                    },
+                    ville : {
+                        required : 'Invalid Adress'
+                    },
+                    codepost : {
+                        required : 'Invalid Adress'
+                    },
+                    numrue : {
+                        required : 'Invalid Adress'
+                    },
+                    test : {
+                        required : 'Invalid Adress'
+                    },
+                    organame : {
+                        required : 'Please enter name organization'
+                    },
+                    lat : {
+                        required : 'Invalid latitude'
+                    },
+                    lng : {
+                        required : 'Invalid longitude'
                     }
-                    return false;
-                }).keyup(function() {
-                    // fire the above change event after every letter
-                    $(this).change();
+                },
 
-                });
-
-            }
-
-            // on dom ready
-            listFilter($.chat_users);
-
-            // open chat list
-            $.chat_list_btn.click(function() {
-                $(this).parent('#chat-container').toggleClass('open');
-            })
-
-            $.chat_body.animate({
-                scrollTop : $.chat_body[0].scrollHeight
-            }, 500);
+                // Do not change code below
+                errorPlacement : function(error, element) {
+                    error.insertAfter(element.parent());
+                }
+            });
 
         });
 
@@ -926,8 +584,83 @@
 
 {% block orga_content_relatedscript2 %}
     <script>
-        $(window).on('resize.jqGrid', function() {
-            $("#jqgrid").jqGrid('setGridWidth', $("#content").width());
-        })
+        var placeSearch, autocomplete;
+
+        var componentForm = {
+            street_number: 'short_name',
+            route: 'long_name',
+            locality: 'long_name',
+            administrative_area_level_1: 'short_name',
+            country: 'long_name',
+            postal_code: 'short_name'
+        };
+
+        function initAutocomplete() {
+            // Create the autocomplete object, restricting the search to geographical
+            // location types.
+            autocomplete = new google.maps.places.Autocomplete(
+                /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+                {types: ['geocode']});
+
+            // When the user selects an address from the dropdown, populate the address
+            // fields in the form.
+            autocomplete.addListener('place_changed', fillInAddress);
+        }
+
+        // [START region_fillform]
+        function fillInAddress() {
+            // Get the place details from the autocomplete object.
+            var validLng = $("#long");
+            var validLat = $("#lati");
+            var place = autocomplete.getPlace();
+
+            var lat = place.geometry.location.lat(),
+                lng = place.geometry.location.lng();
+
+            document.getElementById("lat").value = lat;
+            document.getElementById("lng").value = lng;
+            validLng.removeClass("hide");
+            validLat.removeClass("hide");
+
+            for (var component in componentForm) {
+                document.getElementById(component).value = '';
+                document.getElementById(component).disabled = false;
+            }
+
+            // Get each component of the address from the place details
+            // and fill the corresponding field on the form.
+            for (var i = 0; i < place.address_components.length; i++) {
+                var addressType = place.address_components[i].types[0];
+                if (componentForm[addressType]) {
+                    var val = place.address_components[i][componentForm[addressType]];
+                    document.getElementById(addressType).value = val;
+                }
+                if (addressType == "country") {
+                    document.getElementById("country_code").value = place.address_components[i].short_name;
+                }
+            }
+        }
+        // [END region_fillform]
+
+        // [START region_geolocation]
+        // Bias the autocomplete object to the user's geographical location,
+        // as supplied by the browser's 'navigator.geolocation' object.
+        function geolocate() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var geolocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    var circle = new google.maps.Circle({
+                        center: geolocation,
+                        radius: position.coords.accuracy
+                    });
+                    autocomplete.setBounds(circle.getBounds());
+                });
+            }
+        }
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ goapikey }}&signed_in=true&libraries=places&callback=initAutocomplete"
+            async defer></script>
 {% endblock orga_content_relatedscript2 %}

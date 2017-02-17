@@ -52,6 +52,9 @@
         <link rel="apple-touch-startup-image" href="{{ asset ('img/splash/ipad-portrait.png') }}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
         <link rel="apple-touch-startup-image" href="{{ asset ('img/splash/iphone.png') }}" media="screen and (max-device-width: 320px)">
 
+        {% block orga_stylesheet_relatedplug %}
+        {% endblock orga_stylesheet_relatedplug %}
+
     </head>
 
     <!--
@@ -690,24 +693,9 @@
     {% block orga_content_relatedplug %}
     {% endblock orga_content_relatedplug %}
 
-
-    <!-- Flot Chart Plugin: Flot Engine, Flot Resizer, Flot Tooltip -->
-    <script src="{{ asset ('js/plugin/flot/jquery.flot.cust.min.js') }}"></script>
-    <script src="{{ asset ('js/plugin/flot/jquery.flot.resize.min.js') }}"></script>
-    <script src="{{ asset ('js/plugin/flot/jquery.flot.time.min.js') }}"></script>
-    <script src="{{ asset ('js/plugin/flot/jquery.flot.tooltip.min.js') }}"></script>
-
-    <!-- Vector Maps Plugin: Vectormap engine, Vectormap language -->
-    <script src="{{ asset ('js/plugin/vectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
-    <script src="{{ asset ('js/plugin/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
-
-    <!-- Full Calendar -->
-    <script src="{{ asset ('js/plugin/moment/moment.min.js') }}"></script>
-    <script src="{{ asset ('js/plugin/fullcalendar/jquery.fullcalendar.min.js') }}"></script>
-
     {% block orga_content_relatedscript %}
-
     {% endblock orga_content_relatedscript %}
+
     {% block orga_content_relatedscript2 %}
     {% endblock orga_content_relatedscript2 %}
 
