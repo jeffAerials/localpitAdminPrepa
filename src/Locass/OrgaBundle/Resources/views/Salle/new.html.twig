@@ -571,6 +571,20 @@
                     }
                 },
 
+                // Ajax form submition
+                submitHandler : function(form) {
+                    $.ajax({
+                        url: "http://localhost:8080/localpitsymf/orga/newsalle/ajoutsalle/{{ app.user.idmongo }}",
+                        method: "PUT",
+                        data: $("#checkout-form").serialize(),
+                        success: function(response){
+                            window.location.href = "{{ path('locass_orga_homepage') }}";
+                        }
+                    });
+                },
+
+
+
                 // Do not change code below
                 errorPlacement : function(error, element) {
                     error.insertAfter(element.parent());
@@ -579,19 +593,19 @@
 
 
 
-            $('#checkout-form').on('submit', function(e) {
+            /*$('#checkout-form').on('submit', function(e) {
                  $.ajax({
                      url: "http://localhost:8080/localpitsymf/orga/newsalle/ajoutsalle/589c4818105a2ac42200002c",
                      method: "PUT",
-                     data: { id: '589c4818105a2ac42200002c', test: 'test' },
+                     data: $("#checkout-form").serialize(),
                      success: function(response){
                          console.log(response);
-                         window.location.href= "{{ path('locass_orga_homepage') }}";
+                         //window.location.href = "{{ path('locass_orga_homepage') }}";
                      }
                  });
 
 
-            });
+            });*/
 
         });
 
