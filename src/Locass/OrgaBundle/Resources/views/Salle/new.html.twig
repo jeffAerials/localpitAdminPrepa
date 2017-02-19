@@ -310,27 +310,14 @@
                                 <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
                                     <thead>
                                     <tr>
-                                        <th>Company</th>
-                                        <th data-hide="phone,tablet">City</th>
+                                        <th>Salle</th>
+                                        <th>Ville</th>
+                                        <th>Pays</th>
+                                        <th>Infos</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>Et Rutrum Non Associates</td>
-                                        <td>Fogo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nam Ac Inc.</td>
-                                        <td>Machelen</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Enim Commodo Limited</td>
-                                        <td>Norman</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Odio Etiam Institute</td>
-                                        <td>Sautin</td>
-                                    </tr>
+
                                     </tbody>
                                 </table>
 
@@ -420,19 +407,30 @@
 
             $("#society").easyAutocomplete(optionsAutoComplete);
 
-           /* $.ajax({
-                url: "http://localhost:8080/localpitsymf/orga/newsalle/searchsalles",
+            $.ajax({
+                url: "http://localhost:8080/localpitsymf/orga/newsalle/sallesinscrite/{{ app.user.idmongo }}",
                 method: "GET",
                 success: function(response){
-                    var searchsalle = response;
-                    console.log (searchsalle);
-                    $('#society').autocomplete({
+                    var searchsalle = response[0].salles;
+                    if (!searchsalle){
+                        console.log ("pas d'enregistrements");
 
-                        source : searchsalle
+                    }
+                    else {
+                        var tbody = $('#dt_basic tbody'),
+                            props = ["society", "ville", "pays", "notes"];
+                        $.each(searchsalle, function(i, dt_basic) {
+                            var tr = $('<tr>');
+                            $.each(props, function(i, prop) {
+                                $('<td>').html(dt_basic[prop]).appendTo(tr);
+                            });
+                            tbody.append(tr);
+                        });
+                    }
 
-                    });
+
                 }
-            });*/
+            });
 
             /*
              * ALL PAGE RELATED SCRIPTS CAN GO BELOW HERE
@@ -521,19 +519,7 @@
                     society : {
                         required : true
                     },
-                    nom : {
-                        required : true
-                    },
-                    prenom : {
-                        required : true
-                    },
                     notes : {
-                        required : true
-                    },
-                    phoneenter : {
-                        required : true
-                    },
-                    email : {
                         required : true
                     },
                     adresse : {
@@ -573,20 +559,8 @@
                     society : {
                         required : 'Please enter company name'
                     },
-                    nom : {
-                        required : 'Please enter your first name'
-                    },
-                    prenom : {
-                        required : 'Please enter your last name'
-                    },
                     notes : {
                         required : 'Please enter your description'
-                    },
-                    phoneenter : {
-                        required : 'Please enter your phone number'
-                    },
-                    email : {
-                        required : 'Please enter your email'
                     },
                     adresse : {
                         required : 'Please enter your full address'
@@ -627,7 +601,7 @@
                         method: "PUT",
                         data: $("#checkout-form").serialize(),
                         success: function(response){
-                            window.location.href = "{{ path('locass_orga_homepage') }}";
+                            window.location.href = "{{ path('locass_orga_salle_new') }}";
                         }
                     });
                 },
