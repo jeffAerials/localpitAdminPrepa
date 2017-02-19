@@ -1,6 +1,8 @@
 {% extends 'LocassOrgaBundle::layout.html.twig' %}
 {% block orga_stylesheet_relatedplug %}
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset ('intl-tel-input/build/css/intlTelInput.css') }}">
+    <link rel="stylesheet" href="{{ asset ('EasyAutocomplete/easy-autocomplete.min.css') }}">
+    <link rel="stylesheet" href="{{ asset ('EasyAutocomplete/easy-autocomplete.themes.min.css') }}">
     <style type="text/css">
         .iti-flag {
             background-image: url("{{ asset ('intl-tel-input/build/img/flags.png') }}");
@@ -45,7 +47,7 @@
 
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-home"></i> Salles <span>> Ajout d'une salle dans mes projets</span></h1>
+                <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-map-marker"></i> Salles <span>> Ajout d'une salle dans mes projets</span></h1>
             </div>
             <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
                 <ul id="sparks" class="">
@@ -117,7 +119,7 @@
                                     <fieldset>
                                         <section>
                                             <label class="input">
-                                                <input type="text" name="society" placeholder="Nom de la Salle">
+                                                <input type="text" name="society" id="society" placeholder="Nom de la Salle">
                                             </label>
                                         </section>
                                         <div class="row">
@@ -353,6 +355,7 @@
 
 {% block orga_content_relatedplug %}
     <script src="{{ asset ('intl-tel-input/build/js/intlTelInput.js') }}"></script>
+    <script src="{{ asset ('EasyAutocomplete/jquery.easy-autocomplete.min.js') }}"></script>
 {% endblock orga_content_relatedplug %}
 
 {% block orga_content_relatedscript %}
@@ -390,6 +393,46 @@
              */
 
             pageSetUp();
+
+            var optionsAutoComplete = {
+                url: function(phrase) {
+                    return "http://localhost:8080/localpitsymf/orga/newsalle/searchsalles?nom=" + phrase;
+                },
+
+                getValue: "nom",
+
+                template: {
+                    type: "custom",
+                    method: function(value, item) {
+                        return "<span class='flag flag-" + (item.payscode).toLowerCase() + "' ></span> " + value + " <span>- " + (item.ville) + "</span>";
+                    }
+                },
+
+
+                theme: "dark",
+                list: {
+                    maxNumberOfElements: 20,
+                    match: {
+                        enabled: true
+                    }
+                }
+            };
+
+            $("#society").easyAutocomplete(optionsAutoComplete);
+
+           /* $.ajax({
+                url: "http://localhost:8080/localpitsymf/orga/newsalle/searchsalles",
+                method: "GET",
+                success: function(response){
+                    var searchsalle = response;
+                    console.log (searchsalle);
+                    $('#society').autocomplete({
+
+                        source : searchsalle
+
+                    });
+                }
+            });*/
 
             /*
              * ALL PAGE RELATED SCRIPTS CAN GO BELOW HERE
@@ -610,6 +653,9 @@
 
 {% block orga_content_relatedscript2 %}
     <script>
+
+
+
         var placeSearch, autocomplete;
 
         var componentForm = {
