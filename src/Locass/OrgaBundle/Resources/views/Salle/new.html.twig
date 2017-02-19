@@ -117,7 +117,7 @@
                                     <fieldset>
                                         <section>
                                             <label class="input">
-                                                <input type="text" name="sallename" placeholder="Nom de la Salle">
+                                                <input type="text" name="society" placeholder="Nom de la Salle">
                                             </label>
                                         </section>
                                         <div class="row">
@@ -133,7 +133,7 @@
                                                 <p id="output">Email: </p><br>
                                                 <div class="form-group">
                                                     <label class="input"> <i class="icon-append fa fa-envelope-o"></i>
-                                                        <input type="email" name="emailenter" id="email">
+                                                        <input type="email" name="email" id="email">
                                                     </label>
                                                 </div>
                                             </section>
@@ -175,7 +175,7 @@
                                         <div class="row">
                                             <section class="col col-2">
                                                 <label class="input">
-                                                    <input type="hidden" name="codepost" placeholder="CP - AUTO" id="postal_code">
+                                                    <input type="hidden" name="codpost" placeholder="CP - AUTO" id="postal_code">
                                                 </label>
                                             </section>
 
@@ -189,7 +189,7 @@
                                         <div class="row">
                                             <section class="col col-4">
                                                 <label class="input">
-                                                    <input type="hidden" name="test" placeholder="Région - AUTO" id="administrative_area_level_1">
+                                                    <input type="hidden" name="region" placeholder="Région - AUTO" id="administrative_area_level_1">
                                                 </label>
                                             </section>
 
@@ -208,14 +208,14 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label class="input"> <p class="hide" id="lati">Latitude: </p>
-                                                    <input type="text" name="lat" id="lat" placeholder="latitude - AUTO">
+                                                    <input type="text" name="latitude" id="lat" placeholder="latitude - AUTO">
                                                 </label>
                                             </section>
 
 
                                             <section class="col col-6">
                                                 <label class="input"> <p class="hide" id="long">Longitude: </p>
-                                                    <input type="text" name="lng" id="lng" placeholder="longitude - AUTO">
+                                                    <input type="text" name="longitude" id="lng" placeholder="longitude - AUTO">
                                                 </label>
                                             </section>
 
@@ -475,7 +475,7 @@
 
                 // Rules for form validation
                 rules : {
-                    sallename : {
+                    society : {
                         required : true
                     },
                     nom : {
@@ -490,6 +490,9 @@
                     phoneenter : {
                         required : true
                     },
+                    email : {
+                        required : true
+                    },
                     adresse : {
                         required : true
                     },
@@ -502,29 +505,29 @@
                     ville : {
                         required : true
                     },
-                    codepost : {
+                    codpost : {
                         required : true
                     },
                     numrue : {
                         required : true
                     },
-                    test : {
+                    region : {
                         required : true
                     },
                     organame : {
                         required : true
                     },
-                    lat : {
+                    latitude : {
                         required : true
                     },
-                    lng : {
+                    longitude : {
                         required : true
                     }
                 },
 
                 // Messages for form validation
                 messages : {
-                    sallename : {
+                    society : {
                         required : 'Please enter company name'
                     },
                     nom : {
@@ -539,6 +542,9 @@
                     phoneenter : {
                         required : 'Please enter your phone number'
                     },
+                    email : {
+                        required : 'Please enter your email'
+                    },
                     adresse : {
                         required : 'Please enter your full address'
                     },
@@ -551,22 +557,22 @@
                     ville : {
                         required : 'Invalid Adress'
                     },
-                    codepost : {
+                    codpost : {
                         required : 'Invalid Adress'
                     },
                     numrue : {
                         required : 'Invalid Adress'
                     },
-                    test : {
+                    region : {
                         required : 'Invalid Adress'
                     },
                     organame : {
                         required : 'Please enter name organization'
                     },
-                    lat : {
+                    latitude : {
                         required : 'Invalid latitude'
                     },
-                    lng : {
+                    longitude : {
                         required : 'Invalid longitude'
                     }
                 },
@@ -593,19 +599,7 @@
 
 
 
-            /*$('#checkout-form').on('submit', function(e) {
-                 $.ajax({
-                     url: "http://localhost:8080/localpitsymf/orga/newsalle/ajoutsalle/589c4818105a2ac42200002c",
-                     method: "PUT",
-                     data: $("#checkout-form").serialize(),
-                     success: function(response){
-                         console.log(response);
-                         //window.location.href = "{{ path('locass_orga_homepage') }}";
-                     }
-                 });
 
-
-            });*/
 
         });
 
