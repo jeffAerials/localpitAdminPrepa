@@ -26,6 +26,9 @@
         "doctrine/mongodb-odm": "^1.0",
         "doctrine/mongodb-odm-bundle": "^3.0"
     },
+    "provide": {
+        "ext-mongo":"1.6.12"
+    },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^3.0"
