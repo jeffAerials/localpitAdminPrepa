@@ -43,6 +43,7 @@ twig:
             - 'Form/smart_admin_layout.html.twig'
     globals:
         goapikey: "%googleapi_key%"
+        resturl:  "%resturl%"
 
 
 # Doctrine Configuration

@@ -383,7 +383,7 @@
 
             var optionsAutoComplete = {
                 url: function(phrase) {
-                    return "http://localhost:8080/localpitsymf/orga/newsalle/searchsalles?nom=" + phrase;
+                    return "{{ resturl }}/localpitsymf/orga/newsalle/searchsalles?nom=" + phrase;
                 },
 
                 getValue: "nom",
@@ -408,7 +408,7 @@
             $("#society").easyAutocomplete(optionsAutoComplete);
 
             $.ajax({
-                url: "http://localhost:8080/localpitsymf/orga/newsalle/sallesinscrite/{{ app.user.idmongo }}",
+                url: "{{ resturl }}/localpitsymf/orga/newsalle/sallesinscrite/{{ app.user.idmongo }}",
                 method: "GET",
                 success: function(response){
                     var searchsalle = response[0].salles;
@@ -597,7 +597,7 @@
                 // Ajax form submition
                 submitHandler : function(form) {
                     $.ajax({
-                        url: "http://localhost:8080/localpitsymf/orga/newsalle/ajoutsalle/{{ app.user.idmongo }}",
+                        url: "{{ resturl }}/localpitsymf/orga/newsalle/ajoutsalle/{{ app.user.idmongo }}",
                         method: "PUT",
                         data: $("#checkout-form").serialize(),
                         success: function(response){
