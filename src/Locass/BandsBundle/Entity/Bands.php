@@ -102,6 +102,13 @@ class Bands
     /**
      * @var string
      *
+     * @ORM\Column(name="emailband", type="string", length=20, nullable=true)
+     */
+    private $emailband;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="notes", type="text", nullable=true)
      */
     private $notes;
@@ -590,5 +597,29 @@ class Bands
     public function getPayscode()
     {
         return $this->payscode;
+    }
+
+    /**
+     * Set emailband
+     *
+     * @param string $emailband
+     *
+     * @return Bands
+     */
+    public function setEmailband($emailband)
+    {
+        $this->emailband = $emailband;
+
+        return $this;
+    }
+
+    /**
+     * Get emailband
+     *
+     * @return string
+     */
+    public function getEmailband()
+    {
+        return $this->emailband;
     }
 }

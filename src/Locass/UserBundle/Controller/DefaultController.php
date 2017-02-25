@@ -106,6 +106,7 @@ class DefaultController extends Controller
         $pays = $request->request->get('pays');
         $payscode = $request->request->get('payscode');
         $sallename = $request->request->get('sallename');
+        $salleemail = $request->request->get('salleemail');
         $notes = $request->request->get('notes');
         $nbmembers = $request->request->get('nbmembers');
         $lat = $request->request->get('lat');
@@ -129,6 +130,7 @@ class DefaultController extends Controller
             $salles->setPays($pays);
             $salles->setPayscode($payscode);
             $salles->setSalle($sallename);
+            $salles->setEmailsalle($salleemail);
             $salles->setNotes($notes);
             $salles->setNbmembers($nbmembers);
             $salles->setLattitude($lat);
@@ -159,6 +161,7 @@ class DefaultController extends Controller
             $contact->setPays($pays);
             $contact->setPayscode($payscode);
             $contact->setSociety($sallename);
+            $contact->setEmailsociety($salleemail);
             $contact->setNotes($notes);
             $contact->setNbmembers($nbmembers);
             $contact->setLatitude($lat);
@@ -177,6 +180,7 @@ class DefaultController extends Controller
             $salledoc->setPays($pays);
             $salledoc->setPayscode($payscode);
             $salledoc->setSociety($sallename);
+            $salledoc->setEmailsociety($salleemail);
             $salledoc->setNotes($notes);
             $salledoc->setNbmembers($nbmembers);
             $salledoc->setLatitude($lat);
@@ -227,6 +231,7 @@ class DefaultController extends Controller
         $pays = $request->request->get('pays');
         $payscode = $request->request->get('payscode');
         $bandname = $request->request->get('bandname');
+        $bandemail = $request->request->get('bandemail');
         $notes = $request->request->get('notes');
         $nbmembers = $request->request->get('nbmembers');
         $style = $request->request->get('style');
@@ -251,6 +256,7 @@ class DefaultController extends Controller
             $bands->setPays($pays);
             $bands->setPayscode($payscode);
             $bands->setBand($bandname);
+            $bands->setEmailband($bandemail);
             $bands->setStyle($style);
             $bands->setNotes($notes);
             $bands->setNbmembers($nbmembers);
@@ -282,6 +288,7 @@ class DefaultController extends Controller
             $contact->setPays($pays);
             $contact->setPayscode($payscode);
             $contact->setSociety($bandname);
+            $contact->setEmailsociety($bandemail);
             $contact->setStyle($style);
             $contact->setNotes($notes);
             $contact->setNbmembers($nbmembers);
@@ -301,6 +308,7 @@ class DefaultController extends Controller
             $bandDoc->setPays($pays);
             $bandDoc->setPayscode($payscode);
             $bandDoc->setSociety($bandname);
+            $bandDoc->setEmailsociety($bandemail);
             $bandDoc->setStyle($style);
             $bandDoc->setNotes($notes);
             $bandDoc->setNbmembers($nbmembers);
@@ -357,6 +365,7 @@ class DefaultController extends Controller
         $pays = $request->request->get('pays');
         $payscode = $request->request->get('payscode');
         $organame = $request->request->get('organame');
+        $orgaemail = $request->request->get('orgaemail');
         $notes = $request->request->get('notes');
         $nbmembers = $request->request->get('nbmembers');
         $lat = $request->request->get('lat');
@@ -380,6 +389,7 @@ class DefaultController extends Controller
             $orga->setPays($pays);
             $orga->setPayscode($payscode);
             $orga->setOrga($organame);
+            $orga->setEmailorga($orgaemail);
             $orga->setNotes($notes);
             $orga->setNbmembers($nbmembers);
             $orga->setLattitude($lat);
@@ -412,6 +422,7 @@ class DefaultController extends Controller
             $contact->setPays($pays);
             $contact->setPayscode($payscode);
             $contact->setSociety($organame);
+            $contact->setEmailsociety($orgaemail);
             $contact->setNotes($notes);
             $contact->setNbmembers($nbmembers);
             $contact->setLatitude($lat);
@@ -430,6 +441,7 @@ class DefaultController extends Controller
             $orgaDoc->setPays($pays);
             $orgaDoc->setPayscode($payscode);
             $orgaDoc->setSociety($organame);
+            $orgaDoc->setEmailsociety($orgaemail);
             $orgaDoc->setNotes($notes);
             $orgaDoc->setNbmembers($nbmembers);
             $orgaDoc->setLatitude($lat);

@@ -85,6 +85,11 @@ class BandDocument
     /**
      * @MongoDB\Field(type="string")
      */
+    protected $emailsociety;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
     protected $notes;
 
     /**
@@ -544,5 +549,27 @@ class BandDocument
     public function getPayscode()
     {
         return $this->payscode;
+    }
+
+    /**
+     * Set emailsociety
+     *
+     * @param string $emailsociety
+     * @return self
+     */
+    public function setEmailsociety($emailsociety)
+    {
+        $this->emailsociety = $emailsociety;
+        return $this;
+    }
+
+    /**
+     * Get emailsociety
+     *
+     * @return string $emailsociety
+     */
+    public function getEmailsociety()
+    {
+        return $this->emailsociety;
     }
 }

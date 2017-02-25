@@ -101,6 +101,13 @@ class Salles
     /**
      * @var string
      *
+     * @ORM\Column(name="emailsalle", type="string", length=20, nullable=true)
+     */
+    private $emailsalle;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="notes", type="text", nullable=true)
      */
     private $notes;
@@ -534,5 +541,28 @@ class Salles
     {
         return $this->dateinscr;
     }
-}
 
+    /**
+     * Set payscode
+     *
+     * @param string $payscode
+     *
+     * @return Salles
+     */
+    public function setPayscode($payscode)
+    {
+        $this->payscode = $payscode;
+
+        return $this;
+    }
+
+    /**
+     * Get payscode
+     *
+     * @return string
+     */
+    public function getPayscode()
+    {
+        return $this->payscode;
+    }
+}

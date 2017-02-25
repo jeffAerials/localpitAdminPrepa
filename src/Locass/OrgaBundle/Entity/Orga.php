@@ -102,6 +102,13 @@ class Orga
     /**
      * @var string
      *
+     * @ORM\Column(name="emailorga", type="string", length=20, nullable=true)
+     */
+    private $emailorga;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="notes", type="text", nullable=true)
      */
     private $notes;
@@ -558,5 +565,29 @@ class Orga
     public function getPayscode()
     {
         return $this->payscode;
+    }
+
+    /**
+     * Set emailorga
+     *
+     * @param string $emailorga
+     *
+     * @return Orga
+     */
+    public function setEmailorga($emailorga)
+    {
+        $this->emailorga = $emailorga;
+
+        return $this;
+    }
+
+    /**
+     * Get emailorga
+     *
+     * @return string
+     */
+    public function getEmailorga()
+    {
+        return $this->emailorga;
     }
 }
