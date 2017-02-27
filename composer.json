@@ -24,7 +24,8 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "doctrine/mongodb-odm": "^1.0",
-        "doctrine/mongodb-odm-bundle": "^3.0"
+        "doctrine/mongodb-odm-bundle": "^3.0",
+        "ci/restclientbundle": "^2.0"
     },
     "provide": {
         "ext-mongo":"1.6.12"
@@ -69,4 +70,3 @@
         }
     }
 }
-
