@@ -32,3 +32,6 @@
 /web/fonts
 /web/intl-tel-input/
 HTML_Full_Version/
+
+composer.json
+composer.lock
