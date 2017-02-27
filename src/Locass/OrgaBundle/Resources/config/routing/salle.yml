@@ -6,3 +6,4 @@ locass_orga_salle_index:
     path:     /
     defaults: { _controller: "LocassOrgaBundle:Default:indexsalle" }
     methods:  [GET, POST]
+
