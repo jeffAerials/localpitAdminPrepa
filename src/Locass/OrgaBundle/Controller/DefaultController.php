@@ -23,3 +23,4 @@ class DefaultController extends Controller
         return $this->render('LocassOrgaBundle:Salle:index.html.twig');
     }
 }
+
