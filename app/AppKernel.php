@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Circle\RestClientBundle\CircleRestClientBundle(),
             new Testmongo\StoreBundle\TestmongoStoreBundle(),
             new Locass\UserBundle\LocassUserBundle(),
             new Locass\AdminBundle\LocassAdminBundle(),
