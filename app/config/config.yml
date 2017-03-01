@@ -98,3 +98,11 @@ fos_user:
             type: Locass\UserBundle\Form\RegistrationType
         confirmation:
             enabled: true
+
+
+# CiRestClient configuration
+circle_rest_client:
+    curl:
+      defaults:
+        CURLOPT_HTTPHEADER:     [ 'Content-Type: application/x-www-form-urlencoded' ]
+        CURLOPT_FOLLOWLOCATION: true
