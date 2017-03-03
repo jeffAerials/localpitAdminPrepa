@@ -115,7 +115,7 @@ class BandDocument
     /**
      * @MongoDB\Field(type="boolean")
      */
-    protected $origine;
+    protected $enable;
 
     /**
      * @MongoDB\Field(type="timestamp")
@@ -486,25 +486,25 @@ class BandDocument
     }
 
     /**
-     * Set origine
+     * Set enable
      *
-     * @param boolean $origine
+     * @param boolean $enable
      * @return self
      */
-    public function setOrigine($origine)
+    public function setEnable($enable)
     {
-        $this->origine = $origine;
+        $this->enable = $enable;
         return $this;
     }
 
     /**
-     * Get origine
+     * Get enable
      *
-     * @return boolean $origine
+     * @return boolean $enable
      */
-    public function getOrigine()
+    public function getEnable()
     {
-        return $this->origine;
+        return $this->enable;
     }
 
     /**

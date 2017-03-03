@@ -3,9 +3,6 @@
 namespace Locass\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Locass\BandsBundle\Entity\Bands;
-use Locass\OrgaBundle\Entity\Orga;
-use Locass\SallesBundle\Entity\Salles;
 use Locass\UserBundle\Document\Contacts;
 use Locass\OrgaBundle\Document\OrgaDocument;
 use Locass\BandsBundle\Document\BandDocument;
@@ -40,39 +37,27 @@ class DefaultController extends Controller
             if ($user->hasRole('ROLE_SALLE')) {
                 return $this->redirectToRoute('locass_salles_homepage');
             };
-            $salles = new Salles();
-            $form   = $this->createForm('Locass\SallesBundle\Form\SallesType', $salles);
 
-            return $this->render('LocassUserBundle:Default:newsalle.html.twig', array(
-                'salles' => $salles,
-                'form'   => $form->createView(),
-            ));
+
+            return $this->render('LocassUserBundle:Default:newsalle.html.twig');
 
         }
         elseif ($application == 'Bands'){ // Groupe, Musicien...
             if ($user->hasRole('ROLE_BANDS')) {
                 return $this->redirectToRoute('locass_bands_homepage');
             };
-            $bands = new Bands();
-            $form   = $this->createForm('Locass\BandsBundle\Form\bandsType', $bands);
 
-            return $this->render('LocassUserBundle:Default:newband.html.twig', array(
-                'bands' => $bands,
-                'form'   => $form->createView(),
-            ));
+
+            return $this->render('LocassUserBundle:Default:newband.html.twig');
         }
         elseif($application == 'Orga'){ // Organisateur de concerts Assos, Orga, Tourneur, Manager...
             if ($user->hasRole('ROLE_ORGA')) {
                 return $this->redirectToRoute('locass_orga_homepage');
             };
 
-            $orga = new Orga();
-            $form = $this->createForm('Locass\OrgaBundle\Form\OrgaType', $orga);
 
-            return $this->render('LocassUserBundle:Default:neworga.html.twig', array(
-                'orga' => $orga,
-                'form' => $form->createView(),
-            ));
+
+            return $this->render('LocassUserBundle:Default:neworga.html.twig');
 
 
         }
@@ -90,12 +75,13 @@ class DefaultController extends Controller
 
         $emailUser = $user->getEmail();
 
-        $salles = new Salles();
+        $username = $user->getUsername();
+
+
         $contact = new Contacts();
         $salledoc = new SalleDocument();
 
-        $form = $this->createForm('Locass\SallesBundle\Form\SallesType', $salles);
-        $form->handleRequest($request);
+
 
         $nom = $request->request->get('nom');
         $prenom = $request->request->get('prenom');
@@ -111,7 +97,7 @@ class DefaultController extends Controller
         $nbmembers = $request->request->get('nbmembers');
         $lat = $request->request->get('lat');
         $lng = $request->request->get('lng');
-        $origine = true;
+        $enable = true;
         $dateinscr = new \DateTime('now');
 
 
@@ -119,57 +105,15 @@ class DefaultController extends Controller
         if (!empty($prenom)) {
             $em = $this->getDoctrine()->getManager();
 
-            $salles->setIdfosuser($idUser);
-            $salles->setNom($nom);
-            $salles->setPrenom($prenom);
-            $salles->setAdresse($adresse);
-            $salles->setCodepost($codepost);
-            $salles->setVille($ville);
-            $salles->setEmail($emailUser);
-            $salles->setPhone($phone);
-            $salles->setPays($pays);
-            $salles->setPayscode($payscode);
-            $salles->setSalle($sallename);
-            $salles->setEmailsalle($salleemail);
-            $salles->setNotes($notes);
-            $salles->setNbmembers($nbmembers);
-            $salles->setLattitude($lat);
-            $salles->setLongitude($lng);
-            $salles->setOrigine($origine);
-            $salles->setDateinscr($dateinscr);
-
-
-            $em->persist($salles);
-            $em->flush($salles);
-
-            $contactId = $salles->getId();
-
-            $user->setSalle($salles);
-            $em->persist($user);
-            $em->flush($user);
-
             $contact->setIds($idUser);
-            $contact->setIdf($contactId);
             $contact->setType("salle");
+            $contact->setEmail($emailUser);
+            $contact->setUsername($username);
             $contact->setNom($nom);
             $contact->setPrenom($prenom);
-            $contact->setAdresse($adresse);
-            $contact->setCodpost($codepost);
-            $contact->setVille($ville);
-            $contact->setPhone($phone);
-            $contact->setEmail($emailUser);
-            $contact->setPays($pays);
-            $contact->setPayscode($payscode);
-            $contact->setSociety($sallename);
-            $contact->setEmailsociety($salleemail);
-            $contact->setNotes($notes);
-            $contact->setNbmembers($nbmembers);
-            $contact->setLatitude($lat);
-            $contact->setLongitude($lng);
-            $contact->setOrigine($origine);
+
 
             $salledoc->setIds($idUser);
-            $salledoc->setIdf($contactId);
             $salledoc->setNom($nom);
             $salledoc->setPrenom($prenom);
             $salledoc->setAdresse($adresse);
@@ -185,7 +129,7 @@ class DefaultController extends Controller
             $salledoc->setNbmembers($nbmembers);
             $salledoc->setLatitude($lat);
             $salledoc->setLongitude($lng);
-            $salledoc->setOrigine($origine);
+            $salledoc->setEnable($enable);
 
             $dm = $this->get('doctrine_mongodb')->getManager();
             $dm->persist($contact);
@@ -215,12 +159,13 @@ class DefaultController extends Controller
 
         $emailUser = $user->getEmail();
 
-        $bands = new Bands();
+        $username = $user->getUsername();
+
+
         $contact = new Contacts();
         $bandDoc = new BandDocument();
 
-        $form = $this->createForm('Locass\BandsBundle\Form\bandsType', $bands);
-        $form->handleRequest($request);
+
 
         $nom = $request->request->get('nom');
         $prenom = $request->request->get('prenom');
@@ -237,7 +182,7 @@ class DefaultController extends Controller
         $style = $request->request->get('style');
         $lat = $request->request->get('lat');
         $lng = $request->request->get('lng');
-        $origine = true;
+        $enable = true;
         $dateinscr = new \DateTime('now');
 
 
@@ -245,59 +190,16 @@ class DefaultController extends Controller
         if (!empty($prenom)) {
             $em = $this->getDoctrine()->getManager();
 
-            $bands->setIdfosuser($idUser);
-            $bands->setNom($nom);
-            $bands->setPrenom($prenom);
-            $bands->setAdresse($adresse);
-            $bands->setCodepost($codepost);
-            $bands->setVille($ville);
-            $bands->setPhone($phone);
-            $bands->setEmail($emailUser);
-            $bands->setPays($pays);
-            $bands->setPayscode($payscode);
-            $bands->setBand($bandname);
-            $bands->setEmailband($bandemail);
-            $bands->setStyle($style);
-            $bands->setNotes($notes);
-            $bands->setNbmembers($nbmembers);
-            $bands->setLattitude($lat);
-            $bands->setLongitude($lng);
-            $bands->setOrigine($origine);
-            $bands->setDateinscr($dateinscr);
-
-
-            $em->persist($bands);
-            $em->flush($bands);
-
-            $contactId = $bands->getId();
-
-            $user->setBand($bands);
-            $em->persist($user);
-            $em->flush($user);
 
             $contact->setIds($idUser);
-            $contact->setIdf($contactId);
             $contact->setType("band");
+            $contact->setEmail($emailUser);
+            $contact->setUsername($username);
             $contact->setNom($nom);
             $contact->setPrenom($prenom);
-            $contact->setAdresse($adresse);
-            $contact->setCodpost($codepost);
-            $contact->setVille($ville);
-            $contact->setPhone($phone);
-            $contact->setEmail($emailUser);
-            $contact->setPays($pays);
-            $contact->setPayscode($payscode);
-            $contact->setSociety($bandname);
-            $contact->setEmailsociety($bandemail);
-            $contact->setStyle($style);
-            $contact->setNotes($notes);
-            $contact->setNbmembers($nbmembers);
-            $contact->setLatitude($lat);
-            $contact->setLongitude($lng);
-            $contact->setOrigine($origine);
+
 
             $bandDoc->setIds($idUser);
-            $bandDoc->setIdf($contactId);
             $bandDoc->setNom($nom);
             $bandDoc->setPrenom($prenom);
             $bandDoc->setAdresse($adresse);
@@ -314,7 +216,7 @@ class DefaultController extends Controller
             $bandDoc->setNbmembers($nbmembers);
             $bandDoc->setLatitude($lat);
             $bandDoc->setLongitude($lng);
-            $bandDoc->setOrigine($origine);
+            $bandDoc->setEnable($enable);
 
             $dm = $this->get('doctrine_mongodb')->getManager();
             $dm->persist($bandDoc);
@@ -349,12 +251,13 @@ class DefaultController extends Controller
 
         $emailUser = $user->getEmail();
 
-        $orga = new Orga();
+        $username = $user->getUsername();
+
+
         $contact = new Contacts();
         $orgaDoc = new OrgaDocument();
 
-        $form = $this->createForm('Locass\OrgaBundle\Form\OrgaType', $orga);
-        $form->handleRequest($request);
+
 
         $nom = $request->request->get('nom');
         $prenom = $request->request->get('prenom'); // ok
@@ -370,7 +273,7 @@ class DefaultController extends Controller
         $nbmembers = $request->request->get('nbmembers');
         $lat = $request->request->get('lat');
         $lng = $request->request->get('lng');
-        $origine = true;
+        $enable = true;
         $dateinscr = new \DateTime('now');
 
 
@@ -378,59 +281,15 @@ class DefaultController extends Controller
         if (!empty($prenom)) {
             $em = $this->getDoctrine()->getManager();
 
-            $orga->setIdfosuer($idUser);
-            $orga->setNom($nom);
-            $orga->setPrenom($prenom);
-            $orga->setAdresse($adresse);
-            $orga->setCodepost($codepost);
-            $orga->setVille($ville);
-            $orga->setEmail($emailUser);
-            $orga->setPhone($phone);
-            $orga->setPays($pays);
-            $orga->setPayscode($payscode);
-            $orga->setOrga($organame);
-            $orga->setEmailorga($orgaemail);
-            $orga->setNotes($notes);
-            $orga->setNbmembers($nbmembers);
-            $orga->setLattitude($lat);
-            $orga->setLongitude($lng);
-            $orga->setOrigine($origine);
-            $orga->setDateinscr($dateinscr);
-
-
-            $em->persist($orga);
-            $em->flush($orga);
-
-            $contactId = $orga->getId();
-
-            $user->setOrga($orga);
-            $em->persist($user);
-            $em->flush($user);
-
-
-
             $contact->setIds($idUser);
-            $contact->setIdf($contactId);
             $contact->setType("orga");
+            $contact->setEmail($emailUser);
+            $contact->setUsername($username);
             $contact->setNom($nom);
             $contact->setPrenom($prenom);
-            $contact->setAdresse($adresse);
-            $contact->setCodpost($codepost);
-            $contact->setVille($ville);
-            $contact->setPhone($phone);
-            $contact->setEmail($emailUser);
-            $contact->setPays($pays);
-            $contact->setPayscode($payscode);
-            $contact->setSociety($organame);
-            $contact->setEmailsociety($orgaemail);
-            $contact->setNotes($notes);
-            $contact->setNbmembers($nbmembers);
-            $contact->setLatitude($lat);
-            $contact->setLongitude($lng);
-            $contact->setOrigine($origine);
+
 
             $orgaDoc->setIds($idUser);
-            $orgaDoc->setIdf($contactId);
             $orgaDoc->setNom($nom);
             $orgaDoc->setPrenom($prenom);
             $orgaDoc->setAdresse($adresse);
@@ -446,7 +305,7 @@ class DefaultController extends Controller
             $orgaDoc->setNbmembers($nbmembers);
             $orgaDoc->setLatitude($lat);
             $orgaDoc->setLongitude($lng);
-            $orgaDoc->setOrigine($origine);
+            $orgaDoc->setEnable($enable);
 
             $dm = $this->get('doctrine_mongodb')->getManager();
             $dm->persist($contact);
