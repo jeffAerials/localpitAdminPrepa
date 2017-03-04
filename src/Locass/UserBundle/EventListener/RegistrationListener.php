@@ -27,9 +27,23 @@ class RegistrationListener implements EventSubscriberInterface
 
 
         $user = $event->getForm()->getData();
+        $application = $user->getApplication();
+        if ($application == 'Salles')
+        {
+            $roles = array('ROLE_SALLE');
+        }
+        elseif ($application == 'Bands')
+        {
+            $roles = array('ROLE_BANDS');
+        }
+        else
+        {
+            $roles = array('ROLE_ORGA');
+        }
 
         /*$roles = array('ROLE_BIDON');
 
         $user->setRoles($roles);*/
+        $user->setRoles($roles);
     }
 }

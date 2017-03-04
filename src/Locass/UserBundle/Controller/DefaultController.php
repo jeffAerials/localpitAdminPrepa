@@ -26,6 +26,7 @@ class DefaultController extends Controller
         }
         else {
             $application = $user->getApplication();
+            $idmongo = $user->getIdmongo();
         }
 
 
@@ -34,7 +35,7 @@ class DefaultController extends Controller
             return $this->render('LocassUserBundle:Default:index.html.twig');
         }
         elseif ($application == 'Salles'){ // Gestionnaire de Salles
-            if ($user->hasRole('ROLE_SALLE')) {
+            if (!is_null($idmongo)) {
                 return $this->redirectToRoute('locass_salles_homepage');
             };
 
@@ -43,7 +44,7 @@ class DefaultController extends Controller
 
         }
         elseif ($application == 'Bands'){ // Groupe, Musicien...
-            if ($user->hasRole('ROLE_BANDS')) {
+            if (!is_null($idmongo)) {
                 return $this->redirectToRoute('locass_bands_homepage');
             };
 
@@ -51,7 +52,7 @@ class DefaultController extends Controller
             return $this->render('LocassUserBundle:Default:newband.html.twig');
         }
         elseif($application == 'Orga'){ // Organisateur de concerts Assos, Orga, Tourneur, Manager...
-            if ($user->hasRole('ROLE_ORGA')) {
+            if (!is_null($idmongo)) {
                 return $this->redirectToRoute('locass_orga_homepage');
             };
 
@@ -142,12 +143,12 @@ class DefaultController extends Controller
             $em->persist($user);
             $em->flush($user);
 
-            $userManager = $this->get('fos_user.user_manager');
+            /*$userManager = $this->get('fos_user.user_manager');
             $userol = $userManager->findUserBy(['id' => $idUser]);
             $userol->addRole("ROLE_SALLE");
-            $userManager->updateUser($userol);
+            $userManager->updateUser($userol);*/
 
-            return $this->redirectToRoute('fos_user_security_logout');
+            return $this->redirectToRoute('locass_user_homepage');
         }
         return $this->render('fos_user_security_logout');
     }
@@ -233,12 +234,12 @@ class DefaultController extends Controller
 
 
 
-            $userManager = $this->get('fos_user.user_manager');
+            /*$userManager = $this->get('fos_user.user_manager');
             $userol = $userManager->findUserBy(['id' => $idUser]);
             $userol->addRole("ROLE_BANDS");
-            $userManager->updateUser($userol);
+            $userManager->updateUser($userol);*/
 
-            return $this->redirectToRoute('fos_user_security_logout');
+            return $this->redirectToRoute('locass_user_homepage');
         }
         return $this->render('fos_user_security_logout');
     }
@@ -318,14 +319,14 @@ class DefaultController extends Controller
             $em->persist($user);
             $em->flush($user);
 
-            $userManager = $this->get('fos_user.user_manager');
+            /*$userManager = $this->get('fos_user.user_manager');
             $userol = $userManager->findUserBy(['id' => $idUser]);
             $userol->addRole("ROLE_ORGA");
-            $userManager->updateUser($userol);
+            $userManager->updateUser($userol);*/
 
 
 
-            return $this->redirectToRoute('fos_user_security_logout');
+            return $this->redirectToRoute('locass_user_homepage');
         }
 
         return $this->redirectToRoute('fos_user_security_logout');
