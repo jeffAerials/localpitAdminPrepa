@@ -383,10 +383,10 @@
 
             var optionsAutoComplete = {
                 url: function(phrase) {
-                    return "{{ resturl }}/localpitsymf/orga/newsalle/searchsalles?nom=" + phrase;
+                    return "{{ resturl }}/localpitsymf/orga/newsalle/searchsalles?society=" + phrase;
                 },
 
-                getValue: "nom",
+                getValue: "society",
 
                 template: {
                     type: "custom",

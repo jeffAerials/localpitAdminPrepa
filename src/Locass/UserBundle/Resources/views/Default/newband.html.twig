@@ -42,7 +42,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset ('img/splash/touch-icon-ipad.png') }}">
     <link rel="apple-touch-icon" sizes="120x120" href="{{ asset ('img/splash/touch-icon-iphone-retina.png') }}">
     <link rel="apple-touch-icon" sizes="152x152" href="{{ asset ('img/splash/touch-icon-ipad-retina.png') }}">
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset ('intl-tel-input/build/css/intlTelInput.css') }}">
+
 
     <!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -53,12 +53,22 @@
     <link rel="apple-touch-startup-image" href="{{ asset ('img/splash/ipad-portrait.png') }}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
     <link rel="apple-touch-startup-image" href="{{ asset ('img/splash/iphone.png') }}" media="screen and (max-device-width: 320px)">
 
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset ('intl-tel-input/build/css/intlTelInput.css') }}">
+    <link rel="stylesheet" href="{{ asset ('EasyAutocomplete/easy-autocomplete.min.css') }}">
+    <link rel="stylesheet" href="{{ asset ('EasyAutocomplete/easy-autocomplete.themes.min.css') }}">
+
     <style type="text/css">
         .iti-flag {
             background-image: url("{{ asset ('intl-tel-input/build/img/flags.png') }}");
         }
         .country-list {
             background-color: darkred !important;
+        }
+        #eac-item {
+            font-size: 5px !important;
+        }
+        #easy-autocomplete-container{
+            font-size: 10px !important;
         }
     </style>
 
@@ -249,7 +259,7 @@
                                         </div>
                                         <section>
                                             <label class="input">
-                                                <input type="text" name="bandname" placeholder="Nom du Groupe">
+                                                <input type="text" name="bandname" id="bandname" placeholder="Nom du Groupe">
                                             </label>
                                         </section>
                                         <div class="row">
@@ -264,7 +274,7 @@
                                             <section class="col col-6">
                                                 <p id="output">Email du groupe: </p>
                                                 <label class="input">
-                                                    <input type="email" name="bandemail" placeholder="Email Groupe">
+                                                    <input type="email" name="bandemail" placeholder="{{ app.user.email }}">
                                                 </label>
                                             </section>
                                             <section class="col col-2">
@@ -279,6 +289,15 @@
                                                     <label>Nombre de membres
                                                         <input class="form-control spinner-left"  id="spinner" name="nbmembers" value="1" type="text">
                                                     </label>
+                                                </div>
+                                            </section>
+                                            <section class="col col-10">
+                                                <div>
+                                                    <p>
+                                                        <span class="font-xs">Si vous choisissez le nom d'un groupe identique à un groupe certifié par son email et que vous entrez le même domaine d'adresse Email ( ex: ...@nomdugroupe.com ), nous envoyons une demande de ratachement à son propriétaire qui validera votre inscription.<br>Si vous ne souhaitez pas faire partie de ce groupe et en céer un nouveau ayant le même nom, il vous suffit d'entrer pour son adresse Email un domaine different ( ex: ...@nomdugroupediff.com ) et de la valider par la suite, en répondant à l'email de confirmation envoyé à cette nouvelle adresse comme vous l'aviez fait lors de votre inscription.<br>
+                                                        Pour les groupes de même nom et de domaines identiques non encore validés, la première validation servira de référence.
+                                                            Les groupes dont les emails ne sont pas validés pendant une période supérieur à 1 semaine seront éffacé.<br>Vous pouvez choisir de saisir votre email d'inscription ( comme proposé en gris ci-dessus ) ainsi votre adresse email de groupe sera automatiqument validée il est à noter par contre, qu'elle pourrais ne pas correspondre aux terminologies recherchés par nos abonnés par rapport au nom de votre groupe<br>Pour plus d'exemple tapez le nom de groupe "Machine..."</span>
+                                                    </p>
                                                 </div>
                                             </section>
 
@@ -557,6 +576,7 @@
     <!-- PAGE RELATED PLUGIN(S)
     <script src="..."></script>-->
     <script src="{{ asset ('intl-tel-input/build/js/intlTelInput.js') }}"></script>
+    <script src="{{ asset ('EasyAutocomplete/jquery.easy-autocomplete.min.js') }}"></script>
 
     <script type="text/javascript">
 
@@ -593,6 +613,38 @@
              */
 
             pageSetUp();
+
+            var optionsAutoComplete = {
+                url: function(phrase) {
+                    return "{{ resturl }}/localpitsymf/newband/searchbands?society=" + phrase;
+                },
+
+                getValue: "society",
+
+                template: {
+                    type: "custom",
+                    method: function(value, item) {
+                        if(item.enable == true)
+                        {
+                            return "<span class='flag flag-" + (item.payscode).toLowerCase() + "' ></span> " + value + " <span>- " + (item.ville) + "</span> <span>- ...@" + (item.email.replace(/.*@/, "")) + " - </span><span class='fa fa-lock' > Email du groupe Certifié</span> ";
+                        }
+                        else {
+                            return "<span class='flag flag-" + (item.payscode).toLowerCase() + "' ></span> " + value + " <span>- " + (item.ville) + "</span> <span>- ...@" + (item.email.replace(/.*@/, "")) + " - </span><span class='fa fa-unlock' > Email du groupe NON Certifié</span> ";
+                        }
+                    }
+                },
+
+
+                theme: "dark",
+                list: {
+                    maxNumberOfElements: 20,
+                    match: {
+                        enabled: true
+                    }
+                }
+            };
+
+            $("#bandname").easyAutocomplete(optionsAutoComplete);
 
             var input = $("#phone"),
                 output = $("#output");

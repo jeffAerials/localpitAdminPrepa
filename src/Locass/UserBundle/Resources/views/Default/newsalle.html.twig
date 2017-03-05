@@ -42,7 +42,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset ('img/splash/touch-icon-ipad.png') }}">
     <link rel="apple-touch-icon" sizes="120x120" href="{{ asset ('img/splash/touch-icon-iphone-retina.png') }}">
     <link rel="apple-touch-icon" sizes="152x152" href="{{ asset ('img/splash/touch-icon-ipad-retina.png') }}">
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset ('intl-tel-input/build/css/intlTelInput.css') }}">
+
 
     <!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -52,6 +52,10 @@
     <link rel="apple-touch-startup-image" href="{{ asset ('img/splash/ipad-landscape.png') }}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
     <link rel="apple-touch-startup-image" href="{{ asset ('img/splash/ipad-portrait.png') }}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
     <link rel="apple-touch-startup-image" href="{{ asset ('img/splash/iphone.png') }}" media="screen and (max-device-width: 320px)">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset ('intl-tel-input/build/css/intlTelInput.css') }}">
+    <link rel="stylesheet" href="{{ asset ('EasyAutocomplete/easy-autocomplete.min.css') }}">
+    <link rel="stylesheet" href="{{ asset ('EasyAutocomplete/easy-autocomplete.themes.min.css') }}">
 
     <style type="text/css">
         .iti-flag {
@@ -249,7 +253,7 @@
                                         </div>
                                         <section>
                                             <label class="input">
-                                                <input type="text" name="sallename" placeholder="Nom de la Salle ou du site">
+                                                <input type="text" name="sallename" id="sallename" placeholder="Nom de la Salle ou du site">
                                             </label>
                                         </section>
                                         <div class="row">
@@ -495,6 +499,7 @@
     <!-- PAGE RELATED PLUGIN(S)
     <script src="..."></script>-->
     <script src="{{ asset ('intl-tel-input/build/js/intlTelInput.js') }}"></script>
+    <script src="{{ asset ('EasyAutocomplete/jquery.easy-autocomplete.min.js') }}"></script>
 
     <script type="text/javascript">
 
@@ -531,6 +536,37 @@
              */
 
             pageSetUp();
+
+            var optionsAutoComplete = {
+                url: function(phrase) {
+                    return "{{ resturl }}/localpitsymf/newsalle/searchsalles?society=" + phrase;
+                },
+
+                getValue: "society",
+
+                template: {
+                    type: "custom",
+                    method: function(value, item) {
+                        function sortBySociety(key1, key2){
+                         return key1.value > key2.value;
+                         }
+                        /*res.send(band.sort(sortBySociety));*/
+                        console.log(value.society(sortBySociety));
+                        return value.society(sortBySociety);
+                    }
+                },
+
+
+                theme: "dark",
+                list: {
+                    maxNumberOfElements: 20,
+                    match: {
+                        enabled: true
+                    }
+                }
+            };
+
+            $("#sallename").easyAutocomplete(optionsAutoComplete);
 
             var input = $("#phone"),
                 output = $("#output");
