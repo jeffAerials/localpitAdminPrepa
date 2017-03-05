@@ -547,12 +547,7 @@
                 template: {
                     type: "custom",
                     method: function(value, item) {
-                        function sortBySociety(key1, key2){
-                         return key1.value > key2.value;
-                         }
-                        /*res.send(band.sort(sortBySociety));*/
-                        console.log(value.society(sortBySociety));
-                        return value.society(sortBySociety);
+                        return value;
                     }
                 },
 
