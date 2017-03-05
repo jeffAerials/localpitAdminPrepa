@@ -183,7 +183,7 @@ class DefaultController extends Controller
         $style = $request->request->get('style');
         $lat = $request->request->get('lat');
         $lng = $request->request->get('lng');
-        $enable = true;
+        $enable = false;
         $dateinscr = new \DateTime('now');
 
 
