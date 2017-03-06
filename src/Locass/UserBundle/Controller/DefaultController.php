@@ -101,6 +101,11 @@ class DefaultController extends Controller
         $enable = false;
         $dateinscr = new \DateTime('now');
 
+        $somePayload = [
+            'lat' => $lat,
+            'lon' => $lng
+        ];
+
 
 
         if (!empty($prenom)) {
@@ -125,8 +130,6 @@ class DefaultController extends Controller
             $salledoc->setEmailsociety($salleemail);
             $salledoc->setNotes($notes);
             $salledoc->setNbmembers($nbmembers);
-            $salledoc->setLatitude($lat);
-            $salledoc->setLongitude($lng);
             $salledoc->setEnable($enable);
             $salledoc->setDateinscr($dateinscr);
 
@@ -137,14 +140,16 @@ class DefaultController extends Controller
 
             $mongoId = $contact->getId();
 
+            $mongoIdsalleDoc = $salledoc->getId();
+            $restClient = $this->container->get('circle.restclient');
+            $domainurl = $this->container->getParameter('resturl');
+
+            $restClient->put($domainurl . '/localpitsymf/newsalle/creategeoloc/'.$mongoIdsalleDoc, http_build_query($somePayload));
+
             $user->setIdmongo($mongoId);
             $em->persist($user);
             $em->flush($user);
 
-            /*$userManager = $this->get('fos_user.user_manager');
-            $userol = $userManager->findUserBy(['id' => $idUser]);
-            $userol->addRole("ROLE_SALLE");
-            $userManager->updateUser($userol);*/
 
             return $this->redirectToRoute('locass_user_homepage');
         }
@@ -184,6 +189,11 @@ class DefaultController extends Controller
         $enable = false;
         $dateinscr = new \DateTime('now');
 
+        $somePayload = [
+            'lat' => $lat,
+            'lon' => $lng
+        ];
+
 
 
         if (!empty($prenom)) {
@@ -210,8 +220,6 @@ class DefaultController extends Controller
             $bandDoc->setStyle($style);
             $bandDoc->setNotes($notes);
             $bandDoc->setNbmembers($nbmembers);
-            $bandDoc->setLatitude($lat);
-            $bandDoc->setLongitude($lng);
             $bandDoc->setEnable($enable);
             $bandDoc->setDateinscr($dateinscr);
 
@@ -222,18 +230,15 @@ class DefaultController extends Controller
 
             $mongoId = $contact->getId();
 
+            $mongoIdbandDoc = $bandDoc->getId();
+            $restClient = $this->container->get('circle.restclient');
+            $domainurl = $this->container->getParameter('resturl');
+
+            $restClient->put($domainurl . '/localpitsymf/newband/creategeoloc/'.$mongoIdbandDoc, http_build_query($somePayload));
+
             $user->setIdmongo($mongoId);
             $em->persist($user);
             $em->flush($user);
-
-
-
-
-
-            /*$userManager = $this->get('fos_user.user_manager');
-            $userol = $userManager->findUserBy(['id' => $idUser]);
-            $userol->addRole("ROLE_BANDS");
-            $userManager->updateUser($userol);*/
 
             return $this->redirectToRoute('locass_user_homepage');
         }
@@ -273,6 +278,11 @@ class DefaultController extends Controller
         $enable = false;
         $dateinscr = new \DateTime('now');
 
+        $somePayload = [
+            'lat' => $lat,
+            'lon' => $lng
+        ];
+
 
 
         if (!empty($prenom)) {
@@ -297,8 +307,6 @@ class DefaultController extends Controller
             $orgaDoc->setEmailsociety($orgaemail);
             $orgaDoc->setNotes($notes);
             $orgaDoc->setNbmembers($nbmembers);
-            $orgaDoc->setLatitude($lat);
-            $orgaDoc->setLongitude($lng);
             $orgaDoc->setEnable($enable);
             $orgaDoc->setDateinscr($dateinscr);
 
@@ -309,15 +317,16 @@ class DefaultController extends Controller
 
             $mongoId = $contact->getId();
 
+            $mongoIdorgaDoc = $orgaDoc->getId();
+            $restClient = $this->container->get('circle.restclient');
+            $domainurl = $this->container->getParameter('resturl');
+
+            $restClient->put($domainurl . '/localpitsymf/neworga/creategeoloc/'.$mongoIdorgaDoc, http_build_query($somePayload));
+
+
             $user->setIdmongo($mongoId);
             $em->persist($user);
             $em->flush($user);
-
-            /*$userManager = $this->get('fos_user.user_manager');
-            $userol = $userManager->findUserBy(['id' => $idUser]);
-            $userol->addRole("ROLE_ORGA");
-            $userManager->updateUser($userol);*/
-
 
 
             return $this->redirectToRoute('locass_user_homepage');
