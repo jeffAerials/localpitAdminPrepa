@@ -115,10 +115,10 @@ class SalleDocument
     /**
      * @MongoDB\Field(type="boolean")
      */
-    protected $origine;
+    protected $enable;
 
     /**
-     * @MongoDB\Field(type="timestamp")
+     * @MongoDB\Field(type="date")
      */
     protected $dateinscr;
 
@@ -485,47 +485,25 @@ class SalleDocument
     }
 
     /**
-     * Set origine
+     * Set enable
      *
-     * @param boolean $origine
+     * @param boolean $enable
      * @return self
      */
-    public function setOrigine($origine)
+    public function setEnable($enable)
     {
-        $this->origine = $origine;
+        $this->enable = $enable;
         return $this;
     }
 
     /**
-     * Get origine
+     * Get enable
      *
-     * @return boolean $origine
+     * @return boolean $enable
      */
-    public function getOrigine()
+    public function getEnable()
     {
-        return $this->origine;
-    }
-
-    /**
-     * Set dateinscr
-     *
-     * @param timestamp $dateinscr
-     * @return self
-     */
-    public function setDateinscr($dateinscr)
-    {
-        $this->dateinscr = $dateinscr;
-        return $this;
-    }
-
-    /**
-     * Get dateinscr
-     *
-     * @return timestamp $dateinscr
-     */
-    public function getDateinscr()
-    {
-        return $this->dateinscr;
+        return $this->enable;
     }
 
     /**
@@ -548,5 +526,27 @@ class SalleDocument
     public function getPayscode()
     {
         return $this->payscode;
+    }
+
+    /**
+     * Set emailsociety
+     *
+     * @param string $emailsociety
+     * @return self
+     */
+    public function setEmailsociety($emailsociety)
+    {
+        $this->emailsociety = $emailsociety;
+        return $this;
+    }
+
+    /**
+     * Get emailsociety
+     *
+     * @return string $emailsociety
+     */
+    public function getEmailsociety()
+    {
+        return $this->emailsociety;
     }
 }

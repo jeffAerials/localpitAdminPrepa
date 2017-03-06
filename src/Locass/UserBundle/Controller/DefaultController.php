@@ -98,7 +98,7 @@ class DefaultController extends Controller
         $nbmembers = $request->request->get('nbmembers');
         $lat = $request->request->get('lat');
         $lng = $request->request->get('lng');
-        $enable = true;
+        $enable = false;
         $dateinscr = new \DateTime('now');
 
 
@@ -115,13 +115,10 @@ class DefaultController extends Controller
 
 
             $salledoc->setIds($idUser);
-            $salledoc->setNom($nom);
-            $salledoc->setPrenom($prenom);
             $salledoc->setAdresse($adresse);
             $salledoc->setCodpost($codepost);
             $salledoc->setVille($ville);
             $salledoc->setPhone($phone);
-            $salledoc->setEmail($emailUser);
             $salledoc->setPays($pays);
             $salledoc->setPayscode($payscode);
             $salledoc->setSociety($sallename);
@@ -131,6 +128,7 @@ class DefaultController extends Controller
             $salledoc->setLatitude($lat);
             $salledoc->setLongitude($lng);
             $salledoc->setEnable($enable);
+            $salledoc->setDateinscr($dateinscr);
 
             $dm = $this->get('doctrine_mongodb')->getManager();
             $dm->persist($contact);
@@ -201,13 +199,10 @@ class DefaultController extends Controller
 
 
             $bandDoc->setIds($idUser);
-            $bandDoc->setNom($nom);
-            $bandDoc->setPrenom($prenom);
             $bandDoc->setAdresse($adresse);
             $bandDoc->setCodpost($codepost);
             $bandDoc->setVille($ville);
             $bandDoc->setPhone($phone);
-            $bandDoc->setEmail($emailUser);
             $bandDoc->setPays($pays);
             $bandDoc->setPayscode($payscode);
             $bandDoc->setSociety($bandname);
@@ -218,6 +213,7 @@ class DefaultController extends Controller
             $bandDoc->setLatitude($lat);
             $bandDoc->setLongitude($lng);
             $bandDoc->setEnable($enable);
+            $bandDoc->setDateinscr($dateinscr);
 
             $dm = $this->get('doctrine_mongodb')->getManager();
             $dm->persist($bandDoc);
@@ -274,7 +270,7 @@ class DefaultController extends Controller
         $nbmembers = $request->request->get('nbmembers');
         $lat = $request->request->get('lat');
         $lng = $request->request->get('lng');
-        $enable = true;
+        $enable = false;
         $dateinscr = new \DateTime('now');
 
 
@@ -291,13 +287,10 @@ class DefaultController extends Controller
 
 
             $orgaDoc->setIds($idUser);
-            $orgaDoc->setNom($nom);
-            $orgaDoc->setPrenom($prenom);
             $orgaDoc->setAdresse($adresse);
             $orgaDoc->setCodpost($codepost);
             $orgaDoc->setVille($ville);
             $orgaDoc->setPhone($phone);
-            $orgaDoc->setEmail($emailUser);
             $orgaDoc->setPays($pays);
             $orgaDoc->setPayscode($payscode);
             $orgaDoc->setSociety($organame);
@@ -307,6 +300,7 @@ class DefaultController extends Controller
             $orgaDoc->setLatitude($lat);
             $orgaDoc->setLongitude($lng);
             $orgaDoc->setEnable($enable);
+            $orgaDoc->setDateinscr($dateinscr);
 
             $dm = $this->get('doctrine_mongodb')->getManager();
             $dm->persist($contact);

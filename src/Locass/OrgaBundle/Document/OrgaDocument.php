@@ -117,7 +117,7 @@ class OrgaDocument
     protected $enable;
 
     /**
-     * @MongoDB\Field(type="timestamp")
+     * @MongoDB\Field(type="date")
      */
     protected $dateinscr;
 
@@ -506,28 +506,6 @@ class OrgaDocument
     }
 
     /**
-     * Set dateinscr
-     *
-     * @param timestamp $dateinscr
-     * @return self
-     */
-    public function setDateinscr($dateinscr)
-    {
-        $this->dateinscr = $dateinscr;
-        return $this;
-    }
-
-    /**
-     * Get dateinscr
-     *
-     * @return timestamp $dateinscr
-     */
-    public function getDateinscr()
-    {
-        return $this->dateinscr;
-    }
-
-    /**
      * Set payscode
      *
      * @param string $payscode
@@ -569,5 +547,27 @@ class OrgaDocument
     public function getEmailsociety()
     {
         return $this->emailsociety;
+    }
+
+    /**
+     * Set dateinscr
+     *
+     * @param date $dateinscr
+     * @return self
+     */
+    public function setDateinscr($dateinscr)
+    {
+        $this->dateinscr = $dateinscr;
+        return $this;
+    }
+
+    /**
+     * Get dateinscr
+     *
+     * @return date $dateinscr
+     */
+    public function getDateinscr()
+    {
+        return $this->dateinscr;
     }
 }
