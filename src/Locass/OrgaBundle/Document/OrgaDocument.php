@@ -27,21 +27,6 @@ class OrgaDocument
     protected $ids;
 
     /**
-     * @MongoDB\Field(type="int")
-     */
-    protected $idf;
-
-    /**
-     * @MongoDB\Field(type="string")
-     */
-    protected $nom;
-
-    /**
-     * @MongoDB\Field(type="string")
-     */
-    protected $prenom;
-
-    /**
      * @MongoDB\Field(type="string")
      */
     protected $adresse;
@@ -64,7 +49,7 @@ class OrgaDocument
     /**
      * @MongoDB\Field(type="string")
      */
-    protected $email;
+    protected $confirmtoken;
 
     /**
      * @MongoDB\Field(type="string")
@@ -92,24 +77,9 @@ class OrgaDocument
     protected $notes;
 
     /**
-     * @MongoDB\Field(type="string")
-     */
-    protected $style;
-
-    /**
      * @MongoDB\Field(type="int")
      */
     protected $nbmembers;
-
-    /**
-     * @MongoDB\Field(type="float")
-     */
-    protected $latitude;
-
-    /**
-     * @MongoDB\Field(type="float")
-     */
-    protected $longitude;
 
     /**
      * @MongoDB\Field(type="boolean")
@@ -151,72 +121,6 @@ class OrgaDocument
     public function getIds()
     {
         return $this->ids;
-    }
-
-    /**
-     * Set idf
-     *
-     * @param int $idf
-     * @return self
-     */
-    public function setIdf($idf)
-    {
-        $this->idf = $idf;
-        return $this;
-    }
-
-    /**
-     * Get idf
-     *
-     * @return int $idf
-     */
-    public function getIdf()
-    {
-        return $this->idf;
-    }
-
-    /**
-     * Set nom
-     *
-     * @param string $nom
-     * @return self
-     */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-        return $this;
-    }
-
-    /**
-     * Get nom
-     *
-     * @return string $nom
-     */
-    public function getNom()
-    {
-        return $this->nom;
-    }
-
-    /**
-     * Set prenom
-     *
-     * @param string $prenom
-     * @return self
-     */
-    public function setPrenom($prenom)
-    {
-        $this->prenom = $prenom;
-        return $this;
-    }
-
-    /**
-     * Get prenom
-     *
-     * @return string $prenom
-     */
-    public function getPrenom()
-    {
-        return $this->prenom;
     }
 
     /**
@@ -308,28 +212,6 @@ class OrgaDocument
     }
 
     /**
-     * Set email
-     *
-     * @param string $email
-     * @return self
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string $email
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
      * Set pays
      *
      * @param string $pays
@@ -396,28 +278,6 @@ class OrgaDocument
     }
 
     /**
-     * Set style
-     *
-     * @param string $style
-     * @return self
-     */
-    public function setStyle($style)
-    {
-        $this->style = $style;
-        return $this;
-    }
-
-    /**
-     * Get style
-     *
-     * @return string $style
-     */
-    public function getStyle()
-    {
-        return $this->style;
-    }
-
-    /**
      * Set nbmembers
      *
      * @param int $nbmembers
@@ -437,50 +297,6 @@ class OrgaDocument
     public function getNbmembers()
     {
         return $this->nbmembers;
-    }
-
-    /**
-     * Set latitude
-     *
-     * @param float $latitude
-     * @return self
-     */
-    public function setLatitude($latitude)
-    {
-        $this->latitude = $latitude;
-        return $this;
-    }
-
-    /**
-     * Get latitude
-     *
-     * @return float $latitude
-     */
-    public function getLatitude()
-    {
-        return $this->latitude;
-    }
-
-    /**
-     * Set longitude
-     *
-     * @param float $longitude
-     * @return self
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-        return $this;
-    }
-
-    /**
-     * Get longitude
-     *
-     * @return float $longitude
-     */
-    public function getLongitude()
-    {
-        return $this->longitude;
     }
 
     /**
@@ -569,5 +385,27 @@ class OrgaDocument
     public function getDateinscr()
     {
         return $this->dateinscr;
+    }
+
+    /**
+     * Set confirmtoken
+     *
+     * @param string $confirmtoken
+     * @return self
+     */
+    public function setConfirmtoken($confirmtoken)
+    {
+        $this->confirmtoken = $confirmtoken;
+        return $this;
+    }
+
+    /**
+     * Get confirmtoken
+     *
+     * @return string $confirmtoken
+     */
+    public function getConfirmtoken()
+    {
+        return $this->confirmtoken;
     }
 }

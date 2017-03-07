@@ -101,6 +101,9 @@ class DefaultController extends Controller
         $enable = false;
         $dateinscr = new \DateTime('now');
 
+        $random = random_bytes(40);
+        $tokenemail = base64_encode($random);
+
         $somePayload = [
             'lat' => $lat,
             'lon' => $lng
@@ -128,6 +131,7 @@ class DefaultController extends Controller
             $salledoc->setPayscode($payscode);
             $salledoc->setSociety($sallename);
             $salledoc->setEmailsociety($salleemail);
+            $salledoc->setConfirmtoken($tokenemail);
             $salledoc->setNotes($notes);
             $salledoc->setNbmembers($nbmembers);
             $salledoc->setEnable($enable);
@@ -189,6 +193,11 @@ class DefaultController extends Controller
         $enable = false;
         $dateinscr = new \DateTime('now');
 
+        $random = random_bytes(40);
+        $tokenemail = base64_encode($random);
+
+
+
         $somePayload = [
             'lat' => $lat,
             'lon' => $lng
@@ -217,6 +226,7 @@ class DefaultController extends Controller
             $bandDoc->setPayscode($payscode);
             $bandDoc->setSociety($bandname);
             $bandDoc->setEmailsociety($bandemail);
+            $bandDoc->setConfirmtoken($tokenemail);
             $bandDoc->setStyle($style);
             $bandDoc->setNotes($notes);
             $bandDoc->setNbmembers($nbmembers);
@@ -278,6 +288,9 @@ class DefaultController extends Controller
         $enable = false;
         $dateinscr = new \DateTime('now');
 
+        $random = random_bytes(40);
+        $tokenemail = base64_encode($random);
+
         $somePayload = [
             'lat' => $lat,
             'lon' => $lng
@@ -305,6 +318,7 @@ class DefaultController extends Controller
             $orgaDoc->setPayscode($payscode);
             $orgaDoc->setSociety($organame);
             $orgaDoc->setEmailsociety($orgaemail);
+            $orgaDoc->setConfirmtoken($tokenemail);
             $orgaDoc->setNotes($notes);
             $orgaDoc->setNbmembers($nbmembers);
             $orgaDoc->setEnable($enable);
