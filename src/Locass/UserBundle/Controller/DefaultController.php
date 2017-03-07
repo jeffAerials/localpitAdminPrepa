@@ -68,6 +68,10 @@ class DefaultController extends Controller
 
 
     }
+    public function registerbandAction()
+    {
+        return $this->render('LocassUserBundle:Default:registerband.html.twig');
+    }
     public function createsalleAction(Request $request)
     {
         $user = $this->getUser();

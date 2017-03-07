@@ -2,6 +2,11 @@ locass_bands:
     resource: "@LocassBandsBundle/Resources/config/routing.yml"
     prefix:   /bands
 
+locass_bands_register:
+    path:     /register/band
+    defaults: { _controller: LocassUserBundle:Default:registerband }
+
+
 locass_orga:
     resource: "@LocassOrgaBundle/Resources/config/routing.yml"
     prefix:   /orga
