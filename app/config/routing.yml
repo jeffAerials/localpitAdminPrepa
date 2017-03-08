@@ -3,9 +3,19 @@ locass_bands:
     prefix:   /bands
 
 locass_bands_register:
-    path:     /register/band
+    path:     /register/band/{token}
     defaults: { _controller: LocassUserBundle:Default:registerband }
+    methods:  GET
 
+locass_salles_register:
+    path:     /register/salle/{token}
+    defaults: { _controller: LocassUserBundle:Default:registersalle }
+    methods:  GET
+
+locass_orgas_register:
+    path:     /register/orga/{token}
+    defaults: { _controller: LocassUserBundle:Default:registerorga }
+    methods:  GET
 
 locass_orga:
     resource: "@LocassOrgaBundle/Resources/config/routing.yml"

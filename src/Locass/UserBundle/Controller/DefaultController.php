@@ -8,6 +8,7 @@ use Locass\OrgaBundle\Document\OrgaDocument;
 use Locass\BandsBundle\Document\BandDocument;
 use Locass\SallesBundle\Document\SalleDocument;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
 class DefaultController extends Controller
@@ -68,9 +69,92 @@ class DefaultController extends Controller
 
 
     }
-    public function registerbandAction()
+    public function registerbandAction(Request $request, $token)
     {
+        $repository = $this->get('doctrine_mongodb')
+            ->getManager()
+            ->getRepository('LocassBandsBundle:BandDocument');
+        $band = $repository->findOneByConfirmtoken($token);
+
+
+        if (null === $band) {
+            throw new NotFoundHttpException(sprintf('The user with confirmation token "%s" does not exist', $token));
+        }
+
+        $idBand = $band->getId();
+
+        $somePayload = [
+            'lat' => null
+        ];
+
+        $restClient = $this->container->get('circle.restclient');
+        $domainurl = $this->container->getParameter('resturl');
+
+        // **** update enable true and confirmtoken null
+        $restClient->put($domainurl . '/localpitsymf/confirmband/'.$idBand, http_build_query($somePayload));
+
+
+
+
         return $this->render('LocassUserBundle:Default:registerband.html.twig');
+    }
+    public function registersalleAction(Request $request, $token)
+    {
+        $repository = $this->get('doctrine_mongodb')
+            ->getManager()
+            ->getRepository('LocassSallesBundle:SalleDocument');
+        $salle = $repository->findOneByConfirmtoken($token);
+
+
+        if (null === $salle) {
+            throw new NotFoundHttpException(sprintf('The user with confirmation token "%s" does not exist', $token));
+        }
+
+        $idSalle = $salle->getId();
+
+        $somePayload = [
+            'lat' => null
+        ];
+
+        $restClient = $this->container->get('circle.restclient');
+        $domainurl = $this->container->getParameter('resturl');
+
+        // **** update enable true and confirmtoken null
+        $restClient->put($domainurl . '/localpitsymf/confirmsalle/'.$idSalle, http_build_query($somePayload));
+
+
+
+
+        return $this->render('LocassUserBundle:Default:registersalle.html.twig');
+    }
+    public function registerorgaAction(Request $request, $token)
+    {
+        $repository = $this->get('doctrine_mongodb')
+            ->getManager()
+            ->getRepository('LocassOrgaBundle:OrgaDocument');
+        $orga = $repository->findOneByConfirmtoken($token);
+
+
+        if (null === $orga) {
+            throw new NotFoundHttpException(sprintf('The user with confirmation token "%s" does not exist', $token));
+        }
+
+        $idOrga = $orga->getId();
+
+        $somePayload = [
+            'lat' => null
+        ];
+
+        $restClient = $this->container->get('circle.restclient');
+        $domainurl = $this->container->getParameter('resturl');
+
+        // **** update enable true and confirmtoken null
+        $restClient->put($domainurl . '/localpitsymf/confirmorga/'.$idOrga, http_build_query($somePayload));
+
+
+
+
+        return $this->render('LocassUserBundle:Default:registerorga.html.twig');
     }
     public function createsalleAction(Request $request)
     {
@@ -106,7 +190,7 @@ class DefaultController extends Controller
         $dateinscr = new \DateTime('now');
 
         $random = random_bytes(40);
-        $tokenemail = base64_encode($random);
+        $tokenemail = rtrim(strtr(base64_encode($random), '+/', '-_'), '='); //rendre au format url
 
         $somePayload = [
             'lat' => $lat,
@@ -154,6 +238,8 @@ class DefaultController extends Controller
 
             $restClient->put($domainurl . '/localpitsymf/newsalle/creategeoloc/'.$mongoIdsalleDoc, http_build_query($somePayload));
 
+            //swift mailer envoi token email
+
             $user->setIdmongo($mongoId);
             $em->persist($user);
             $em->flush($user);
@@ -198,7 +284,7 @@ class DefaultController extends Controller
         $dateinscr = new \DateTime('now');
 
         $random = random_bytes(40);
-        $tokenemail = base64_encode($random);
+        $tokenemail = rtrim(strtr(base64_encode($random), '+/', '-_'), '='); //rendre au format url
 
 
 
@@ -250,6 +336,8 @@ class DefaultController extends Controller
 
             $restClient->put($domainurl . '/localpitsymf/newband/creategeoloc/'.$mongoIdbandDoc, http_build_query($somePayload));
 
+            //swift mailer envoi token email
+
             $user->setIdmongo($mongoId);
             $em->persist($user);
             $em->flush($user);
@@ -293,7 +381,7 @@ class DefaultController extends Controller
         $dateinscr = new \DateTime('now');
 
         $random = random_bytes(40);
-        $tokenemail = base64_encode($random);
+        $tokenemail = rtrim(strtr(base64_encode($random), '+/', '-_'), '='); //rendre au format url
 
         $somePayload = [
             'lat' => $lat,
@@ -340,6 +428,8 @@ class DefaultController extends Controller
             $domainurl = $this->container->getParameter('resturl');
 
             $restClient->put($domainurl . '/localpitsymf/neworga/creategeoloc/'.$mongoIdorgaDoc, http_build_query($somePayload));
+
+            //swift mailer envoi token email
 
 
             $user->setIdmongo($mongoId);
