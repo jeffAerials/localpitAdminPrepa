@@ -30,6 +30,11 @@ class SalleDocument
     /**
      * @MongoDB\Field(type="string")
      */
+    protected $idadmin;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
     protected $adresse;
 
     /**
@@ -386,5 +391,27 @@ class SalleDocument
     public function getDateinscr()
     {
         return $this->dateinscr;
+    }
+
+    /**
+     * Set confirmtoken
+     *
+     * @param string $confirmtoken
+     * @return self
+     */
+    public function setConfirmtoken($confirmtoken)
+    {
+        $this->confirmtoken = $confirmtoken;
+        return $this;
+    }
+
+    /**
+     * Get confirmtoken
+     *
+     * @return string $confirmtoken
+     */
+    public function getConfirmtoken()
+    {
+        return $this->confirmtoken;
     }
 }

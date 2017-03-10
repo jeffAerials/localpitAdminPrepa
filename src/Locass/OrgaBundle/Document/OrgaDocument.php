@@ -29,6 +29,11 @@ class OrgaDocument
     /**
      * @MongoDB\Field(type="string")
      */
+    protected $idadmin;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
     protected $adresse;
 
     /**
@@ -407,5 +412,27 @@ class OrgaDocument
     public function getConfirmtoken()
     {
         return $this->confirmtoken;
+    }
+
+    /**
+     * Set idadmin
+     *
+     * @param string $idadmin
+     * @return self
+     */
+    public function setIdadmin($idadmin)
+    {
+        $this->idadmin = $idadmin;
+        return $this;
+    }
+
+    /**
+     * Get idadmin
+     *
+     * @return string $idadmin
+     */
+    public function getIdadmin()
+    {
+        return $this->idadmin;
     }
 }

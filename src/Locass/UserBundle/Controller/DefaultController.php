@@ -166,6 +166,11 @@ class DefaultController extends Controller
 
         $username = $user->getUsername();
 
+        $restClient = $this->container->get('circle.restclient');
+        $domainurl = $this->container->getParameter('resturl');
+
+        $restClient->delete($domainurl . '/localpitsymf/newcontact/deletecontact/' .$idUser );
+
 
         $contact = new Contacts();
         $salledoc = new SalleDocument();
@@ -201,6 +206,9 @@ class DefaultController extends Controller
 
         if (!empty($prenom)) {
             $em = $this->getDoctrine()->getManager();
+            $dm = $this->get('doctrine_mongodb')->getManager();
+
+
 
             $contact->setIds($idUser);
             $contact->setType("salle");
@@ -209,8 +217,14 @@ class DefaultController extends Controller
             $contact->setNom($nom);
             $contact->setPrenom($prenom);
 
+            $dm->persist($contact);
+            $dm->flush($contact);
+
+            $mongoId = $contact->getId();
+
 
             $salledoc->setIds($idUser);
+            $salledoc->setIdadmin($mongoId);
             $salledoc->setAdresse($adresse);
             $salledoc->setCodpost($codepost);
             $salledoc->setVille($ville);
@@ -225,16 +239,15 @@ class DefaultController extends Controller
             $salledoc->setEnable($enable);
             $salledoc->setDateinscr($dateinscr);
 
-            $dm = $this->get('doctrine_mongodb')->getManager();
-            $dm->persist($contact);
-            $dm->persist($salledoc);
-            $dm->flush();
 
-            $mongoId = $contact->getId();
+
+            $dm->persist($salledoc);
+            $dm->flush($salledoc);
+
+
 
             $mongoIdsalleDoc = $salledoc->getId();
-            $restClient = $this->container->get('circle.restclient');
-            $domainurl = $this->container->getParameter('resturl');
+
 
             $restClient->put($domainurl . '/localpitsymf/newsalle/creategeoloc/'.$mongoIdsalleDoc, http_build_query($somePayload));
 
@@ -258,6 +271,11 @@ class DefaultController extends Controller
         $emailUser = $user->getEmail();
 
         $username = $user->getUsername();
+
+        $restClient = $this->container->get('circle.restclient');
+        $domainurl = $this->container->getParameter('resturl');
+
+        $restClient->delete($domainurl . '/localpitsymf/newcontact/deletecontact/' .$idUser );
 
 
         $contact = new Contacts();
@@ -297,6 +315,9 @@ class DefaultController extends Controller
 
         if (!empty($prenom)) {
             $em = $this->getDoctrine()->getManager();
+            $dm = $this->get('doctrine_mongodb')->getManager();
+
+
 
 
             $contact->setIds($idUser);
@@ -307,7 +328,15 @@ class DefaultController extends Controller
             $contact->setPrenom($prenom);
 
 
+
+            $dm->persist($contact);
+            $dm->flush($contact);
+
+            $mongoId = $contact->getId();
+
+
             $bandDoc->setIds($idUser);
+            $bandDoc->setIdadmin($mongoId);
             $bandDoc->setAdresse($adresse);
             $bandDoc->setCodpost($codepost);
             $bandDoc->setVille($ville);
@@ -323,16 +352,15 @@ class DefaultController extends Controller
             $bandDoc->setEnable($enable);
             $bandDoc->setDateinscr($dateinscr);
 
-            $dm = $this->get('doctrine_mongodb')->getManager();
             $dm->persist($bandDoc);
-            $dm->persist($contact);
-            $dm->flush();
 
-            $mongoId = $contact->getId();
+
+            $dm->flush($bandDoc);
+
+
 
             $mongoIdbandDoc = $bandDoc->getId();
-            $restClient = $this->container->get('circle.restclient');
-            $domainurl = $this->container->getParameter('resturl');
+
 
             $restClient->put($domainurl . '/localpitsymf/newband/creategeoloc/'.$mongoIdbandDoc, http_build_query($somePayload));
 
@@ -346,7 +374,6 @@ class DefaultController extends Controller
         }
         return $this->render('fos_user_security_logout');
     }
-
     public function createorgaAction(Request $request)
     {
         $user = $this->getUser();
@@ -356,6 +383,12 @@ class DefaultController extends Controller
         $emailUser = $user->getEmail();
 
         $username = $user->getUsername();
+
+        $restClient = $this->container->get('circle.restclient');
+        $domainurl = $this->container->getParameter('resturl');
+
+
+        $restClient->delete($domainurl . '/localpitsymf/newcontact/deletecontact/' .$idUser );
 
 
         $contact = new Contacts();
@@ -392,6 +425,8 @@ class DefaultController extends Controller
 
         if (!empty($prenom)) {
             $em = $this->getDoctrine()->getManager();
+            $dm = $this->get('doctrine_mongodb')->getManager();
+
 
             $contact->setIds($idUser);
             $contact->setType("orga");
@@ -400,8 +435,14 @@ class DefaultController extends Controller
             $contact->setNom($nom);
             $contact->setPrenom($prenom);
 
+            $dm->persist($contact);
+            $dm->flush($contact);
+
+            $mongoId = $contact->getId();
+
 
             $orgaDoc->setIds($idUser);
+            $orgaDoc->setIdadmin($mongoId);
             $orgaDoc->setAdresse($adresse);
             $orgaDoc->setCodpost($codepost);
             $orgaDoc->setVille($ville);
@@ -416,18 +457,21 @@ class DefaultController extends Controller
             $orgaDoc->setEnable($enable);
             $orgaDoc->setDateinscr($dateinscr);
 
-            $dm = $this->get('doctrine_mongodb')->getManager();
-            $dm->persist($contact);
-            $dm->persist($orgaDoc);
-            $dm->flush();
 
-            $mongoId = $contact->getId();
+
+            $dm->persist($orgaDoc);
+            $dm->flush($orgaDoc);
+
+
 
             $mongoIdorgaDoc = $orgaDoc->getId();
-            $restClient = $this->container->get('circle.restclient');
-            $domainurl = $this->container->getParameter('resturl');
+
 
             $restClient->put($domainurl . '/localpitsymf/neworga/creategeoloc/'.$mongoIdorgaDoc, http_build_query($somePayload));
+
+            $paylooadID =  [
+                'lat' => $mongoIdorgaDoc
+            ];
 
             //swift mailer envoi token email
 

@@ -29,6 +29,11 @@ class OrgaDocument
     /**
      * @MongoDB\Field(type="string")
      */
+    protected $idadmin;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
     protected $adresse;
 
     /**
