@@ -9,3 +9,7 @@ services:
         arguments: []
         tags:
           - { name: kernel.event_subscriber }
+    locass_user.check_email_society:
+        class: Locass\UserBundle\Service\checkEmailSociety
+        arguments:
+          - "@doctrine.odm.mongodb.document_manager"
