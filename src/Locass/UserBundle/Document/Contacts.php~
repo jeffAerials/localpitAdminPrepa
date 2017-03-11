@@ -28,6 +28,11 @@ class Contacts
     /**
      * @MongoDB\Field(type="string")
      */
+    protected $idprinc;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
     protected $type;
 
     /**

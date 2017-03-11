@@ -248,6 +248,12 @@ class DefaultController extends Controller
 
             $mongoIdsalleDoc = $salledoc->getId();
 
+            $contactupdate = $dm->getRepository('LocassUserBundle:Contacts')->find($mongoId);
+
+            $contactupdate->setIdprinc($mongoIdsalleDoc);
+
+            $dm->flush($contactupdate);
+
 
             $restClient->put($domainurl . '/localpitsymf/newsalle/creategeoloc/'.$mongoIdsalleDoc, http_build_query($somePayload));
 
@@ -361,6 +367,12 @@ class DefaultController extends Controller
 
             $mongoIdbandDoc = $bandDoc->getId();
 
+            $contactupdate = $dm->getRepository('LocassUserBundle:Contacts')->find($mongoId);
+
+            $contactupdate->setIdprinc($mongoIdbandDoc);
+
+            $dm->flush($contactupdate);
+
 
             $restClient->put($domainurl . '/localpitsymf/newband/creategeoloc/'.$mongoIdbandDoc, http_build_query($somePayload));
 
@@ -466,12 +478,15 @@ class DefaultController extends Controller
 
             $mongoIdorgaDoc = $orgaDoc->getId();
 
+            $contactupdate = $dm->getRepository('LocassUserBundle:Contacts')->find($mongoId);
+
+            $contactupdate->setIdprinc($mongoIdorgaDoc);
+
+            $dm->flush($contactupdate);
+
 
             $restClient->put($domainurl . '/localpitsymf/neworga/creategeoloc/'.$mongoIdorgaDoc, http_build_query($somePayload));
-
-            $paylooadID =  [
-                'lat' => $mongoIdorgaDoc
-            ];
+            
 
             //swift mailer envoi token email
 

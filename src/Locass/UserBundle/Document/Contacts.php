@@ -28,6 +28,11 @@ class Contacts
     /**
      * @MongoDB\Field(type="string")
      */
+    protected $idprinc;
+
+    /**
+     * @MongoDB\Field(type="string")
+     */
     protected $type;
 
     /**
@@ -191,5 +196,27 @@ class Contacts
     public function getUsername()
     {
         return $this->username;
+    }
+
+    /**
+     * Set idprinc
+     *
+     * @param string $idprinc
+     * @return self
+     */
+    public function setIdprinc($idprinc)
+    {
+        $this->idprinc = $idprinc;
+        return $this;
+    }
+
+    /**
+     * Get idprinc
+     *
+     * @return string $idprinc
+     */
+    public function getIdprinc()
+    {
+        return $this->idprinc;
     }
 }
