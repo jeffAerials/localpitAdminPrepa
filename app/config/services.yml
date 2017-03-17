@@ -13,3 +13,9 @@ services:
         class: Locass\UserBundle\Service\checkEmailSociety
         arguments:
           - "@doctrine.odm.mongodb.document_manager"
+    locass_user.twig.checkemail_extension:
+        class: Locass\UserBundle\Service\twig\checkEmailSocietyExtension
+        arguments:
+          - "@locass_user.check_email_society"
+        tags:
+          -  { name: twig.extension }

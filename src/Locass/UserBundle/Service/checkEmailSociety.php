@@ -31,7 +31,7 @@ class checkEmailSociety
      * Vérifie si le contact document possède une société principale validée
      *
      * @param string $idmongo
-     * @return bool
+     * @return array
      */
     public function isEmailsocietyenabled ($idmongo)
     {
@@ -52,7 +52,14 @@ class checkEmailSociety
             $society = $this->dm->getRepository('LocassSallesBundle:SalleDocument')->find($idprinc);
         }
         $enable = $society->getEnable();
+        $name = $society->getSociety();
+        $email = $society->getEmailsociety();
+        $result = array(
+            'enable' => $enable,
+            'name'   => $name,
+            'email'  => $email
+        );
 
-        return $enable;
+        return $result;
     }
 }

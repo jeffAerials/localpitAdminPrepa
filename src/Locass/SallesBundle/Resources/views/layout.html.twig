@@ -151,7 +151,15 @@
     <!-- RIBBON -->
     <div id="ribbon">
 
-
+        {% if checkIfEmailPrincValid(app.user.idmongo).enable == false %}
+            <div class="alert alert-danger fade in">
+                <button class="close" data-dismiss="alert">
+                    ×
+                </button>
+                <i class="fa-fw fa fa-warning"></i>
+                <strong>Email ( {{ checkIfEmailPrincValid(app.user.idmongo).email }} ) Non Valide !</strong> L'Email de vôtre Site principal <strong>{{ checkIfEmailPrincValid(app.user.idmongo).name }}</strong> n'a pas été validé certaines fonctions sont inactives, veuillez vérifier vôtre boite email: {{ checkIfEmailPrincValid(app.user.idmongo).email }}.
+            </div>
+        {% endif %}
 
     </div>
     <!-- END RIBBON -->
