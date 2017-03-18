@@ -191,7 +191,15 @@ class DefaultController extends Controller
         $nbmembers = $request->request->get('nbmembers');
         $lat = $request->request->get('lat');
         $lng = $request->request->get('lng');
-        $enable = false;
+
+        if ($salleemail == $emailUser){
+            $enable = true;
+        }
+        else
+        {
+            $enable = false;
+        };
+
         $dateinscr = new \DateTime('now');
 
         $random = random_bytes(40);
@@ -304,7 +312,14 @@ class DefaultController extends Controller
         $style = $request->request->get('style');
         $lat = $request->request->get('lat');
         $lng = $request->request->get('lng');
-        $enable = false;
+        if ($bandemail == $emailUser){
+            $enable = true;
+        }
+        else
+        {
+            $enable = false;
+        };
+
         $dateinscr = new \DateTime('now');
 
         $random = random_bytes(40);
@@ -422,7 +437,15 @@ class DefaultController extends Controller
         $nbmembers = $request->request->get('nbmembers');
         $lat = $request->request->get('lat');
         $lng = $request->request->get('lng');
-        $enable = false;
+
+        if ($orgaemail == $emailUser){
+            $enable = true;
+        }
+        else
+        {
+            $enable = false;
+        };
+
         $dateinscr = new \DateTime('now');
 
         $random = random_bytes(40);

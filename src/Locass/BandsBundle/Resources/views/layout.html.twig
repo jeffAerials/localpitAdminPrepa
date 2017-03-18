@@ -157,7 +157,7 @@
                     ×
                 </button>
                 <i class="fa-fw fa fa-warning"></i>
-                <strong>Email ( {{ checkIfEmailPrincValid(app.user.idmongo).email }} ) Non Valide !</strong> L'Email de votre groupe principal <strong>{{ checkIfEmailPrincValid(app.user.idmongo).name }}</strong> n'a pas été validé certaines fonctions sont inactives, veuillez vérifier vôtre boite email: {{ checkIfEmailPrincValid(app.user.idmongo).email }}.
+                <strong>Email ( {{ checkIfEmailPrincValid(app.user.idmongo).email }} ) Non Valide !</strong> L'Email de votre groupe principal <strong>{{ checkIfEmailPrincValid(app.user.idmongo).name }}</strong> n'a pas été validé certaines fonctions sont inactives, veuillez vérifier vôtre boite email: {{ checkIfEmailPrincValid(app.user.idmongo).email }}. Il vous reste <strong>{{ checkIfEmailPrincValid(app.user.idmongo).nbjour }} Jours</strong> avant sa suppression !!
             </div>
         {% endif %}
 
@@ -193,6 +193,7 @@
         </div>
     </div>
     <!-- END PAGE FOOTER -->
+</div>
 
 
 

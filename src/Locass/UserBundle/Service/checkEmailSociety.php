@@ -54,10 +54,24 @@ class checkEmailSociety
         $enable = $society->getEnable();
         $name = $society->getSociety();
         $email = $society->getEmailsociety();
+        $date = new \DateTime('now');
+
+
+        $datecrea = $society->getDateinscr();
+        $dDiff = $datecrea->diff($date);
+
+
+
+
+        //nombre de jour restant avant suppression (durée de vie: 8 jours)
+        $nbJoursTimestamp = 8 - $dDiff->format('%R%a days');
+
+
         $result = array(
             'enable' => $enable,
             'name'   => $name,
-            'email'  => $email
+            'email'  => $email,
+            'nbjour' => $nbJoursTimestamp
         );
 
         return $result;
