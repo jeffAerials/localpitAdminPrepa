@@ -5,7 +5,13 @@
   "description": "The \"Symfony Standard Edition\" distribution",
   "autoload": {
     "psr-4": {
-      "AppBundle\\": "src/AppBundle"
+      "AppBundle\\": "src/AppBundle",
+      "Testmongo\\StoreBundle\\": "src/Testmongo/StoreBundle",
+      "Locass\\AdminBundle\\": "src/Locass/AdminBundle",
+      "Locass\\BandsBundle\\": "src/Locass/BandsBundle",
+      "Locass\\OrgaBundle\\": "src/Locass/OrgaBundle",
+      "Locass\\SallesBundle\\": "src/Locass/SallesBundle",
+      "Locass\\UserBundle\\": "src/Locass/UserBundle"
     },
     "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
   },
@@ -19,6 +25,7 @@
     "ci/restclientbundle": "^2.0",
     "doctrine/doctrine-bundle": "^1.6",
     "doctrine/mongodb-odm": "^1.2",
+    "doctrine/mongodb-odm-bundle": "^3.5",
     "doctrine/orm": "^2.5",
     "friendsofsymfony/user-bundle": "~2.0",
     "incenteev/composer-parameter-handler": "^2.0",
