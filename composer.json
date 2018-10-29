@@ -19,7 +19,6 @@
     "ci/restclientbundle": "^2.0",
     "doctrine/doctrine-bundle": "^1.6",
     "doctrine/mongodb-odm": "^1.2",
-    "doctrine/mongodb-odm-bundle": "^3.5",
     "doctrine/orm": "^2.5",
     "friendsofsymfony/user-bundle": "~2.0",
     "incenteev/composer-parameter-handler": "^2.0",
